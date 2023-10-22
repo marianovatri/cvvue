@@ -113,13 +113,13 @@
               <div class="card p3"> 
                 <a href="https://cashregisterangular.netlify.app/" target="_blank">
                   <img
-                    src="https://lh3.googleusercontent.com/pw/AM-JKLWgee75xDiiH0vpwwzfKtyxMwmCi1DujDSbYVt7WKYg9MovNBC3XmUyrEkjkR2wIv4lk2vFk-WBUxvjTveo4o2Bx4AGU7NlrWEf_YzDrHA2IC8ibUBMoLuXJ2pC9CigA7uc_DaarOlKGLrevHmcTknljA=w1351-h632-no?authuser=0"
+                    src="../assets/ImagenesProyectos/simplebuy.png"
                     alt="">
                 </a>
                 <hr>
                   <a href="https://simplebuypro.com/"
                     target="_blank">Simple Buy</a>
-                <h4>Inicié el proyecto desde cero con Vue.js, definiendo y creando un sistema completo que satisface las necesidades de la empresa. Presté mi contribución mediante la creación de componentes únicos y a medida. Estos no se encontraban disponibles en linea, sino que fueron diseñados específicamente para cubrir las necesidades del proyecto. Actualmente sigo trabajando Fulltime en el mismo, innovando y expandiendo funcionalidades.</h4>
+                <h4>Inicié el proyecto desde cero con <span class="vue">Vue.js</span>, definiendo y creando un sistema completo que satisface las necesidades de la empresa. Presté mi contribución mediante la creación de componentes únicos y a medida. Estos no se encontraban disponibles en linea, sino que fueron diseñados específicamente para cubrir las necesidades del proyecto. Actualmente sigo trabajando Fulltime en el mismo, innovando y expandiendo funcionalidades.</h4>
                 <a href="https://simplebuypro.com/" target="_blank">
                   <button class="button-ir-al-proyecto">
                     Explorar Proyecto
@@ -151,7 +151,7 @@
                   <div class="card p3 w-45">
                     <a href="https://marsproyect.netlify.app/" target="_blank">
                       <img
-                           src="https://lh3.googleusercontent.com/pw/AMWts8CjokyrG5a83zQHTZd4WFb0Oeus3QeMnzXka8rTnyCQPLvbnq06fuyTWqKyeg_-KSmPaP9GzN7kOFXTYIL0-tqgpV8Eb8inMNsop7znkAbaHrILfg4FRxPbTVCIR8N3rK7hMc_cma_jtwIomu21ENQrrg=w1126-h633-no?authuser=0"
+                           src="../assets/ImagenesProyectos/mars.png"
                            alt="">
                     </a>
                     <hr>
@@ -168,7 +168,7 @@
                     <a href="https://pagepizzeria.netlify.app"
                           target="_blank">
                       <img
-                            src="https://lh3.googleusercontent.com/pw/AMWts8Da7SAnZWlsQcuiRIIW_FJOc6lp_6Zpo9oo5yTGo_DJJvnuiFu-bIWe--HfaeTFNtKaBYrJOEipTDu5lnPuPnCbYi5Y-h7kypb0S1uHf4q1B06QCf9ZxrOkCJ3gRvlzoANGGMu6t4DkJpim78vAO0ECuw=w1014-h576-no?authuser=0"
+                            src="../assets/ImagenesProyectos/pizzeria.jpg"
                             alt="">
                     </a>
                     
@@ -550,9 +550,9 @@ h1 {
 }
 
 .container {
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
 }
 
 .p3 {
@@ -561,7 +561,7 @@ h1 {
 
 .card {
     color: black;
-    width: 25%;
+    width: 30%;
     background-color: rgb(255 255 255 / 92%);
     transition: transform .2s;
     border: 1px solid white;
