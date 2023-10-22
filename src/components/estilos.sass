@@ -1,0 +1,395 @@
+
+$userColor: var(--userColor, brown)
+
+    
+.button-ir-al-proyecto
+  cursor: pointer
+  background-color: $userColor
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset
+  color: white
+  padding: 10px 20px
+  border: 0
+  border-radius: 5px
+  text-decoration: none
+  font-weight: bold
+  transition: background-color 0.3s, transform 0.3s
+  display: inline-block
+.angular
+  color: white
+  background: #b52e31
+  border: 1px solid
+  padding: 0px 5px
+  border-radius: 10px
+.vue
+  color: #42b883
+  background: #ffffff
+  border: 1px solid
+  padding: 0px 5px
+  border-radius: 10px
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap')
+
+body
+  margin: 0
+
+video
+  position: fixed
+  right: 0
+  bottom: 0
+  min-width: 100%
+  min-height: 100%
+  transform: translateX(calc((100% - 100vw) / 2))
+  z-index: -2
+.aboutMe
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  div:first-child
+    width: fit-content
+.title
+  overflow: hidden /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid rgb(157, 32, 13) /* The typewriter cursor */
+  white-space: nowrap /* Keeps the content on a single line */
+  margin: 0 auto /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em /* Adjust as needed */
+  width: min-content
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite
+@keyframes typing
+  from
+    width: 0
+  to
+    width: 100%
+/* The typewriter cursor effect */
+@keyframes blink-caret
+  from, to
+    border-color: transparent
+  50%
+    border-color: rgb(0, 0, 0)
+.firstContainer
+  padding-bottom: 3.2em
+.menu
+  background-color: $userColor
+  display: flex
+  padding-top: 80 px
+  transition: all 0.3s ease
+  justify-content: space-around
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  z-index: 1
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
+.d-flex
+  display: flex
+.logo a
+  font-size: 40px
+  font-weight: 600
+  color: rgb(0, 0, 0)
+
+.logo span
+  color: white
+
+ul
+  list-style: none
+  display: block
+
+.menu-button
+    margin: 5px 7px
+
+.menu-button:hover
+  outline: none
+  color: black
+  text-decoration: none
+  transition: color 0.3s
+a
+  color: white
+  text-decoration: none
+  font-size: larger
+a:hover
+  text-decoration: none
+*
+  font-family: 'Source Sans Pro', sans-serif
+  text-align: center
+  padding: 0
+  box-sizing: border-box
+  text-decoration: none
+@media screen and (max-width: 750px)
+  .menu
+    align-items: center
+    flex-direction: column
+@media screen and (max-width: 450px)
+  .menu
+    align-items: center
+    flex-direction: column
+    font-size: 12px
+footer
+  background-color: rgba(0, 0, 0, 0.859)
+  color: white
+  text-align: center
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+span
+  color: $userColor
+.fa
+  width: 3em
+  height: 3em
+  border-radius: 5px
+  display: flex
+  justify-content: center
+  align-items: center
+.fa:hover
+  opacity: 0.7
+  transform: scale(1.3)
+  transition: all 0.4s
+.fa-github
+  background: #5d5959
+  color: white
+.fa-whatsapp
+  background: #42b333
+  color: white
+.fa-facebook
+  background: #3B5998
+  color: white
+.fa-instagram
+  background: #da50c6
+  color: white
+.fa-linkedin
+  background: #007bb5
+  color: white
+.fotoPerfil
+  height: 400px
+.button
+  text-decoration: none
+  color: white !important
+  background-color: rgb(56, 124, 227)
+  padding: 15px
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset
+  border-radius: 15px
+  font-weight: bold
+  transition: all 0.3s ease
+.button-container
+  margin-top: 40px
+.button:hover
+  background: rgb(52, 93, 169)
+#services
+  padding-bottom: 4%
+  padding-top: 3%
+h1
+  color: $userColor
+  text-shadow: -1px -1px #f0f0f0d7
+  letter-spacing: 2px
+#proyectos
+  padding-bottom: 4%
+  padding-top: 3%
+#skills
+  padding: 2em 5em
+#aboutMe
+  /* width: 80% */
+  padding: 2em 5em
+  background: white
+  margin: 0
+  display: flex
+  justify-content: space-around
+  /* margin-left: 10%*/
+.text
+  margin-bottom: 18px
+.servicios
+  display: flex
+  justify-content: space-around
+.container
+  display: flex
+  width: 80%
+  justify-content: space-around
+.p3
+  padding: 3%
+.card
+  color: black
+  width: 30%
+  background-color: rgba(255, 255, 255, 0.92)
+  transition: transform .2s
+  border: 1px solid white
+  border-radius: 20px
+.card img
+  height: 30px
+#proyectos img
+  border: 2px solid black
+  border-radius: 7%
+  transition: transform 1s /* Animation */
+  max-height: 100%
+  max-width: 100%
+  width: 100%
+  /* height: 5rem; */
+  height: auto
+#proyectos img:hover
+  transform: scale(1.2) /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+.card a
+  color: $userColor
+  font-size: 1.3rem
+.card:hover a
+  color: white
+.button-ir-al-proyecto:hover
+  transform: scale(1.05)
+.card:hover .button-ir-al-proyecto
+  color: black
+  background-color: #ffffff !important
+.servicios img
+  min-height: 70px
+  min-width: 70px
+  max-height: 90px
+  max-width: 90px
+.white
+  background-color: white
+.white h2
+  margin: 0
+  color: $userColor
+.white h3
+  color: #111
+.red h2
+  color: $userColor
+.red h3
+  color: white
+.habilidades
+  display: flex
+  justify-content: space-around
+.jc-sa
+  justify-content: space-around
+.habilidades img
+  min-height: 70px
+  min-width: 70px
+  max-height: 70px
+  max-width: 70px
+.habilidades .onebox
+  width: 40%
+  align-content: center
+.contenedor-caja div
+  /* margin: 10px; */
+  margin: 1rem
+  /* padding-left: 10%; */
+  display: flex
+  justify-content: center
+.contenedor-caja .caja
+  min-height: 70px
+  min-width: 70px
+  transition-duration: .2s
+.w-100
+  width: 100%
+.caja:hover
+  transform: scale(1.3)
+  cursor: pointer
+.card:hover
+  background-color: $userColor
+  transform: scale(1.1)
+  transition-duration: 0.5s
+.card h3
+  color: black
+.card:hover h2
+  color: white
+.titulo:before, .titulo:after
+  content: ""
+  display: inline-block
+  width: 3%
+  margin: 0 .5em 0 -55%
+  vertical-align: middle
+  border-bottom: 3px solid
+.titulo:after
+  margin: 0 -55% 0 .5em
+.scroll-up-btn
+  position: fixed
+  height: 45px
+  width: 42px
+  right: 30px
+  bottom: 60px
+  background: rgb(172, 46, 46)
+  text-align: center
+  color: #fff
+  z-index: -10
+  border: 1px solid black
+  border-radius: 50%
+  cursor: pointer
+  transition: all 0.3s ease
+  align-content: center
+.scroll-up-btn a
+  margin: 0
+.scroll-up-btn img
+  padding-top: 7%
+  width: 100%
+.scroll-up-btn:hover
+  background: rgb(217, 46, 46)
+#contacto
+  padding: 2em 5em
+.contacto
+  display: flex
+  justify-content: space-evenly
+  padding: 1em
+.contacto img
+    padding-right: 7px
+    padding-left: 7px
+.contacto a
+  text-decoration: none
+.opacity0
+  opacity: 0
+  transition: all 0.5s
+.fadeTop
+  opacity: 0
+  transform: translate(0, 10vh)
+  transition: all 1.5s
+.fadeRight
+  opacity: 0
+  transform: translate(10vh, 0vh)
+  transition: all 1.5s
+.fadeLeft
+  opacity: 0
+  transform: translate(-10vh, 0vh)
+  transition: all 1.5s
+.visible
+  opacity: 1
+  transform: translate(0, 0)
+.show
+  z-index: 99
+  transform: translate(0, -2vh)
+  transition: all 1s
+@media screen and (max-width:650px)
+  .container
+    align-items: center
+    flex-direction: column
+  .card
+    margin-bottom: 2%
+    width: 70%
+    border: 1px solid black
+    border-radius: 20px
+  #aboutMe
+    flex-direction: column
+  .contacto
+    align-items: center
+    flex-direction: column
+@media screen and (max-width:810px)
+  .habilidades
+    align-items: center
+    flex-direction: column
+  .habilidades .onebox
+    width: 100%
+    align-content: center
+  .fotoPerfil
+    height: 300px
+@media screen and (max-width:500px)
+  .contenedor-caja div
+    margin: 1rem
+    flex-wrap: wrap
+    flex-direction: column
+  .scroll-up-btn
+    position: fixed
+    height: 45px
+    width: 42px
+    right: 30px
+    bottom: 85px
+    background: rgba(165, 42, 42, 0.76)
+    text-align: center
+    color: #fff
+    z-index: -10
+    border: 1px solid black
+    border-radius: 6px
+    cursor: pointer
+    transition: all 0.3s ease

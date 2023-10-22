@@ -1,4 +1,11 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true
-})
+const path = require('path');
+
+module.exports = {
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/assets/estilos.scss";`,
+      },
+    },
+  },
+};
