@@ -28,7 +28,7 @@
       <video src="../assets/programador.mp4" autoplay="true" muted="true" loop="true" poster="https://carontestudio.com/img/contacto.jpg"></video>
       <section class="white, text" id="aboutMe">
           <div> 
-            <img class="fotoPerfil"  src="https://lh3.googleusercontent.com/pw/AM-JKLXGhTZhjuLaILgEGX0Ew7NAPVIqKU1st_mBjTKtqWx62mA44nfsC22VDNdIeGDUITrjyEwHo5vd-anTtNwTT8YjSCZP0aWEdpQhIEVvc0xHhk_gbTL4sYl-LssHUbI99Ow2fm_9bYPPsjlxE28J90fywQ=w387-h551-no?authuser=0">
+            <img class="fotoPerfil"  src="../assets/ImagenesProyectos/simplebuy.png">
           </div>
           <div class="aboutMe">
               <div class="d-flex">
@@ -258,7 +258,7 @@ export default {
 
   methods: {
     imageSrc(image) {
-      return new URL(`../assets/ImagenesProyectos/${image}`, import.meta.url).href;
+      return require(`@/assets/ImagenesProyectos/${image}`);
     },
   },
 
