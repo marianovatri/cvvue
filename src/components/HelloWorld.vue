@@ -82,7 +82,7 @@
 
               </div>
               <div class="onebox contenedor-caja fadeRight scroll-content">
-                  <div class="d-flex w-100">
+                  <div class="d-flex">
                       <div class="caja"> 
                         <img src="../assets/skills/html5.png" alt="html5">
                       </div>
@@ -96,7 +96,7 @@
                         <img src="../assets/skills/vue.png" alt="vue.js">
                       </div>
                   </div>
-                  <div class="w-100">
+                  <div class="d-flex">
                       <div class="caja"> 
                         <img src="../assets/skills/angular.png" alt="angular">
                       </div>
