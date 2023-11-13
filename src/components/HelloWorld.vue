@@ -120,7 +120,7 @@
             <div class="container">
               <div class="card p3">
                 <a :href="proyecto.enlace" target="_blank">
-                  <img :src="imageSrc(proyecto.imagen)" alt="">
+                  <img :src="imageSrc(proyecto.image)" alt="">
                 </a>
                 <hr>
                 <a :href="proyecto.enlace" target="_blank">{{ proyecto.nombre }}</a>
