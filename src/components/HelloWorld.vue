@@ -28,7 +28,7 @@
       <video src="../assets/programador.mp4" autoplay="true" muted="true" loop="true" poster="https://carontestudio.com/img/contacto.jpg"></video>
       <section class="white, text" id="aboutMe">
           <div> 
-            <img class="fotoPerfil"  src="../assets/ImagenesProyectos/simplebuy.png">
+            <img class="fotoPerfil"  src="../assets/profilePhoto.png">
           </div>
           <div class="aboutMe">
               <div class="d-flex">
@@ -120,7 +120,7 @@
             <div class="container">
               <div class="card p3">
                 <a :href="proyecto.enlace" target="_blank">
-                  <img :src="imageSrc(proyecto.image)" alt="">
+                  <img class="previewImgProyect" :src="imageSrc('ImagenesProyectos', proyecto.image)" alt="">
                 </a>
                 <hr>
                 <a :href="proyecto.enlace" target="_blank">{{ proyecto.nombre }}</a>
@@ -128,7 +128,7 @@
                 <div class="stack-tecnologico">
                   <h5>Stack Tecnológico FRONT:</h5>
                   <div class="tecnologias">
-                    <img v-for="tecnologia in proyecto.tecnologia" :key="tecnologia" :src="'../assets/skills/' + tecnologia.toLowerCase() + '.png'" :alt="tecnologia">
+                    <img v-for="tecnologia in proyecto.tecnologia" :key="tecnologia" :src="imageSrc('skills', tecnologia)">
                   </div>
                 </div>
                 <div class="project-actions">
@@ -246,7 +246,7 @@ export default {
           image: 'simplebuy.png',
           enlace: 'https://simplebuypro.com/',
           descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuí creando componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
-          tecnologia: ['vue','html5']
+          tecnologia: ['vue.png','html5.png']
         }
       ],
     }
@@ -257,8 +257,8 @@ export default {
   },
 
   methods: {
-    imageSrc(image) {
-      return require(`@/assets/ImagenesProyectos/${image}`);
+    imageSrc(src, image) {
+      return require(`@/assets/${src}/${image}`);
     },
   },
 
