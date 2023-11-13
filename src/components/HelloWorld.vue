@@ -119,7 +119,7 @@
           <div class="servicios scroll-content fadeTop">
             <div class="container">
               <div class="card p3"> 
-                <a href="https://cashregisterangular.netlify.app/" target="_blank">
+                <a href="https://simplebuypro.com/" target="_blank">
                   <img
                     src="../assets/ImagenesProyectos/simplebuy.png"
                     alt="">
