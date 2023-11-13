@@ -116,7 +116,30 @@
       <section class="red" id="proyectos">
           <h1>Proyectos</h1>
           <h3 class="titulo">Profesionales</h3>
-          <div class="servicios scroll-content fadeTop">
+          <div v-for="proyecto in profesionalProyects" :key="proyecto.nombre" class="servicios scroll-content fadeTop">
+            <div class="container">
+              <div class="card p3">
+                <a :href="proyecto.enlace" target="_blank">
+                  <img :src="imageSrc(proyecto.imagen)" alt="">
+                </a>
+                <hr>
+                <a :href="proyecto.enlace" target="_blank">{{ proyecto.nombre }}</a>
+                <h4>{{ proyecto.descripcion }}</h4>
+                <div class="stack-tecnologico">
+                  <h5>Stack Tecnológico FRONT:</h5>
+                  <div class="tecnologias">
+                    <img v-for="tecnologia in proyecto.tecnologia" :key="tecnologia" :src="'../assets/skills/' + tecnologia.toLowerCase() + '.png'" :alt="tecnologia">
+                  </div>
+                </div>
+                <div class="project-actions">
+                  <a :href="proyecto.enlace" target="_blank">
+                    <button class="button-ir-al-proyecto">Explorar Proyecto</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="servicios scroll-content fadeTop">
             <div class="container">
               <div class="card p3"> 
                 <a href="https://simplebuypro.com/" target="_blank">
@@ -135,7 +158,7 @@
                 </a>
               </div>
             </div>
-          </div>
+          </div> -->
           <h3 class="titulo">Personales</h3>
           <div class="servicios scroll-content fadeTop">
               <div class="container">
@@ -214,8 +237,29 @@
 <script>
 export default {
   name: 'HelloWorld',
+
+  data() {
+    return {
+      profesionalProyects: [
+        {
+          nombre: 'Simple Buy',
+          image: 'simplebuy.png',
+          enlace: 'https://simplebuypro.com/',
+          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuí creando componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
+          tecnologia: ['vue','html5']
+        }
+      ],
+    }
+  },
+
   props: {
     msg: String
+  },
+
+  methods: {
+    imageSrc(image) {
+      return new URL(`../assets/ImagenesProyectos/${image}`, import.meta.url).href;
+    },
   },
 
   mounted() {
