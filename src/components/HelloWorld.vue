@@ -4,14 +4,6 @@
     <header>
         <nav class="menu opacity0">
             <div class="logo"> <a href="#"> Mariano <span>Vatri</span> </a> </div>
-            <input type="color" id="colorPicker">
-            <div>
-              <div class="color-box" id="color1"></div>
-              <div class="color-box" id="color2"></div>
-              <div class="color-box" id="color3"></div>
-              <div class="color-box" id="color4"></div>
-              <div class="color-box" id="color5"></div>
-          </div>
             <div>
                 <ul class="d-flex">
                     <li><a class="menu-button" href="#aboutMe">Acerca de mi</a></li>
@@ -84,32 +76,43 @@
               <div class="onebox contenedor-caja fadeRight scroll-content">
                   <div class="d-flex">
                       <div class="caja"> 
-                        <img src="../assets/skills/html5.png" alt="html5">
+                        <img src="../assets/skills/html5.svg" alt="html5">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/logo-css3-256.png" alt="css3">
+                        <img src="../assets/skills/css3.svg" alt="css3">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/javascript.png" alt="javascript">
+                        <img src="../assets/skills/javascript.svg" alt="javascript">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/vue.png" alt="vue.js">
+                        <img src="../assets/skills/vuejs.svg" alt="vue.js">
                       </div>
                   </div>
                   <div class="d-flex">
                       <div class="caja"> 
-                        <img src="../assets/skills/angular.png" alt="angular">
+                        <img src="../assets/skills/angular.svg" alt="angular">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/git.png" alt="git">
+                        <img src="../assets/skills/git.svg" alt="git">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/github.png" alt="github">
+                        <img src="../assets/skills/github.svg" alt="github">
                       </div>
                   </div>
               </div>
           </div>
       </section>
+      <div v-if="colorPickerVisible" class="boxColors">
+        <div class="color-box" id="color1" @click="changeColor('#a52a2a')">Clasico</div>
+        <div class="color-box" id="color2" @click="changeColor('#004080')">Blue</div>
+        <div class="color-box" id="color3" @click="changeColor('#4CAF50')">Verde</div>
+        <div class="color-box" id="color4" @click="changeColor('#FFA500')">Naranja</div>
+        <div class="color-box" id="color5" @click="changeColor('#800080')">Morado</div>
+      </div>
+      <div class="floating-button" @click="toggleColorPicker">
+        <span>Cambiar</span>
+        <span>Color</span>
+      </div>
       <div class="scroll-up-btn"> <a href="#aboutMe"> 
         <img src="https://cdn-0.emojis.wiki/emoji-pics/softbank/upwards-button-softbank.png" alt=""> </a> 
       </div>
@@ -128,7 +131,7 @@
                 <div class="stack-tecnologico">
                   <h5>Stack Tecnológico FRONT:</h5>
                   <div class="tecnologias">
-                    <img v-for="tecnologia in proyecto.tecnologia" :key="tecnologia" :src="imageSrc('skills', tecnologia)">
+                    <img v-for="tecnologia in proyecto.tecnologia" :key="tecnologia" :title="tecnologia" :src="imageSrc('skills', tecnologia)">
                   </div>
                 </div>
                 <div class="project-actions">
@@ -240,13 +243,16 @@ export default {
 
   data() {
     return {
+
+      colorPickerVisible: false,
+
       profesionalProyects: [
         {
           nombre: 'Simple Buy',
           image: 'simplebuy.png',
           enlace: 'https://simplebuypro.com/',
-          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuí creando componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
-          tecnologia: ['vue.png','html5.png']
+          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuí desde el inicio del proyecto hasta la actualidad, cree componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
+          tecnologia: ['vuejs.svg','pinia.png','sass.svg']
         }
       ],
     }
@@ -257,17 +263,23 @@ export default {
   },
 
   methods: {
+
+    toggleColorPicker() {
+      this.colorPickerVisible = !this.colorPickerVisible;
+    },
+
+    changeColor(selectedColor) {
+      document.documentElement.style.setProperty('--userColor', selectedColor)
+      this.colorPickerVisible = false;
+
+    },
+
     imageSrc(src, image) {
       return require(`@/assets/${src}/${image}`);
     },
   },
 
   mounted() {
-
-    document.getElementById("colorPicker").addEventListener("input", function(event) {
-      const selectedColor = event.target.value;
-      document.documentElement.style.setProperty('--userColor', selectedColor);
-    });
 
     let lastScroll = 0;
 
