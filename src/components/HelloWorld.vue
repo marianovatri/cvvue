@@ -17,7 +17,7 @@
     </header>
 
     <body>
-      <video src="../assets/programador.mp4" autoplay="true" muted="true" loop="true" poster="https://carontestudio.com/img/contacto.jpg"></video>
+      <video src="../assets/programador.mp4" autoplay="true" muted="true" loop="true" poster="https://www.softzone.es/app/uploads-softzone.es/2021/05/Programar-en-IDE.jpg"></video>
       <section class="white, text" id="aboutMe">
           <div> 
             <img class="fotoPerfil"  src="../assets/profilePhoto.png">
@@ -104,7 +104,7 @@
       </section>
       <div v-if="colorPickerVisible" class="boxColors">
         <div class="color-box" id="color1" @click="changeColor('#a52a2a')">Clasico</div>
-        <div class="color-box" id="color2" @click="changeColor('#004080')">Blue</div>
+        <div class="color-box" id="color2" @click="changeColor('#004080')">Azul</div>
         <div class="color-box" id="color3" @click="changeColor('#4CAF50')">Verde</div>
         <div class="color-box" id="color4" @click="changeColor('#FFA500')">Naranja</div>
         <div class="color-box" id="color5" @click="changeColor('#800080')">Morado</div>
@@ -121,7 +121,7 @@
           <h3 class="titulo">Profesionales</h3>
           <div v-for="proyecto in profesionalProyects" :key="proyecto.nombre" class="servicios scroll-content fadeTop">
             <div class="container">
-              <div class="card p3">
+              <div class="card p2">
                 <a :href="proyecto.enlace" target="_blank">
                   <img class="previewImgProyect" :src="imageSrc('ImagenesProyectos', proyecto.image)" alt="">
                 </a>
@@ -144,7 +144,7 @@
           </div>
           <!-- <div class="servicios scroll-content fadeTop">
             <div class="container">
-              <div class="card p3"> 
+              <div class="card p2"> 
                 <a href="https://simplebuypro.com/" target="_blank">
                   <img
                     src="../assets/ImagenesProyectos/simplebuy.png"
@@ -163,9 +163,33 @@
             </div>
           </div> -->
           <h3 class="titulo">Personales</h3>
-          <div class="servicios scroll-content fadeTop">
+          <div class="servicios scroll-content fadeTop visible">
+            <div class="d-flex container jc-sa">
+              <div v-for="proyecto in personalProyects" :key="proyecto.nombre" class="card p2">
+                <a :href="proyecto.enlace" target="_blank">
+                  <img class="previewImgProyect" :src="imageSrc('ImagenesProyectos', proyecto.image)" alt="">
+                </a>
+                <hr>
+                <a :href="proyecto.enlace" target="_blank">{{ proyecto.nombre }}</a>
+                <h4>{{ proyecto.descripcion }}</h4>
+                <div class="stack-tecnologico">
+                  <h5>Stack Tecnológico FRONT:</h5>
+                  <div class="tecnologias">
+                    <img v-for="tecnologia in proyecto.tecnologia" :key="tecnologia" :title="tecnologia" :src="imageSrc('skills', tecnologia)">
+                  </div>
+                </div>
+                <div class="project-actions">
+                  <a :href="proyecto.enlace" target="_blank">
+                    <button class="button-ir-al-proyecto">Explorar Proyecto</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="servicios scroll-content fadeTop">
               <div class="container">
-                  <div class="card p3 w-45"> 
+                  <div class="card p2 w-45"> 
                     <a href="https://cashregisterangular.netlify.app/" target="_blank">
                       <img
                         src="https://lh3.googleusercontent.com/pw/AM-JKLWgee75xDiiH0vpwwzfKtyxMwmCi1DujDSbYVt7WKYg9MovNBC3XmUyrEkjkR2wIv4lk2vFk-WBUxvjTveo4o2Bx4AGU7NlrWEf_YzDrHA2IC8ibUBMoLuXJ2pC9CigA7uc_DaarOlKGLrevHmcTknljA=w1351-h632-no?authuser=0"
@@ -182,7 +206,7 @@
                     </a>
                   </div>
 
-                  <div class="card p3 w-45">
+                  <div class="card p2 w-45">
                     <a href="https://marsproyect.netlify.app/" target="_blank">
                       <img
                            src="../assets/ImagenesProyectos/mars.png"
@@ -198,7 +222,7 @@
                     </a>
                   </div>
                   
-                  <div class="card p3 w-45"> 
+                  <div class="card p2 w-45"> 
                     <a href="https://pagepizzeria.netlify.app"
                           target="_blank">
                       <img
@@ -217,7 +241,7 @@
                   </div>
 
               </div>
-          </div>
+          </div> -->
       </section>
       <section id="contacto" class="white">
         <h1>Contacto</h1>
@@ -251,10 +275,36 @@ export default {
           nombre: 'Simple Buy',
           image: 'simplebuy.png',
           enlace: 'https://simplebuypro.com/',
-          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuí desde el inicio del proyecto hasta la actualidad, cree componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
+          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuyo desde el inicio del proyecto hasta la actualidad, cree componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
           tecnologia: ['vuejs.svg','pinia.png','sass.svg']
         }
       ],
+      personalProyects: [
+        {
+          nombre: 'Pizzeria "Don César"',
+          image: 'pizzeriaDonCesar.jpg',  // Asegúrate de tener la imagen en la carpeta de activos
+          // image: 'pizzeria-don-cesar.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          enlace: 'https://pagepizzeria.netlify.app',
+          descripcion: 'Página que recrea la experiencia de una pizzería. Creada con Angular, esta página brinda a los visitantes la oportunidad de explorar un menú ficticio de pizzas, conocer las ofertas y encargar por WhatsApp al restaurante de pizza.',
+          tecnologia: ['angular.svg', 'typescript.png']  // Reemplaza con las tecnologías reales
+        },
+        {
+          nombre: 'Proyecto Marte',
+          image: 'appleFromMars.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          // image: 'proyecto-marte.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          enlace: 'https://marsproyect.netlify.app/',
+          descripcion: 'El proyecto "OUTFITTING A MARS HABITAT" creado con Vue.js en un solo día, desarrollado para el "NASA Space Apps Challenge 2022," es una iniciativa que aborda el desafío de crear un hábitat sostenible en Marte.',
+          tecnologia: ['vuejs.svg', 'javascript.svg']  // Reemplaza con las tecnologías reales
+        },
+        {
+          nombre: 'Caja Registradora',
+          image: 'appleFromMars.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          // image: 'caja-registradora.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          enlace: 'https://cashregisterangular.netlify.app/',
+          descripcion: 'Una ingeniosa aplicación de caja registradora construida con Angular. Simplifica la gestión de transacciones y ventas de forma eficiente, perfecta para negocios pequeños y medianos.',
+          tecnologia: ['angular.svg', 'typescript.png']  // Reemplaza con las tecnologías reales
+        },
+      ]
     }
   },
 

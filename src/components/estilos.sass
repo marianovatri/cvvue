@@ -271,15 +271,20 @@ h1
   display: flex
   width: 80%
   justify-content: space-around
+.p2
+  padding: 2%
 .p3
   padding: 3%
 .card
   color: black
   width: 30%
+  display: flex
   background-color: rgba(255, 255, 255, 0.92)
   transition: transform .2s
   border: 1px solid white
   border-radius: 20px
+  flex-direction: column
+  justify-content: space-around
 .card img
   height: 30px
 #proyectos .previewImgProyect
@@ -303,6 +308,7 @@ h1
 .servicios img
   min-height: 70px
   min-width: 70px
+  align-self: center
   max-height: 90px
   max-width: 90px
 .white
@@ -347,7 +353,7 @@ h1
   cursor: pointer
 .card:hover
   background-color: $userColor
-  transform: scale(1.1)
+  transform: scale(1.05)
   transition-duration: 0.5s
 .card h3
   color: black
@@ -368,7 +374,7 @@ h1
   width: 42px
   right: 30px
   bottom: 60px
-  background: rgb(172, 46, 46)
+  background: $userColor
   text-align: center
   color: #fff
   z-index: -10
@@ -383,7 +389,7 @@ h1
   padding-top: 7%
   width: 100%
 .scroll-up-btn:hover
-  background: rgb(217, 46, 46)
+  background: $userColor
 #contacto
   padding: 2em 5em
 .contacto
@@ -391,13 +397,17 @@ h1
   justify-content: space-evenly
   padding: 1em
 .contacto img
-    padding-right: 7px
-    padding-left: 7px
+  max-width: 100%
+  height: auto
+  padding-right: 7px
+  padding-left: 7px
 .contacto a
   text-decoration: none
 .opacity0
-  opacity: 0
+  opacity: 0.3
   transition: all 0.5s
+  &:hover
+    opacity: 1 !important
 .fadeTop
   opacity: 0
   transform: translate(0, 10vh)
@@ -423,7 +433,7 @@ h1
     flex-direction: column
   .card
     margin-bottom: 2%
-    width: 70%
+    width: 95%
     border: 1px solid black
     border-radius: 20px
   #aboutMe
