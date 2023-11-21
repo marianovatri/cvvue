@@ -63,15 +63,10 @@
           <h3 class="titulo">Adquiridas</h3>
           <div class="habilidades">
               <div class="onebox fadeLeft scroll-content">
-                  <h2>Mis habilidades</h2>
-                  <h3>
-                    Esta sección brinda un vistazo a las habilidades que he cultivado con esfuerzo. Mi compromiso constante con la mejora me mantiene en la búsqueda constante de nuevas tecnologías para aprender y dominar.
-                  </h3>
-                                        <h2>Mi experiencia</h2>
-                                        <div class="button-container"> <a target="_blank" class="button"
-                      href="https://drive.google.com/drive/folders/1kZOE3JXJUJTU7FsOqC33KvU08xCAY5-z">Ver mi CV</a> 
-              </div>
-
+                <h2>Mis habilidades</h2>
+                <h3>
+                  Esta sección brinda un vistazo a las habilidades que he cultivado con esfuerzo. Mi compromiso constante con la mejora me mantiene en la búsqueda constante de nuevas tecnologías para aprender y dominar.
+                </h3>
               </div>
               <div class="onebox contenedor-caja fadeRight scroll-content">
                   <div class="d-flex">
@@ -119,9 +114,9 @@
       <section class="red" id="proyectos">
           <h1>Proyectos</h1>
           <h3 class="titulo">Profesionales</h3>
-          <div v-for="proyecto in profesionalProyects" :key="proyecto.nombre" class="servicios scroll-content fadeTop">
-            <div class="container">
-              <div class="card p2">
+          <div class="servicios scroll-content fadeTop visible">
+            <div class="d-flex container jc-sa">
+              <div v-for="proyecto in profesionalProyects" :key="proyecto.nombre" class="card p2">
                 <a :href="proyecto.enlace" target="_blank">
                   <img class="previewImgProyect" :src="imageSrc('ImagenesProyectos', proyecto.image)" alt="">
                 </a>
@@ -142,26 +137,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="servicios scroll-content fadeTop">
-            <div class="container">
-              <div class="card p2"> 
-                <a href="https://simplebuypro.com/" target="_blank">
-                  <img
-                    src="../assets/ImagenesProyectos/simplebuy.png"
-                    alt="">
-                </a>
-                <hr>
-                  <a href="https://simplebuypro.com/"
-                    target="_blank">Simple Buy</a>
-                <h4>Comencé el proyecto desde cero utilizando <span class="vue">Vue.js</span> y diseñé un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuí creando componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continúo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.</h4>
-                <a href="https://simplebuypro.com/" target="_blank">
-                  <button class="button-ir-al-proyecto">
-                    Explorar Proyecto
-                  </button>
-                </a>
-              </div>
-            </div>
-          </div> -->
           <h3 class="titulo">Personales</h3>
           <div class="servicios scroll-content fadeTop visible">
             <div class="d-flex container jc-sa">
@@ -186,62 +161,6 @@
               </div>
             </div>
           </div>
-
-          <!-- <div class="servicios scroll-content fadeTop">
-              <div class="container">
-                  <div class="card p2 w-45"> 
-                    <a href="https://cashregisterangular.netlify.app/" target="_blank">
-                      <img
-                        src="https://lh3.googleusercontent.com/pw/AM-JKLWgee75xDiiH0vpwwzfKtyxMwmCi1DujDSbYVt7WKYg9MovNBC3XmUyrEkjkR2wIv4lk2vFk-WBUxvjTveo4o2Bx4AGU7NlrWEf_YzDrHA2IC8ibUBMoLuXJ2pC9CigA7uc_DaarOlKGLrevHmcTknljA=w1351-h632-no?authuser=0"
-                        alt="">
-                    </a>
-                    <hr>
-                      <a href="https://cashregisterangular.netlify.app/"
-                        target="_blank">Caja Registradora</a>
-                    <h4>Una ingeniosa aplicación de caja registradora construida con <span class="angular">Angular</span>. Simplifica la gestión de transacciones y ventas de forma eficiente, perfecta para negocios pequeños y medianos.</h4>
-                    <a href="https://cashregisterangular.netlify.app/" target="_blank">
-                      <button class="button-ir-al-proyecto">
-                        Explorar Proyecto
-                      </button>
-                    </a>
-                  </div>
-
-                  <div class="card p2 w-45">
-                    <a href="https://marsproyect.netlify.app/" target="_blank">
-                      <img
-                           src="../assets/ImagenesProyectos/mars.png"
-                           alt="">
-                    </a>
-                    <hr>
-                    <a href="https://marsproyect.netlify.app/" target="_blank">Proyecto Marte</a>
-                    <h4>El proyecto "OUTFITTING A MARS HABITAT" creado con <span class="vue">Vue.js</span> en un solo dia, desarrollado para el "NASA Space Apps Challenge 2022," es una iniciativa que aborda el desafío de crear un hábitat sostenible en Marte.</h4>
-                    <a href="https://marsproyect.netlify.app/" target="_blank">
-                      <button class="button-ir-al-proyecto">
-                        Explorar Proyecto
-                      </button>
-                    </a>
-                  </div>
-                  
-                  <div class="card p2 w-45"> 
-                    <a href="https://pagepizzeria.netlify.app"
-                          target="_blank">
-                      <img
-                            src="../assets/ImagenesProyectos/pizzeria.jpg"
-                            alt="">
-                    </a>
-                    
-                      <hr>
-                       <a href="https://pagepizzeria.netlify.app" target="_blank">Pizzeria "Don César"</a>
-                      <h4>Pagina que recrea la experiencia de una pizzería. CCreada con <span class="angular">Angular</span> , esta página brinda a los visitantes la oportunidad de explorar un menú ficticio de pizzas, conocer las ofertas y disfrutar de una simulación virtual de un restaurante de pizza.</h4>
-                      <a href="https://pagepizzeria.netlify.app" target="_blank">
-                        <button class="button-ir-al-proyecto">
-                          Explorar Proyecto
-                        </button>
-                      </a>
-                  </div>
-
-              </div>
-          </div> -->
       </section>
       <section id="contacto" class="white">
         <h1>Contacto</h1>
@@ -257,7 +176,6 @@
     <footer class="opacity0">
       <p>Created By <span>Mariano Vatri</span> |®  2021 All rights reserved.</p>
     </footer>
-<!-- <app-footer></app-footer> -->
   </div>
 </template>
 
@@ -275,34 +193,38 @@ export default {
           nombre: 'Simple Buy',
           image: 'simplebuy.png',
           enlace: 'https://simplebuypro.com/',
-          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuyo desde el inicio del proyecto hasta la actualidad, cree componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando en el proyecto, añadiendo nuevas funcionalidades y mejoras.',
+          descripcion: 'SimpleBuy es un sistema de compras personalizado para cumplir con los requisitos de la empresa. Contribuyo desde el inicio del proyecto hasta la actualidad, cree componentes exclusivos que no estaban disponibles en línea, adaptándolos a las necesidades del proyecto. Continuo trabajando añadiendo funcionalidades y mejoras.',
           tecnologia: ['vuejs.svg','pinia.png','sass.svg']
+        },
+        {
+          nombre: 'Jardineria2.0',
+          image: 'jardineriaProyect.png',
+          enlace: 'https://jardineriasf.netlify.app/',
+          descripcion: 'Jardineria2.0 es un proyecto dedicado a resaltar los servicios de jardinería que ofrece, desde diseño y mantenimiento de jardines hasta paisajismo personalizado. Entre al poryecto y descubra cómo puede transformar su espacio verde en un oasis.',
+          tecnologia: ['vuetify.svg','sass.svg']
         }
       ],
       personalProyects: [
         {
           nombre: 'Pizzeria "Don César"',
-          image: 'pizzeriaDonCesar.jpg',  // Asegúrate de tener la imagen en la carpeta de activos
-          // image: 'pizzeria-don-cesar.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          image: 'pizzeriaDonCesar.jpg',
           enlace: 'https://pagepizzeria.netlify.app',
-          descripcion: 'Página que recrea la experiencia de una pizzería. Creada con Angular, esta página brinda a los visitantes la oportunidad de explorar un menú ficticio de pizzas, conocer las ofertas y encargar por WhatsApp al restaurante de pizza.',
-          tecnologia: ['angular.svg', 'typescript.png']  // Reemplaza con las tecnologías reales
+          descripcion: 'Página que recrea la experiencia de una pizzería. Esta página brinda a los visitantes la oportunidad de explorar un menú ficticio de pizzas, conocer las ofertas y encargar por WhatsApp al restaurante de pizza.',
+          tecnologia: ['angular.svg', 'typescript.png']
         },
         {
           nombre: 'Proyecto Marte',
-          image: 'appleFromMars.png',  // Asegúrate de tener la imagen en la carpeta de activos
-          // image: 'proyecto-marte.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          image: 'appleFromMars.png',
           enlace: 'https://marsproyect.netlify.app/',
-          descripcion: 'El proyecto "OUTFITTING A MARS HABITAT" creado con Vue.js en un solo día, desarrollado para el "NASA Space Apps Challenge 2022," es una iniciativa que aborda el desafío de crear un hábitat sostenible en Marte.',
-          tecnologia: ['vuejs.svg', 'javascript.svg']  // Reemplaza con las tecnologías reales
+          descripcion: 'El proyecto "OUTFITTING A MARS HABITAT" se creó en un solo día, desarrollado para el "NASA Space Apps Challenge 2022," es una iniciativa que aborda el desafío de crear un hábitat sostenible en Marte.',
+          tecnologia: ['vuejs.svg', 'javascript.svg'] 
         },
         {
           nombre: 'Caja Registradora',
-          image: 'appleFromMars.png',  // Asegúrate de tener la imagen en la carpeta de activos
-          // image: 'caja-registradora.png',  // Asegúrate de tener la imagen en la carpeta de activos
+          image: 'rediseñar.jpg',
           enlace: 'https://cashregisterangular.netlify.app/',
-          descripcion: 'Una ingeniosa aplicación de caja registradora construida con Angular. Simplifica la gestión de transacciones y ventas de forma eficiente, perfecta para negocios pequeños y medianos.',
-          tecnologia: ['angular.svg', 'typescript.png']  // Reemplaza con las tecnologías reales
+          descripcion: '⚠EN REDISEÑO⚠ Una ingeniosa aplicación de caja registradora construida con Angular. Simplifica la gestión de transacciones y ventas. ⚠EN REDISEÑO⚠',
+          tecnologia: ['angular.svg', 'typescript.png'] 
         },
       ]
     }
@@ -368,8 +290,7 @@ export default {
             element.classList.remove('visible');
           }
         }    
-      }
-      
+      }      
     });
 
     const upnav = document.querySelector('.scroll-up-btn');
@@ -381,17 +302,6 @@ export default {
         upnav.classList.remove('show')
       }
     }
-
-    // window.addEventListener('scroll', watchMenu);
-
-    
-    // function watchMenu() {
-    //   nav.style.top = `-${
-    //     nav.clientHeight < window.scrollY ?
-    //     nav.clientHeight : 0
-    //   }px`;
-    // }
-
   }  
 }
 </script>
