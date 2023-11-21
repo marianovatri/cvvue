@@ -200,7 +200,7 @@ export default {
           nombre: 'Jardineria2.0',
           image: 'jardineriaProyect.png',
           enlace: 'https://jardineriasf.netlify.app/',
-          descripcion: 'Jardineria2.0 es un proyecto dedicado a resaltar los servicios de jardinería que ofrece, desde diseño y mantenimiento de jardines hasta paisajismo personalizado. Entre al poryecto y descubra cómo puede transformar su espacio verde en un oasis.',
+          descripcion: 'Jardineria2.0 es un proyecto dedicado a resaltar los servicios de jardinería que ofrece, desde diseño y mantenimiento de jardines hasta paisajismo personalizado. Explorá el proyecto y descubra cómo puede transformar su espacio verde en un oasis.',
           tecnologia: ['vuetify.svg','sass.svg']
         }
       ],
