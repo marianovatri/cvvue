@@ -32,8 +32,10 @@
                 que busca un puesto desafiante en el que pueda utilizar mis habilidades 
                 para crear sitios web y aplicaciones innovadores fáciles de usar.
               </h3>
-              <div class="button-container"> <a target="_blank" class="button"
-                      href="https://drive.google.com/drive/folders/1kZOE3JXJUJTU7FsOqC33KvU08xCAY5-z">Ver mi CV</a> 
+              <div class="button-container"> 
+                <a target="_blank" class="button" href="/CV_Mariano_Vatri_SPANISH.pdf">
+                  Ver mi CV
+                </a> 
               </div>
           </div>
       </section>
