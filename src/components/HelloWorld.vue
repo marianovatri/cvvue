@@ -73,27 +73,30 @@
               <div class="onebox contenedor-caja fadeRight scroll-content">
                   <div class="d-flex">
                       <div class="caja"> 
-                        <img src="../assets/skills/html5.svg" alt="html5">
+                        <img src="../assets/skills/vuejs.svg" title="vue.js" alt="vue.js">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/css3.svg" alt="css3">
+                        <img src="../assets/skills/vuetify.svg" title="vuetify" alt="vuetify">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/javascript.svg" alt="javascript">
+                        <img src="../assets/skills/angular.svg" title="angular" alt="angular">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/vuejs.svg" alt="vue.js">
+                        <img src="../assets/skills/javascript.svg" title="javascript" alt="javascript">
                       </div>
                   </div>
                   <div class="d-flex">
                       <div class="caja"> 
-                        <img src="../assets/skills/angular.svg" alt="angular">
+                        <img src="../assets/skills/sass.svg" title="sass" alt="sass">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/git.svg" alt="git">
+                        <img src="../assets/skills/pinia.png" title="pinia" alt="pinia">
                       </div>
                       <div class="caja"> 
-                        <img src="../assets/skills/github.svg" alt="github">
+                        <img src="../assets/skills/git.svg" title="git" alt="git">
+                      </div>
+                      <div class="caja"> 
+                        <img src="../assets/skills/github.svg" title="github" alt="github">
                       </div>
                   </div>
               </div>
@@ -122,7 +125,6 @@
                 <a :href="proyecto.enlace" target="_blank">
                   <img class="previewImgProyect" :src="imageSrc('ImagenesProyectos', proyecto.image)" alt="">
                 </a>
-                <hr>
                 <a :href="proyecto.enlace" target="_blank">{{ proyecto.nombre }}</a>
                 <h4>{{ proyecto.descripcion }}</h4>
                 <div class="stack-tecnologico">
@@ -146,7 +148,6 @@
                 <a :href="proyecto.enlace" target="_blank">
                   <img class="previewImgProyect" :src="imageSrc('ImagenesProyectos', proyecto.image)" alt="">
                 </a>
-                <hr>
                 <a :href="proyecto.enlace" target="_blank">{{ proyecto.nombre }}</a>
                 <h4>{{ proyecto.descripcion }}</h4>
                 <div class="stack-tecnologico">
