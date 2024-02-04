@@ -3,7 +3,7 @@
     <!-- <app-header></app-header> -->
     <header>
         <nav class="menu opacity0">
-            <div class="logo"> <a href="#"> Mariano <span>Vatri</span> </a> </div>
+            <div class="logo"> <a href="#"> <span> Mariano Vatri</span> </a> </div>
             <div>
                 <ul class="d-flex">
                     <li><a class="menu-button" href="#aboutMe">Acerca de mi</a></li>
@@ -200,13 +200,20 @@ export default {
         },
         {
           nombre: 'Jardineria2.0',
-          image: 'jardineriaProyect.png',
+          image: 'jardineriaProyect.jpg',
           enlace: 'https://jardineriasf.netlify.app/',
           descripcion: 'Jardineria2.0 es un proyecto dedicado a resaltar los servicios de jardinería que ofrece, desde diseño y mantenimiento de jardines hasta paisajismo personalizado. Explorá el proyecto y descubra cómo puede transformar su espacio verde en un oasis.',
           tecnologia: ['vuetify.svg','sass.svg']
         }
       ],
       personalProyects: [
+        {
+          nombre: 'Pokedex',
+          image: 'pokedex.jpg',
+          enlace: 'https://pokedexmv.netlify.app/',
+          descripcion: ' Explora el mundo Pokémon con Pokedex, una página web fácil de usar. Encuentra información sobre todos los Pokémon. ',
+          tecnologia: ['vuejs.svg', 'javascript.svg'] 
+        },
         {
           nombre: 'Pizzeria "Don César"',
           image: 'pizzeriaDonCesar.jpg',
@@ -220,13 +227,6 @@ export default {
           enlace: 'https://marsproyect.netlify.app/',
           descripcion: 'El proyecto "OUTFITTING A MARS HABITAT" se creó en un solo día, desarrollado para el "NASA Space Apps Challenge 2022," es una iniciativa que aborda el desafío de crear un hábitat sostenible en Marte.',
           tecnologia: ['vuejs.svg', 'javascript.svg'] 
-        },
-        {
-          nombre: 'Caja Registradora',
-          image: 'rediseñar.jpg',
-          enlace: 'https://cashregisterangular.netlify.app/',
-          descripcion: '⚠EN REDISEÑO⚠ Una ingeniosa aplicación de caja registradora construida con Angular. Simplifica la gestión de transacciones y ventas. ⚠EN REDISEÑO⚠',
-          tecnologia: ['angular.svg', 'typescript.png'] 
         },
       ]
     }
@@ -245,7 +245,6 @@ export default {
     changeColor(selectedColor) {
       document.documentElement.style.setProperty('--userColor', selectedColor)
       this.colorPickerVisible = false;
-
     },
 
     imageSrc(src, image) {
