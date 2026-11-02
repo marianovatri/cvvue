@@ -130,6 +130,7 @@ p{margin:0;max-width:62ch}
 .works{list-style:none;padding:0;margin:30px 0 0;border-top:1px solid var(--line)}
 .works li{display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:end;padding-block:22px;border-bottom:1px solid var(--line)}
 .works li>div{min-width:0}
+.works .shot{grid-column:1/-1;display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--line);margin-bottom:10px;background:var(--ink-2)}
 .works .kind{font-family:var(--f-mono);font-size:var(--s-1);color:var(--glacier);letter-spacing:.08em;text-transform:uppercase}
 .works h3{margin:6px 0 6px}
 .works p{color:var(--fog)}
@@ -195,7 +196,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
   <section class="sec right" id="servicios" data-shape="1">
     <div class="wrap"><div class="col rv">
       <p class="eyebrow">Servicios</p>
-      <h2>Cuatro formas de ayudarte a <em>crecer</em>.</h2>
+      <h2>Cinco formas de ayudarte a <em>crecer</em>.</h2>
       <ul class="services">
         <li><h3>Landing pages</h3><span class="tag">3–6 días</span>
           <p>Una página enfocada en una sola cosa: que te escriban. Para lanzar un servicio, una campaña o un curso.</p></li>
@@ -216,15 +217,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <p class="eyebrow">Trabajos</p>
       <h2>Algunas cosas que <em>ya están andando</em>.</h2>
       <ul class="works">
-        <li><div><span class="kind">Producto propio · SaaS</span><h3>Fonevo</h3>
+        <li><img class="shot" src="img/fonevo.webp" width="960" height="600" loading="lazy" alt="Página de Fonevo con el panel de ventas y stock">
+          <div><span class="kind">Producto propio · SaaS</span><h3>Fonevo</h3>
           <p>Sistema de gestión para tiendas de celulares y tecnología: stock por IMEI, ventas, cuentas corrientes, servicio técnico y facturación electrónica. Lo diseño y desarrollo de punta a punta.</p></div>
           <a href="https://fonevo.com.ar" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+        <li><img class="shot" src="img/gastro.webp" width="960" height="600" loading="lazy" alt="Pantalla de costos y márgenes por producto del sistema gastronómico">
+          <div><span class="kind">Sistema a medida · gastronomía</span><h3>Gestión para bares</h3>
+          <p>Salón, cocina, barra, caja y stock conectados en tiempo real, en tablets y celulares. Cada producto muestra cuánto cuesta hacerlo y cuánto deja.</p></div>
+          <span class="soon">Demo a pedido</span></li>
+        <li><img class="shot" src="img/jardineria.webp" width="960" height="600" loading="lazy" alt="Agenda semanal de trabajos del sistema de Jardinería 2.0">
+          <div><span class="kind">Landing + sistema de gestión</span><h3>Jardinería 2.0</h3>
+          <p>Primero la página para conseguir clientes; después el sistema para atenderlos: agenda de trabajos, cobros, finanzas y equipo con permisos por pantalla.</p></div>
+          <a href="https://jardineriasf.netlify.app/" target="_blank" rel="noopener">Ver landing <span aria-hidden="true">↗</span></a></li>
+        <li><img class="shot" src="img/milo.webp" width="960" height="600" loading="lazy" alt="Página de inicio de Milo Impresiones">
+          <div><span class="kind">Sitio + sistema · pyme</span><h3>Milo Impresiones</h3>
+          <p>Catálogo online para un taller de impresión 3D y sublimación, con panel de pedidos, stock y clientes, y una calculadora que arma el precio según material, tiempo y margen.</p></div>
+          <span class="soon">Demo a pedido</span></li>
         <li><div><span class="kind">Sistema a medida</span><h3>SimpleBuy</h3>
           <p>Sistema de compras hecho a la medida de los procesos de una empresa. Participo desde el inicio y lo sigo ampliando con nuevas funciones.</p></div>
           <span class="soon">Demo a pedido</span></li>
-        <li><div><span class="kind">Landing de servicios</span><h3>Jardinería 2.0</h3>
-          <p>Página para un servicio de jardinería y paisajismo: qué hacen, cómo trabajan y un camino directo al contacto.</p></div>
-          <a href="https://jardineriasf.netlify.app/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
         <li><div><span class="kind">Demo · gastronomía</span><h3>Pizzería Don César</h3>
           <p>Menú online con promociones y pedidos que llegan directo al WhatsApp del local.</p></div>
           <a href="https://pagepizzeria.netlify.app" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
