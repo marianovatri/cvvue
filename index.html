@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mariano Vatri Estudio</title>
+<meta name="description" content="Landings, sitios, sistemas a medida, automatizaciones y mantenimiento para consultoras, profesionales y pymes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una escena 3D fija detrás; cada sección alterna el texto a izquierda/derecha y la forma de partículas se transforma al scrollear. */
+:root{
+  --ink:#0A1517;        /* fondo: petróleo profundo */
+  --ink-2:#112226;      /* superficies */
+  --bone:#ECE6DA;       /* texto */
+  --fog:#8E9F9D;        /* texto secundario */
+  --glacier:#8FD1C4;    /* acento frío */
+  --apricot:#F2A65A;    /* acento cálido (uno solo, con moderación) */
+  --line:rgba(236,230,218,.14);
+  --f-display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --s-1:clamp(.78rem,.74rem + .15vw,.85rem);
+  --s0:clamp(1rem,.96rem + .2vw,1.1rem);
+  --s1:clamp(1.25rem,1.1rem + .6vw,1.6rem);
+  --s2:clamp(1.7rem,1.3rem + 1.6vw,2.6rem);
+  --s3:clamp(2.6rem,1.6rem + 4.4vw,5.6rem);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:var(--s0);line-height:1.6;overflow-x:hidden}
+img{max-width:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
+#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;
+  background:radial-gradient(60% 50% at 70% 40%,rgba(143,209,196,.10),transparent 70%),var(--ink)}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:radial-gradient(120% 90% at 50% 120%,rgba(10,21,23,.0),rgba(10,21,23,.75))}
+
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;
+  padding-block:18px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header .bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{font-family:var(--f-display);font-weight:700;font-size:1.1rem;letter-spacing:-.01em;color:var(--bone);text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark i{width:10px;height:10px;border-radius:50%;background:var(--apricot);box-shadow:0 0 18px var(--apricot);display:inline-block}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--fog);text-decoration:none;font-size:var(--s-1);font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+nav a:hover,nav a:focus-visible{color:var(--bone)}
+nav .cta{color:var(--ink);background:var(--bone);padding:9px 16px;border-radius:999px}
+nav .cta:hover{color:var(--ink);background:var(--glacier)}
+@media (max-width:760px){nav a:not(.cta){display:none}}
+
+main{position:relative;z-index:2}
+.sec{min-height:100svh;display:grid;align-items:center;padding-block:120px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;width:100%;margin:0 auto}
+.col{width:min(560px,100%)}
+.right .col{margin-left:auto}
+.center .col{margin:0 auto;width:min(760px,100%);text-align:center}
+
+.eyebrow{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.14em;text-transform:uppercase;color:var(--glacier);display:inline-flex;gap:10px;align-items:center;margin:0 0 22px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:-.025em;line-height:1.02;text-wrap:balance;margin:0}
+h1{font-size:var(--s3);font-weight:500}
+h1 em,h2 em{font-style:normal;color:var(--apricot)}
+h2{font-size:var(--s2);margin-bottom:22px}
+h3{font-size:var(--s1);font-weight:500;letter-spacing:-.01em}
+p{margin:0;max-width:62ch}
+.lead{font-size:var(--s1);color:var(--bone);opacity:.86;line-height:1.45;margin-top:26px;max-width:34ch;font-weight:400}
+.muted{color:var(--fog)}
+
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:600;text-decoration:none;font-size:var(--s0);transition:background .25s,color .25s,transform .25s}
+.btn.solid{background:var(--apricot);color:var(--ink)}
+.btn.solid:hover{transform:translateY(-2px)}
+.btn.ghost{color:var(--bone);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--bone)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--glacier);outline-offset:3px}
+
+.scrollhint{margin-top:64px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.scrollhint span{width:1px;height:40px;background:linear-gradient(var(--glacier),transparent);animation:drip 2.2s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* Servicios */
+.services{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:0;border-top:1px solid var(--line)}
+.services li{display:grid;grid-template-columns:1fr auto;gap:6px 18px;padding-block:22px;border-bottom:1px solid var(--line)}
+.services li p{grid-column:1/-1;color:var(--fog);font-size:var(--s0)}
+.services .tag{font-family:var(--f-mono);font-size:var(--s-1);color:var(--glacier);white-space:nowrap;align-self:center}
+.services li:hover h3{color:var(--apricot)}
+.services h3{transition:color .25s}
+
+/* Proceso */
+.steps{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:26px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--f-mono);color:var(--apricot);font-size:var(--s-1);padding-top:6px;border-top:1px solid var(--apricot)}
+.steps h3{margin-bottom:6px}
+.steps p{color:var(--fog)}
+
+/* Consultoras */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px;text-align:left}
+.duo div{padding:22px;border:1px solid var(--line);border-radius:14px;background:rgba(17,34,38,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.duo b{display:block;font-family:var(--f-mono);font-weight:500;font-size:var(--s-1);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.duo div:first-child b{color:var(--glacier)}
+.duo div:last-child b{color:var(--apricot)}
+.duo ul{margin:0;padding-left:18px;color:var(--bone);opacity:.85;display:grid;gap:6px}
+.center .lead{margin-inline:auto;max-width:44ch}
+@media (max-width:640px){.duo{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{margin-top:26px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding-block:20px;display:flex;justify-content:space-between;gap:16px;font-family:var(--f-display);font-size:var(--s1);font-weight:500;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-mono);color:var(--glacier);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--fog)}
+
+/* Contacto */
+.contact h2{font-size:var(--s3);font-weight:500}
+.channels{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px}
+.chip{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 20px;border:1px solid var(--line);border-radius:999px;background:rgba(17,34,38,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.chip span{font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);text-transform:uppercase;letter-spacing:.1em}
+.chip code{font-family:var(--f-mono);color:var(--bone);user-select:all;overflow-wrap:anywhere}
+.chip button{font:inherit;font-size:var(--s-1);background:var(--bone);color:var(--ink);border:0;border-radius:999px;padding:7px 12px;cursor:pointer}
+.chip button:hover{background:var(--glacier)}
+.socials{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;margin:28px auto 0;max-width:none}
+.socials a{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.1em;text-transform:uppercase;color:var(--fog);text-decoration:none}
+.socials a:hover{color:var(--bone)}
+/* Trabajos */
+.works{list-style:none;padding:0;margin:30px 0 0;border-top:1px solid var(--line)}
+.works li{display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:end;padding-block:22px;border-bottom:1px solid var(--line)}
+.works li>div{min-width:0}
+.works .kind{font-family:var(--f-mono);font-size:var(--s-1);color:var(--glacier);letter-spacing:.08em;text-transform:uppercase}
+.works h3{margin:6px 0 6px}
+.works p{color:var(--fog)}
+.works a{color:var(--bone);text-decoration:none;font-weight:600;white-space:nowrap;border-bottom:1px solid var(--apricot);padding-bottom:2px}
+.works a:hover{color:var(--apricot)}
+@media (max-width:520px){.works li{grid-template-columns:1fr}.works a{justify-self:start}}
+footer{position:relative;z-index:2;padding-block:28px;border-top:1px solid var(--line);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog)}
+
+/* reveal suave: siempre visible en reposo, solo un leve desplazamiento */
+.rv{transform:translateY(18px);opacity:.35;transition:transform 1s cubic-bezier(.2,.7,.1,1),opacity 1s}
+.rv.in{transform:none;opacity:1}
+.no-js .rv{transform:none;opacity:1}
+
+@media (max-width:900px){
+  .right .col{margin-left:0}
+  .col{position:relative}
+  .sec:not(.hero) .col{background:rgba(10,21,23,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:24px 20px;border-radius:18px;border:1px solid var(--line)}
+  .sec{padding-block:96px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{transform:none;opacity:1;transition:none}
+  .scrollhint span{animation:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <div class="bar">
+    <a class="mark" href="#inicio"><i></i>Mariano Vatri</a>
+    <nav aria-label="Secciones">
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#proceso">Cómo trabajo</a>
+      <a href="#consultoras">Consultoras</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="cta" href="#contacto">Hablemos</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="sec hero" id="inicio" data-shape="0">
+    <div class="wrap"><div class="col">
+      <p class="eyebrow">Webs y sistemas a medida</p>
+      <h1>Tu negocio, <em>funcionando</em> en internet.</h1>
+      <p class="lead">Diseño y desarrollo landings, sitios y sistemas internos para consultoras, profesionales y pymes. Vos me contás qué necesitás; yo me ocupo de que exista.</p>
+      <div class="actions">
+        <a class="btn solid" href="#contacto">Contame tu proyecto</a>
+        <a class="btn ghost" href="#servicios">Ver qué hago</a>
+      </div>
+      <div class="scrollhint"><span></span>Scrolleá</div>
+    </div></div>
+  </section>
+
+  <section class="sec right" id="servicios" data-shape="1">
+    <div class="wrap"><div class="col rv">
+      <p class="eyebrow">Servicios</p>
+      <h2>Cuatro formas de ayudarte a <em>crecer</em>.</h2>
+      <ul class="services">
+        <li><h3>Landing pages</h3><span class="tag">3–6 días</span>
+          <p>Una página enfocada en una sola cosa: que te escriban. Para lanzar un servicio, una campaña o un curso.</p></li>
+        <li><h3>Sitio profesional</h3><span class="tag">según alcance</span>
+          <p>Tu presencia completa: quién sos, qué ofrecés, casos y contacto. Rápido, prolijo y fácil de actualizar.</p></li>
+        <li><h3>Sistemas a medida</h3><span class="tag">MVP desde 2 semanas</span>
+          <p>Turnos, clientes, compras, presupuestos, stock o reportes. Arrancamos con una primera versión usable y la hacemos crecer con tu negocio.</p></li>
+        <li><h3>Automatizaciones</h3><span class="tag">según alcance</span>
+          <p>Formularios que llegan a tu WhatsApp o mail, planillas que se completan solas, avisos automáticos a tus clientes.</p></li>
+        <li><h3>Mantenimiento y mejoras</h3><span class="tag">plan mensual</span>
+          <p>¿Ya tenés una web o un sistema? Lo actualizo, corrijo lo que falla, lo hago más rápido y le sumo lo que haga falta.</p></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="sec" id="trabajos" data-shape="2">
+    <div class="wrap"><div class="col rv">
+      <p class="eyebrow">Trabajos</p>
+      <h2>Algunas cosas que <em>ya están andando</em>.</h2>
+      <ul class="works">
+        <li><div><span class="kind">Sistema a medida</span><h3>SimpleBuy</h3>
+          <p>Sistema de compras hecho a la medida de los procesos de una empresa. Participo desde el inicio y lo sigo ampliando con nuevas funciones.</p></div>
+          <a href="https://simplebuypro.com/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+        <li><div><span class="kind">Landing de servicios</span><h3>Jardinería 2.0</h3>
+          <p>Página para un servicio de jardinería y paisajismo: qué hacen, cómo trabajan y un camino directo al contacto.</p></div>
+          <a href="https://jardineriasf.netlify.app/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+        <li><div><span class="kind">Demo · gastronomía</span><h3>Pizzería Don César</h3>
+          <p>Menú online con promociones y pedidos que llegan directo al WhatsApp del local.</p></div>
+          <a href="https://pagepizzeria.netlify.app" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+        <li><div><span class="kind">NASA Space Apps 2022</span><h3>Proyecto Marte</h3>
+          <p>Hecho en un solo día para el desafío de la NASA: una propuesta para equipar un hábitat sostenible en Marte.</p></div>
+          <a href="https://marsproyect.netlify.app/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="sec right" id="proceso" data-shape="3">
+    <div class="wrap"><div class="col rv">
+      <p class="eyebrow">Cómo trabajo</p>
+      <h2>Simple, claro y <em>sin sorpresas</em>.</h2>
+      <ol class="steps">
+        <li><div><h3>Charla inicial</h3><p>30 minutos, sin costo. Entiendo tu negocio, tu cliente y qué querés lograr.</p></div></li>
+        <li><div><h3>Propuesta cerrada</h3><p>Alcance, plazo y precio por escrito antes de arrancar. Sabés exactamente qué vas a recibir.</p></div></li>
+        <li><div><h3>Diseño y desarrollo</h3><p>Avances cada semana con un link para que lo veas funcionando y opines.</p></div></li>
+        <li><div><h3>Lanzamiento y soporte</h3><p>Lo publico en tu dominio y te acompaño 30 días con ajustes incluidos. Después, si querés, seguimos con mantenimiento mensual.</p></div></li>
+      </ol>
+    </div></div>
+  </section>
+
+  <section class="sec center" id="consultoras" data-shape="4">
+    <div class="wrap"><div class="col rv">
+      <p class="eyebrow" style="justify-content:center">Para consultoras</p>
+      <h2>Vos diagnosticás. <em>Yo construyo.</em></h2>
+      <p class="lead">Trabajo en equipo con consultores: cuando el diagnóstico dice “acá hace falta una herramienta”, la hacemos realidad sin que tu cliente tenga que buscar a otro proveedor.</p>
+      <div class="duo">
+        <div><b>Consultoría</b><ul><li>Relevamiento y procesos</li><li>Estrategia y objetivos</li><li>Relación con el cliente</li></ul></div>
+        <div><b>Desarrollo</b><ul><li>Web, landing o sistema</li><li>Automatización del proceso</li><li>Puesta en marcha y soporte</li></ul></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec" id="preguntas" data-shape="5">
+    <div class="wrap"><div class="col rv">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Lo que todos <em>preguntan</em>.</h2>
+      <div class="faq">
+        <details><summary>¿Cuánto cuesta?</summary><p>Depende del alcance. Después de la charla te paso un precio cerrado, por escrito, y no cambia salvo que vos sumes cosas.</p></details>
+        <details><summary>¿Necesito tener dominio y hosting?</summary><p>No. Si no los tenés, te ayudo a sacarlos a tu nombre para que siempre sean tuyos.</p></details>
+        <details><summary>¿Lo puedo actualizar yo después?</summary><p>Sí. Te dejo un panel simple para cambiar textos, fotos o precios, y una guía corta de uso.</p></details>
+        <details><summary>¿Qué pasa si algo falla?</summary><p>Los primeros 30 días cualquier ajuste está incluido. Después podés sumar un plan de mantenimiento mensual.</p></details>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec center contact" id="contacto" data-shape="6">
+    <div class="wrap"><div class="col rv">
+      <p class="eyebrow" style="justify-content:center">Contacto</p>
+      <h2>¿Tenés una idea? <em>Charlemos.</em></h2>
+      <p class="lead">Contame en dos líneas qué necesitás y te respondo en menos de 24 horas hábiles.</p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn solid" href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20vi%20tu%20web%20y%20quiero%20contarte%20sobre%20un%20proyecto." target="_blank" rel="noopener">Escribime por WhatsApp</a>
+      </div>
+      <div class="channels">
+        <div class="chip"><span>WhatsApp</span><code id="wa">+54 9 3564 33-5655</code><button type="button" data-copy="wa">Copiar</button></div>
+      </div>
+      <p class="socials"><a href="https://www.linkedin.com/in/mariano-vatri-649007151/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/marianovatri" target="_blank" rel="noopener">GitHub</a><a href="https://www.instagram.com/vatrimariano/" target="_blank" rel="noopener">Instagram</a></p>
+    </div></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Mariano Vatri</span><span>Webs · Landings · Sistemas a medida</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  // revelado suave de secciones
+  const rv=[...document.querySelectorAll('.rv')];
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+    rv.forEach(el=>io.observe(el));
+  } else rv.forEach(el=>el.classList.add('in'));
+
+  // copiar contacto
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+    const el=document.getElementById(b.dataset.copy), txt=el.textContent.trim();
+    const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1600)};
+    try{navigator.clipboard.writeText(txt).then(done,()=>sel(el))}catch(e){sel(el)}
+  }));
+  function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+
+  if(!window.THREE) return;
+  const canvas=document.getElementById('scene');
+  let renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'high-performance'})}catch(e){return}
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile=matchMedia('(max-width:900px)').matches;
+  const N=mobile?4200:9000;
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(45,1,.1,100);camera.position.set(0,0,8);
+
+  const R=()=>Math.random();
+  const gauss=()=>(R()+R()+R()-1.5)/1.5;
+  const shapes=[];
+  // 0 esfera: la idea
+  shapes.push(i=>{const y=1-(i/(N-1))*2,r=Math.sqrt(1-y*y),t=i*2.39996;const k=2.3*(i%7===0?.55+R()*.4:1);return[Math.cos(t)*r*k,y*k,Math.sin(t)*r*k]});
+  // 1 ola: estructura que crece
+  const side=Math.ceil(Math.sqrt(N));
+  shapes.push(i=>{const gx=(i%side)/side-.5,gz=Math.floor(i/side)/side-.5;const x=gx*7,z=gz*7;const y=Math.sin(x*1.2)*.35+Math.cos(z*1.4+x*.5)*.35;return[x,y-.2,z]});
+  // 2 pantallas flotantes: trabajos
+  shapes.push(i=>{const k=i%3,c=[[-1.5,.75,-.8],[0,0,0],[1.5,-.75,.8]][k],w=1.7,h=1.1;let x,y;
+    if(R()<.45){const s=R()*2*(w+h);if(s<w){x=s;y=0}else if(s<w+h){x=w;y=s-w}else if(s<2*w+h){x=s-w-h;y=h}else{x=0;y=s-2*w-h}}else{x=R()*w;y=R()*h}
+    return[c[0]+x-w/2,c[1]+y-h/2,c[2]+gauss()*.03]});
+  // 3 nudo: proceso entrelazado
+  shapes.push(i=>{const t=(i/N)*Math.PI*2*1,p=2,q=3,s=1.05;const r=Math.cos(q*t)+2;const th=.18;return[s*r*Math.cos(p*t)+gauss()*th,s*r*Math.sin(p*t)+gauss()*th,-s*Math.sin(q*t)+gauss()*th]});
+  // 3 dos esferas conectadas: consultora + desarrollo
+  shapes.push(i=>{const m=i%10;if(m<2){const u=R(),a=R()*6.283,rr=.12*Math.sqrt(R());return[-1.7+u*3.4,Math.sin(u*Math.PI)*.35+Math.cos(a)*rr,Math.sin(a)*rr]}
+    const c=m<6?-1.9:1.9;const y=R()*2-1,r=Math.sqrt(1-y*y),t=R()*6.283,k=1.15;return[c+Math.cos(t)*r*k,y*k,Math.sin(t)*r*k]});
+  // 4 cubo: respuestas sólidas
+  shapes.push(i=>{const f=i%6,a=R()*2-1,b=R()*2-1,s=1.55;const e=[[1,a,b],[-1,a,b],[a,1,b],[a,-1,b],[a,b,1],[a,b,-1]][f];return[e[0]*s,e[1]*s,e[2]*s]});
+  // 5 galaxia: abierta al contacto
+  shapes.push(i=>{const arm=i%3,d=Math.pow(R(),.7)*3.4,a=arm*2.094+d*1.25+gauss()*.25;return[Math.cos(a)*d,gauss()*.12*(3.6-d)*.4,Math.sin(a)*d]});
+
+  const geo=new THREE.BufferGeometry();
+  const rand=new Float32Array(N);for(let i=0;i<N;i++)rand[i]=R();
+  shapes.forEach((fn,s)=>{const arr=new Float32Array(N*3);for(let i=0;i<N;i++){const v=fn(i);arr[i*3]=v[0];arr[i*3+1]=v[1];arr[i*3+2]=v[2]}
+    geo.setAttribute(s===0?'position':'aS'+s,new THREE.BufferAttribute(arr,3))});
+  geo.setAttribute('aRand',new THREE.BufferAttribute(rand,1));
+
+  const mat=new THREE.ShaderMaterial({
+    transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:{uProg:{value:0},uTime:{value:0},uPix:{value:Math.min(devicePixelRatio,2)},uMotion:{value:reduce?0:1},
+      uA:{value:new THREE.Color('#8FD1C4')},uB:{value:new THREE.Color('#F2A65A')},uSize:{value:mobile?42:36}},
+    vertexShader:`
+      attribute vec3 aS1;attribute vec3 aS2;attribute vec3 aS3;attribute vec3 aS4;attribute vec3 aS5;attribute vec3 aS6;attribute float aRand;
+      uniform float uProg,uTime,uPix,uMotion,uSize;varying float vR;varying float vA;
+      float e(float x){x=clamp(x,0.,1.);return x*x*x*(x*(x*6.-15.)+10.);}
+      void main(){
+        float d=aRand*.4;vec3 p=position;
+        p=mix(p,aS1,e((uProg-0.)*1.4-d));p=mix(p,aS2,e((uProg-1.)*1.4-d));
+        p=mix(p,aS3,e((uProg-2.)*1.4-d));p=mix(p,aS4,e((uProg-3.)*1.4-d));p=mix(p,aS5,e((uProg-4.)*1.4-d));p=mix(p,aS6,e((uProg-5.)*1.4-d));
+        float tr=1.-abs(fract(uProg)-.5)*2.; // máximo en mitad de la transición
+        p+=vec3(sin(uTime*.7+aRand*40.),cos(uTime*.6+aRand*27.),sin(uTime*.5+aRand*13.))*(.025+tr*.12)*uMotion;
+        vec4 mv=modelViewMatrix*vec4(p,1.);gl_Position=projectionMatrix*mv;
+        gl_PointSize=uSize*uPix*(.35+aRand*.9)/-mv.z;vR=aRand;vA=.55+.45*sin(uTime*1.3+aRand*60.)*uMotion;
+      }`,
+    fragmentShader:`
+      uniform vec3 uA,uB;varying float vR;varying float vA;
+      void main(){float r=length(gl_PointCoord-.5);if(r>.5)discard;float a=smoothstep(.5,.0,r);
+        vec3 c=mix(uA,uB,step(.82,vR));gl_FragColor=vec4(c,a*vA*.95);}`
+  });
+  const pts=new THREE.Points(geo,mat);const g=new THREE.Group();g.add(pts);scene.add(g);
+
+  // posición del objeto según sección (texto a un lado, forma al otro)
+  const offsets=mobile?[[0,.9,.75],[0,0,.7],[0,0,.7],[0,0,.75],[0,0,.7],[0,0,.75],[0,0,.8]]
+                      :[[2.3,0,1],[-2.1,0,.95],[2.3,0,.9],[-2.4,0,1],[0,.1,.9],[2.4,0,1],[0,-.2,1.05]];
+  const secs=[...document.querySelectorAll('[data-shape]')];
+  let target=0,prog=0,mx=0,my=0,smx=0,smy=0;
+  function computeTarget(){
+    const mid=scrollY+innerHeight*.5;let t=0;
+    for(let i=0;i<secs.length;i++){const s=secs[i],top=s.offsetTop,h=s.offsetHeight;
+      if(mid>=top){t=i+Math.min(1,Math.max(0,(mid-top-h*.5)/(h*.5)));}}
+    target=Math.min(secs.length-1,Math.max(0,t-0));
+  }
+  addEventListener('scroll',computeTarget,{passive:true});
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  function resize(){const w=innerWidth,h=innerHeight;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();computeTarget()}
+  addEventListener('resize',resize);resize();
+
+  const lerp=(a,b,t)=>a+(b-a)*t;const clock=new THREE.Clock();
+  function frame(){
+    const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
+    prog=lerp(prog,target,reduce?.2:1-Math.pow(.0009,dt)); // seguimiento suave e independiente de los fps
+    mat.uniforms.uProg.value=prog;mat.uniforms.uTime.value=t;
+    const i=Math.floor(prog),f=prog-i,a=offsets[Math.min(i,6)],b=offsets[Math.min(i+1,6)],k=f*f*(3-2*f);
+    g.position.x=lerp(a[0],b[0],k);g.position.y=lerp(a[1],b[1],k);g.scale.setScalar(lerp(a[2],b[2],k));
+    smx=lerp(smx,mx,.05);smy=lerp(smy,my,.05);
+    pts.rotation.y=(reduce?0:t*.06)+prog*1.1+smx*.6;
+    pts.rotation.x=.25+Math.sin(prog*1.3)*.25+smy*.4;
+    renderer.render(scene,camera);requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
