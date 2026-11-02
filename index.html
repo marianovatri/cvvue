@@ -77,7 +77,10 @@ p{margin:0;max-width:62ch}
 .btn.ghost:hover{border-color:var(--bone)}
 .btn:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--glacier);outline-offset:3px}
 
-.scrollhint{margin-top:64px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.creds{list-style:none;padding:0;margin:34px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);letter-spacing:.04em}
+.creds li{display:flex;align-items:center;gap:8px}
+.creds li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--glacier)}
+.scrollhint{margin-top:48px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
 .scrollhint span{width:1px;height:40px;background:linear-gradient(var(--glacier),transparent);animation:drip 2.2s ease-in-out infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
@@ -189,6 +192,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
         <a class="btn solid" href="#contacto">Contame tu proyecto</a>
         <a class="btn ghost" href="#servicios">Ver qué hago</a>
       </div>
+      <ul class="creds">
+        <li>+4 años en equipos de desarrollo</li>
+        <li>Sistemas para organismos provinciales</li>
+        <li>NASA Space Apps 2022</li>
+      </ul>
       <div class="scrollhint"><span></span>Scrolleá</div>
     </div></div>
   </section>
@@ -205,7 +213,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
         <li><h3>Sistemas a medida</h3><span class="tag">MVP desde 2 semanas</span>
           <p>Turnos, clientes, compras, presupuestos, stock o reportes. Arrancamos con una primera versión usable y la hacemos crecer con tu negocio.</p></li>
         <li><h3>Automatizaciones</h3><span class="tag">según alcance</span>
-          <p>Formularios que llegan a tu WhatsApp o mail, planillas que se completan solas, avisos automáticos a tus clientes.</p></li>
+          <p>Formularios que llegan a tu WhatsApp o mail, planillas que se completan solas, avisos automáticos a tus clientes y asistentes con IA que te ahorran tareas repetitivas.</p></li>
         <li><h3>Mantenimiento y mejoras</h3><span class="tag">plan mensual</span>
           <p>¿Ya tenés una web o un sistema? Lo actualizo, corrijo lo que falla, lo hago más rápido y le sumo lo que haga falta.</p></li>
       </ul>
@@ -239,9 +247,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
         <li><div><span class="kind">Demo · gastronomía</span><h3>Pizzería Don César</h3>
           <p>Menú online con promociones y pedidos que llegan directo al WhatsApp del local.</p></div>
           <a href="https://pagepizzeria.netlify.app" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
-        <li><div><span class="kind">NASA Space Apps 2022</span><h3>Proyecto Marte</h3>
-          <p>Hecho en un solo día para el desafío de la NASA: una propuesta para equipar un hábitat sostenible en Marte.</p></div>
-          <a href="https://marsproyect.netlify.app/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+        <li><img class="shot" src="img/nasa.webp" width="748" height="468" loading="lazy" alt="Certificado Galactic Problem-Solver del NASA International Space Apps Challenge 2022 a nombre de Mariano Salvador Vatri">
+          <div><span class="kind">NASA Space Apps Challenge 2022</span><h3>Proyecto Marte</h3>
+          <p>En un fin de semana de competencia, una propuesta para equipar un hábitat sostenible en Marte. Con este trabajo recibí el certificado Galactic Problem-Solver de la NASA.</p></div>
+          <a href="https://marsproyect.netlify.app/" target="_blank" rel="noopener">Ver proyecto <span aria-hidden="true">↗</span></a></li>
       </ul>
     </div></div>
   </section>
@@ -295,7 +304,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <div class="channels">
         <div class="chip"><span>WhatsApp</span><code id="wa">+54 9 3564 33-5655</code><button type="button" data-copy="wa">Copiar</button></div>
       </div>
-      <p class="socials"><a href="https://www.linkedin.com/in/mariano-vatri-649007151/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/marianovatri" target="_blank" rel="noopener">GitHub</a><a href="https://www.instagram.com/vatrimariano/" target="_blank" rel="noopener">Instagram</a></p>
+      <p class="socials"><a href="https://www.linkedin.com/in/marianovatri/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/marianovatri" target="_blank" rel="noopener">GitHub</a><a href="https://www.instagram.com/vatrimariano/" target="_blank" rel="noopener">Instagram</a></p>
     </div></div>
   </section>
 </main>
