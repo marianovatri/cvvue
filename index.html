@@ -135,7 +135,8 @@ p{margin:0;max-width:62ch}
 .works p{color:var(--fog)}
 .works a{color:var(--bone);text-decoration:none;font-weight:600;white-space:nowrap;border-bottom:1px solid var(--apricot);padding-bottom:2px}
 .works a:hover{color:var(--apricot)}
-@media (max-width:520px){.works li{grid-template-columns:1fr}.works a{justify-self:start}}
+.works .soon{font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);white-space:nowrap;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:520px){.works li{grid-template-columns:1fr}.works a,.works .soon{justify-self:start}}
 footer{position:relative;z-index:2;padding-block:28px;border-top:1px solid var(--line);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog)}
@@ -215,9 +216,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <p class="eyebrow">Trabajos</p>
       <h2>Algunas cosas que <em>ya están andando</em>.</h2>
       <ul class="works">
+        <li><div><span class="kind">Producto propio · SaaS</span><h3>Fonevo</h3>
+          <p>Sistema de gestión para tiendas de celulares y tecnología: stock por IMEI, ventas, cuentas corrientes, servicio técnico y facturación electrónica. Lo diseño y desarrollo de punta a punta.</p></div>
+          <a href="https://fonevo.com.ar" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
         <li><div><span class="kind">Sistema a medida</span><h3>SimpleBuy</h3>
           <p>Sistema de compras hecho a la medida de los procesos de una empresa. Participo desde el inicio y lo sigo ampliando con nuevas funciones.</p></div>
-          <a href="https://simplebuypro.com/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
+          <span class="soon">Demo a pedido</span></li>
         <li><div><span class="kind">Landing de servicios</span><h3>Jardinería 2.0</h3>
           <p>Página para un servicio de jardinería y paisajismo: qué hacen, cómo trabajan y un camino directo al contacto.</p></div>
           <a href="https://jardineriasf.netlify.app/" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
