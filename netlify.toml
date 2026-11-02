@@ -1,8 +1,9 @@
-# Sitio estático: Netlify publica la carpeta raíz tal cual, sin compilar.
-# (El CV anterior en Vue quedó en la rama cv-vue-2024.)
+# Sitio estático. El panel de Netlify quedó configurado para publicar "dist"
+# (venía del CV anterior en Vue, que está en la rama cv-vue-2024), así que el
+# build solo copia los archivos ahí.
 [build]
-  publish = "."
-  command = "echo 'Sitio estático: no hay nada que compilar'"
+  publish = "dist"
+  command = "rm -rf dist && mkdir dist && cp -r index.html img dist/"
 
 [[headers]]
   for = "/img/*"
