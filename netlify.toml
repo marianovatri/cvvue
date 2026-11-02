@@ -2,7 +2,7 @@
 # (El CV anterior en Vue quedó en la rama cv-vue-2024.)
 [build]
   publish = "."
-  command = ""
+  command = "echo 'Sitio estático: no hay nada que compilar'"
 
 [[headers]]
   for = "/img/*"
