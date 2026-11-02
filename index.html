@@ -97,6 +97,41 @@ p{margin:0;max-width:62ch}
 .steps li{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start}
 .steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--f-mono);color:var(--apricot);font-size:var(--s-1);padding-top:6px;border-top:1px solid var(--apricot)}
 .steps h3{margin-bottom:6px}
+.me{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;margin:4px 0 30px;padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(17,34,38,.55)}
+.me img{width:96px;height:120px;object-fit:cover;border-radius:12px;display:block}
+.me p{color:var(--fog);font-size:var(--s0);line-height:1.5}
+.me b{color:var(--bone);font-weight:600}
+
+/* Cotizador */
+.quote{margin:34px auto 0;text-align:left;padding:24px;border:1px solid var(--line);border-radius:18px;background:rgba(17,34,38,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;gap:22px}
+.quote fieldset{border:0;margin:0;padding:0;min-width:0}
+.quote legend{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.08em;text-transform:uppercase;color:var(--fog);margin-bottom:12px;padding:0;display:flex;align-items:center;gap:10px}
+.quote legend b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--apricot);color:var(--ink);font-weight:500;font-size:.75rem}
+@media (max-width:520px){
+  .quote{padding:18px}
+  .chip{width:100%;justify-content:space-between;padding-left:16px;gap:8px}
+  .chip code{font-size:.8rem;white-space:nowrap}
+  .chip>span{display:none}
+}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{position:relative;cursor:pointer}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid var(--line);color:var(--bone);font-size:var(--s-1);font-weight:500;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.opts label:hover span{border-color:var(--glacier)}
+.opts input:checked+span{background:var(--glacier);border-color:var(--glacier);color:var(--ink);transform:translateY(-1px)}
+.opts input:focus-visible+span{outline:2px solid var(--glacier);outline-offset:3px}
+.quote textarea{width:100%;font:inherit;font-size:var(--s0);color:var(--bone);background:rgba(10,21,23,.6);border:1px solid var(--line);border-radius:12px;padding:12px 14px;resize:vertical}
+.quote textarea::placeholder{color:var(--fog);opacity:.7}
+.quote textarea:focus{outline:2px solid var(--glacier);outline-offset:1px;border-color:transparent}
+.estimate{padding:16px 18px;border-radius:14px;border:1px dashed rgba(242,166,90,.5);background:rgba(242,166,90,.06)}
+.estimate span{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.1em;text-transform:uppercase;color:var(--apricot)}
+.estimate strong{display:block;font-family:var(--f-display);font-size:var(--s2);font-weight:500;letter-spacing:-.02em;line-height:1.1;margin:6px 0 4px}
+.estimate strong.pop{animation:pop .45s cubic-bezier(.2,.7,.1,1)}
+@keyframes pop{0%{opacity:.2;transform:translateY(6px)}100%{opacity:1;transform:none}}
+.estimate p{color:var(--fog);font-size:var(--s-1)}
+.quote .actions{margin-top:0}
+.quote .fine{font-size:var(--s-1);color:var(--fog);margin-top:-8px}
+.chip a{text-decoration:none}
 .steps p{color:var(--fog)}
 
 /* Consultoras */
@@ -282,6 +317,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     <div class="wrap"><div class="col rv">
       <p class="eyebrow">Cómo trabajo</p>
       <h2>Simple, claro y <em>sin sorpresas</em>.</h2>
+      <div class="me">
+        <img src="img/mariano.webp" width="480" height="600" loading="lazy" alt="Mariano Vatri">
+        <p><b>Soy Mariano Vatri</b>, desarrollador en San Francisco, Córdoba. Hace más de 4 años que construyo sistemas en equipos de desarrollo; hoy trabajo directo con negocios y consultoras. Me escribís a mí y lo hago yo, sin intermediarios.</p>
+      </div>
       <ol class="steps">
         <li><div><h3>Charla inicial</h3><p>30 minutos, sin costo. Entiendo tu negocio, tu cliente y qué querés lograr.</p></div></li>
         <li><div><h3>Propuesta cerrada</h3><p>Alcance, plazo y precio por escrito antes de arrancar. Sabés exactamente qué vas a recibir.</p></div></li>
@@ -320,12 +359,44 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     <div class="wrap"><div class="col rv">
       <p class="eyebrow" style="justify-content:center">Contacto</p>
       <h2>¿Tenés una idea? <em>Charlemos.</em></h2>
-      <p class="lead">Contame en dos líneas qué necesitás y te respondo en menos de 24 horas hábiles.</p>
-      <div class="actions" style="justify-content:center">
-        <a class="btn solid" href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20vi%20tu%20web%20y%20quiero%20contarte%20sobre%20un%20proyecto." target="_blank" rel="noopener">Escribime por WhatsApp</a>
-      </div>
+      <p class="lead">Armá tu consulta en tres toques y te respondo en menos de 24 horas hábiles.</p>
+      <form class="quote" id="quote" onsubmit="return false">
+        <fieldset>
+          <legend><b>1</b> ¿Qué necesitás?</legend>
+          <div class="opts">
+            <label><input type="radio" name="tipo" value="landing" checked><span>Landing page</span></label>
+            <label><input type="radio" name="tipo" value="sitio"><span>Sitio profesional</span></label>
+            <label><input type="radio" name="tipo" value="sistema"><span>Sistema a medida</span></label>
+            <label><input type="radio" name="tipo" value="auto"><span>Automatización</span></label>
+            <label><input type="radio" name="tipo" value="mant"><span>Mejorar lo que tengo</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><b>2</b> ¿Para cuándo?</legend>
+          <div class="opts">
+            <label><input type="radio" name="cuando" value="Lo antes posible" checked><span>Lo antes posible</span></label>
+            <label><input type="radio" name="cuando" value="Este mes"><span>Este mes</span></label>
+            <label><input type="radio" name="cuando" value="Sin apuro"><span>Sin apuro</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><b>3</b> Contame en una línea</legend>
+          <textarea name="detalle" rows="2" maxlength="400" placeholder="Opcional. Ej.: tengo una inmobiliaria y quiero que las consultas lleguen ordenadas"></textarea>
+        </fieldset>
+        <div class="estimate" aria-live="polite">
+          <span>Plazo estimado</span>
+          <strong id="q-plazo">3 a 6 días</strong>
+          <p id="q-nota">Una página enfocada en que te escriban.</p>
+        </div>
+        <div class="actions">
+          <a class="btn solid" id="q-wa" href="https://wa.me/5493564335655" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <a class="btn ghost" href="https://calendly.com/marianovatri/30min" target="_blank" rel="noopener">Agendar una charla</a>
+        </div>
+        <p class="fine">El plazo exacto y el precio te los paso por escrito después de la charla.</p>
+      </form>
       <div class="channels">
         <div class="chip"><span>WhatsApp</span><code id="wa">+54 9 3564 33-5655</code><button type="button" data-copy="wa">Copiar</button></div>
+        <div class="chip"><span>Email</span><a href="mailto:marianovatri@gmail.com"><code id="mail">marianovatri@gmail.com</code></a><button type="button" data-copy="mail">Copiar</button></div>
       </div>
       <p class="socials"><a href="https://www.linkedin.com/in/marianovatri/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/marianovatri" target="_blank" rel="noopener">GitHub</a><a href="https://www.instagram.com/vatrimariano/" target="_blank" rel="noopener">Instagram</a></p>
     </div></div>
@@ -351,6 +422,27 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     try{navigator.clipboard.writeText(txt).then(done,()=>sel(el))}catch(e){sel(el)}
   }));
   function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+
+  // cotizador: estima el plazo y arma el mensaje de WhatsApp
+  const q=document.getElementById('quote');
+  if(q){
+    const tipos={
+      landing:['Landing page','3 a 6 días','Una página enfocada en que te escriban.'],
+      sitio:['Sitio profesional','1 a 2 semanas','Tu presencia completa: quién sos, qué ofrecés, casos y contacto.'],
+      sistema:['Sistema a medida','Primera versión desde 2 semanas','Arrancamos con lo esencial funcionando y lo hacemos crecer.'],
+      auto:['Automatización','3 a 10 días','Depende de cuántas herramientas haya que conectar.'],
+      mant:['Mejoras sobre algo que ya tengo','Plan mensual','Primero reviso lo que tenés y te digo qué conviene arreglar.']
+    };
+    const plazo=document.getElementById('q-plazo'),nota=document.getElementById('q-nota'),wa=document.getElementById('q-wa');
+    const update=e=>{
+      const d=new FormData(q),t=tipos[d.get('tipo')],det=(d.get('detalle')||'').trim();
+      if(plazo.textContent!==t[1]){plazo.textContent=t[1];plazo.classList.remove('pop');void plazo.offsetWidth;plazo.classList.add('pop')}
+      nota.textContent=t[2];
+      const msg=`Hola Mariano, vi tu web. Necesito: ${t[0]}. Para: ${d.get('cuando').toLowerCase()}.`+(det?`\n${det}`:'');
+      wa.href='https://wa.me/5493564335655?text='+encodeURIComponent(msg);
+    };
+    q.addEventListener('input',update);update();
+  }
 
   const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
