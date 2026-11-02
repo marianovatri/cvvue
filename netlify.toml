@@ -1,0 +1,10 @@
+# Sitio estático: Netlify publica la carpeta raíz tal cual, sin compilar.
+# (El CV anterior en Vue quedó en la rama cv-vue-2024.)
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
