@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mariano Vatri Estudio</title>
 <meta name="description" content="Landings, sitios, sistemas a medida, automatizaciones y mantenimiento para consultoras, profesionales y pymes.">
+<link rel="modulepreload" href="vendor/three.module.min.js">
+<link rel="modulepreload" href="vendor/three.core.min.js">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -38,7 +40,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
   background:radial-gradient(120% 90% at 50% 120%,rgba(10,21,23,.0),rgba(10,21,23,.75))}
 
-header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;background:linear-gradient(var(--ink) 30%,rgba(10,21,23,.7) 65%,transparent);
   padding-block:18px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header .bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .mark{font-family:var(--f-display);font-weight:700;font-size:1.1rem;letter-spacing:-.01em;color:var(--bone);text-decoration:none;display:flex;align-items:center;gap:10px}
@@ -155,13 +157,14 @@ p{margin:0;max-width:62ch}
 
 /* Contacto */
 .contact h2{font-size:var(--s3);font-weight:500}
-.channels{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px}
+.contact .quote{margin-left:0}
+.channels{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:12px;margin-top:36px}
 .chip{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 20px;border:1px solid var(--line);border-radius:999px;background:rgba(17,34,38,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .chip span{font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog);text-transform:uppercase;letter-spacing:.1em}
 .chip code{font-family:var(--f-mono);color:var(--bone);user-select:all;overflow-wrap:anywhere}
 .chip button{font:inherit;font-size:var(--s-1);background:var(--bone);color:var(--ink);border:0;border-radius:999px;padding:7px 12px;cursor:pointer}
 .chip button:hover{background:var(--glacier)}
-.socials{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;margin:28px auto 0;max-width:none}
+.socials{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:22px;margin:28px 0 0;max-width:none}
 .socials a{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.1em;text-transform:uppercase;color:var(--fog);text-decoration:none}
 .socials a:hover{color:var(--bone)}
 /* Trabajos */
@@ -197,6 +200,60 @@ footer{position:relative;z-index:2;padding-block:28px;border-top:1px solid var(-
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--fog)}
 
+/* Rótulo que acompaña a cada forma de partículas (lo ubica el script debajo de la forma) */
+.hud{position:fixed;left:0;top:0;z-index:3;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;opacity:0;white-space:nowrap;will-change:transform,opacity}
+.hud-k{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--glacier);display:flex;align-items:center;gap:10px}
+.hud-k::before,.hud-k::after{content:"";width:18px;height:1px;background:currentColor;opacity:.6}
+.hud-t{font-family:var(--f-display);font-size:1.08rem;font-weight:500;color:var(--bone);letter-spacing:-.01em}
+.hud.swap .hud-t,.hud.swap .hud-k{animation:hudIn .55s cubic-bezier(.2,.7,.1,1)}
+@keyframes hudIn{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
+html.present .hud-k{font-size:.85rem}
+html.present .hud-t{font-size:1.5rem}
+@media (max-width:900px){.hud{display:none}}
+
+/* Riel de secciones */
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:14px}
+.rail a{display:block;width:8px;height:8px;border-radius:50%;border:1px solid var(--fog);position:relative;transition:height .4s cubic-bezier(.2,.7,.1,1),background .3s,border-color .3s}
+.rail a.on{height:26px;border-radius:5px;background:var(--apricot);border-color:var(--apricot)}
+.rail a span{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bone);white-space:nowrap;opacity:0;transition:opacity .25s;pointer-events:none;background:rgba(10,21,23,.85);padding:4px 8px;border-radius:6px}
+.rail a:hover span,.rail a:focus-visible span{opacity:1}
+@media (max-width:1100px){.rail{display:none}}
+
+/* Ítem destacado (lo marca el modo presentación o el scroll) */
+.services li.focus h3,.steps li.focus h3{color:var(--apricot)}
+.steps li{transition:opacity .4s}
+
+/* Pie: botón para el modo presentación */
+.present-btn{font:inherit;font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.06em;color:var(--fog);background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.present-btn:hover{color:var(--bone);border-color:var(--bone)}
+
+/* Modo presentación: pensado para proyector, sin mouse y con público mirando */
+.p-ui,.qr-card,.big-qr{display:none}
+html.present{font-size:clamp(16px,1.72vh,18.6px);scroll-behavior:auto} /* crece con la altura del proyector */
+@media (max-height:820px){html.present .creds{display:none}html.present .sec{padding-block:84px}html.present .contact h2{font-size:var(--s2)}}
+html.present .p-ui{display:block}
+html.present nav a:not(.cta),html.present .scrollhint,html.present .quote,html.present .present-btn,html.present .rail,html.present .contact .channels,html.present .contact .socials{display:none}
+html.present.idle,html.present.idle *{cursor:none!important}
+#p-bar{position:fixed;top:0;left:0;width:100%;height:3px;z-index:12;background:var(--apricot);transform-origin:left;transform:scaleX(0)}
+#p-count{position:fixed;left:24px;bottom:22px;z-index:6;padding:8px 14px;border-radius:999px;background:rgba(10,21,23,.85);border:1px solid var(--line);font-family:var(--f-mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fog)}
+#p-count b{color:var(--bone);font-weight:500}
+#p-count i{font-style:normal;color:var(--apricot);margin-left:12px}
+#p-help{position:fixed;left:50%;bottom:22px;z-index:12;transform:translateX(-50%);max-width:calc(100% - 32px);padding:12px 18px;border-radius:14px;background:rgba(10,21,23,.92);border:1px solid var(--line);font-family:var(--f-mono);font-size:.78rem;letter-spacing:.04em;color:var(--fog);text-align:center;transition:opacity .6s}
+#p-help b{color:var(--bone);font-weight:500}
+#p-help kbd{font:inherit;color:var(--ink);background:var(--bone);border-radius:5px;padding:1px 6px;margin:0 2px}
+#p-help.gone{opacity:0}
+html.present .qr-card{display:flex;position:fixed;right:24px;bottom:22px;z-index:6;align-items:center;gap:14px;padding:10px 16px 10px 10px;border-radius:16px;background:rgba(10,21,23,.85);border:1px solid var(--line);transition:opacity .5s}
+html.present.at-end .qr-card{opacity:0}
+.qr-card img{width:min(104px,12vh);height:min(104px,12vh);border-radius:8px;display:block}
+.qr-card span{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bone);line-height:1.5}
+html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;padding:18px;border-radius:20px;background:rgba(17,34,38,.75);border:1px solid var(--line);width:max-content;max-width:100%}
+.big-qr img{width:min(200px,21vh);height:min(200px,21vh);border-radius:12px;display:block}
+.big-qr b{display:block;font-family:var(--f-display);font-size:var(--s2);font-weight:500;line-height:1.05}
+.big-qr span{display:block;color:var(--fog);margin-top:8px}
+.big-qr .url{font-family:var(--f-mono);color:var(--glacier);font-size:var(--s-1);letter-spacing:.06em}
+#curtain{position:fixed;inset:0;z-index:20;background:var(--ink);opacity:0;pointer-events:none;transition:opacity .7s}
+#curtain.on{opacity:1}
+
 /* reveal suave: siempre visible en reposo, solo un leve desplazamiento */
 .rv{transform:translateY(18px);opacity:.35;transition:transform 1s cubic-bezier(.2,.7,.1,1),opacity 1s}
 .rv.in{transform:none;opacity:1}
@@ -219,6 +276,27 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 
 <canvas id="scene" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
+<div class="hud" id="hud" aria-hidden="true"><span class="hud-k"></span><span class="hud-t"></span></div>
+
+<nav class="rail" id="rail" aria-label="Secciones de la página">
+  <a href="#inicio" data-sec="inicio"><span>Inicio</span></a>
+  <a href="#servicios" data-sec="servicios"><span>Servicios</span></a>
+  <a href="#trabajos" data-sec="trabajos"><span>Trabajos</span></a>
+  <a href="#proceso" data-sec="proceso"><span>Cómo trabajo</span></a>
+  <a href="#consultoras" data-sec="consultoras"><span>Consultoras</span></a>
+  <a href="#preguntas" data-sec="preguntas"><span>Preguntas</span></a>
+  <a href="#contacto" data-sec="contacto"><span>Contacto</span></a>
+</nav>
+
+<!-- Modo presentación: se activa con la tecla P, con ?presentar en el link o desde el pie -->
+<div class="p-ui" id="p-bar" aria-hidden="true"></div>
+<div class="p-ui" id="p-count" aria-live="polite"></div>
+<div class="p-ui" id="p-help" role="status"></div>
+<aside class="qr-card" aria-label="Código QR para escribirme por WhatsApp">
+  <img src="img/qr-whatsapp.svg" width="104" height="104" alt="Código QR que abre un chat de WhatsApp con Mariano">
+  <span>Escaneá<br>y escribime</span>
+</aside>
+<div id="curtain" aria-hidden="true"></div>
 
 <header>
   <div class="bar">
@@ -258,15 +336,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <p class="eyebrow">Servicios</p>
       <h2>Cinco formas de ayudarte a <em>crecer</em>.</h2>
       <ul class="services">
-        <li><h3>Landing pages</h3><span class="tag">3–6 días</span>
+        <li data-layer="0"><h3>Landing pages</h3><span class="tag">3–6 días</span>
           <p>Una página enfocada en una sola cosa: que te escriban. Para lanzar un servicio, una campaña o un curso.</p></li>
-        <li><h3>Sitio profesional</h3><span class="tag">según alcance</span>
+        <li data-layer="0"><h3>Sitio profesional</h3><span class="tag">según alcance</span>
           <p>Tu presencia completa: quién sos, qué ofrecés, casos y contacto. Rápido, prolijo y fácil de actualizar.</p></li>
-        <li><h3>Sistemas a medida</h3><span class="tag">MVP desde 2 semanas</span>
+        <li data-layer="1"><h3>Sistemas a medida</h3><span class="tag">MVP desde 2 semanas</span>
           <p>Turnos, clientes, compras, presupuestos, stock o reportes. Arrancamos con una primera versión usable y la hacemos crecer con tu negocio.</p></li>
-        <li><h3>Automatizaciones</h3><span class="tag">según alcance</span>
+        <li data-layer="2"><h3>Automatizaciones</h3><span class="tag">según alcance</span>
           <p>Formularios que llegan a tu WhatsApp o mail, planillas que se completan solas, avisos automáticos a tus clientes y asistentes con IA que te ahorran tareas repetitivas.</p></li>
-        <li><h3>Mantenimiento y mejoras</h3><span class="tag">plan mensual</span>
+        <li data-layer="3"><h3>Mantenimiento y mejoras</h3><span class="tag">plan mensual</span>
           <p>¿Ya tenés una web o un sistema? Lo actualizo, corrijo lo que falla, lo hago más rápido y le sumo lo que haga falta.</p></li>
       </ul>
     </div></div>
@@ -277,26 +355,26 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <p class="eyebrow">Trabajos</p>
       <h2>Algunas cosas que <em>ya están andando</em>.</h2>
       <ul class="works">
-        <li><img class="shot" src="img/fonevo.webp" width="960" height="600" loading="lazy" alt="Página de Fonevo con el panel de ventas y stock">
+        <li data-shot="0"><img class="shot" src="img/fonevo.webp" width="960" height="600" loading="lazy" alt="Página de Fonevo con el panel de ventas y stock">
           <div><span class="kind">Producto propio · SaaS</span><h3>Fonevo</h3>
           <p>Sistema de gestión para tiendas de celulares y tecnología: stock por IMEI, ventas, cuentas corrientes, servicio técnico y facturación electrónica. Lo diseño y desarrollo de punta a punta.</p></div>
           <a href="https://fonevo.com.ar" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
-        <li><img class="shot" src="img/gastro.webp" width="960" height="600" loading="lazy" alt="Pantalla de costos y márgenes por producto del sistema gastronómico">
+        <li data-shot="1"><img class="shot" src="img/gastro.webp" width="960" height="600" loading="lazy" alt="Pantalla de costos y márgenes por producto del sistema gastronómico">
           <div><span class="kind">Sistema a medida · gastronomía</span><h3>Gestión para bares</h3>
           <p>Salón, cocina, barra, caja y stock conectados en tiempo real, en tablets y celulares. Cada producto muestra cuánto cuesta hacerlo y cuánto deja.</p></div>
           <span class="soon">Demo a pedido</span></li>
-        <li><img class="shot" src="img/jardineria.webp" width="960" height="600" loading="lazy" alt="Agenda semanal de trabajos del sistema de Jardinería 2.0">
+        <li data-shot="2"><img class="shot" src="img/jardineria.webp" width="960" height="600" loading="lazy" alt="Agenda semanal de trabajos del sistema de Jardinería 2.0">
           <div><span class="kind">Landing + sistema de gestión</span><h3>Jardinería 2.0</h3>
           <p>Primero la página para conseguir clientes; después el sistema para atenderlos: agenda de trabajos, cobros, finanzas y equipo con permisos por pantalla.</p></div>
           <a href="https://jardineriasf.netlify.app/" target="_blank" rel="noopener">Ver landing <span aria-hidden="true">↗</span></a></li>
-        <li><img class="shot" src="img/milo.webp" width="960" height="600" loading="lazy" alt="Portada de Milo Impresiones: Lo imaginás, lo imprimimos">
+        <li data-shot="3"><img class="shot" src="img/milo.webp" width="960" height="600" loading="lazy" alt="Portada de Milo Impresiones: Lo imaginás, lo imprimimos">
           <div><span class="kind">Sitio + sistema · pyme</span><h3>Milo Impresiones</h3>
           <p>Catálogo online para un taller de impresión 3D y sublimación, con panel de pedidos, stock y clientes, y una calculadora que arma el precio según material, tiempo y margen.</p></div>
           <span class="soon">Demo a pedido</span></li>
         <li><div><span class="kind">Sistema a medida</span><h3>SimpleBuy</h3>
           <p>Sistema de compras hecho a la medida de los procesos de una empresa. Participo desde el inicio y lo sigo ampliando con nuevas funciones.</p></div>
           <span class="soon">Demo a pedido</span></li>
-        <li><div class="ba">
+        <li data-shot="4"><div class="ba">
             <img class="after" src="img/pizza-despues.webp" width="960" height="600" loading="lazy" alt="Versión nueva de la Pizzería Don César: menú con fotos y pedido por WhatsApp">
             <img class="before" src="img/pizza-antes.webp" width="960" height="600" loading="lazy" alt="Versión anterior de la Pizzería Don César">
             <span class="ba-tag l" aria-hidden="true">Antes</span><span class="ba-tag r" aria-hidden="true">Después</span><i aria-hidden="true"></i>
@@ -305,7 +383,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
           <div><span class="kind">Demo · gastronomía</span><h3>Pizzería Don César</h3>
           <p>Menú online con el pedido armado que llega al WhatsApp del local. La rehice de cero: arrastrá la imagen para comparar.</p></div>
           <a href="https://pagepizzeria.netlify.app" target="_blank" rel="noopener">Ver online <span aria-hidden="true">↗</span></a></li>
-        <li><img class="shot" src="img/marte.webp" width="960" height="600" loading="lazy" alt="Sitio de Proyecto Marte con el planeta rojo y la hora marciana en vivo">
+        <li data-shot="5"><img class="shot" src="img/marte.webp" width="960" height="600" loading="lazy" alt="Sitio de Proyecto Marte con el planeta rojo y la hora marciana en vivo">
           <div><span class="kind">NASA Space Apps Challenge 2022</span><h3>Proyecto Marte</h3>
           <p>En un fin de semana de competencia, una propuesta para equipar un hábitat en Marte con piezas impresas en 3D. Hoy tiene visor 3D de cada pieza y la hora marciana en vivo. Con este trabajo recibí el certificado Galactic Problem-Solver de la NASA.</p></div>
           <a href="https://marsproyect.netlify.app/" target="_blank" rel="noopener">Ver proyecto <span aria-hidden="true">↗</span></a></li>
@@ -330,9 +408,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     </div></div>
   </section>
 
-  <section class="sec center" id="consultoras" data-shape="4">
+  <section class="sec" id="consultoras" data-shape="4">
     <div class="wrap"><div class="col rv">
-      <p class="eyebrow" style="justify-content:center">Para consultoras</p>
+      <p class="eyebrow">Para consultoras</p>
       <h2>Vos diagnosticás. <em>Yo construyo.</em></h2>
       <p class="lead">Trabajo en equipo con consultores: cuando el diagnóstico dice “acá hace falta una herramienta”, la hacemos realidad sin que tu cliente tenga que buscar a otro proveedor.</p>
       <div class="duo">
@@ -342,7 +420,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     </div></div>
   </section>
 
-  <section class="sec" id="preguntas" data-shape="5">
+  <section class="sec right" id="preguntas" data-shape="5">
     <div class="wrap"><div class="col rv">
       <p class="eyebrow">Preguntas frecuentes</p>
       <h2>Lo que todos <em>preguntan</em>.</h2>
@@ -355,11 +433,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     </div></div>
   </section>
 
-  <section class="sec center contact" id="contacto" data-shape="6">
+  <section class="sec contact" id="contacto" data-shape="6">
     <div class="wrap"><div class="col rv">
-      <p class="eyebrow" style="justify-content:center">Contacto</p>
+      <p class="eyebrow">Contacto</p>
       <h2>¿Tenés una idea? <em>Charlemos.</em></h2>
       <p class="lead">Armá tu consulta en tres toques y te respondo en menos de 24 horas hábiles.</p>
+      <div class="big-qr">
+        <img src="img/qr-whatsapp.svg" width="200" height="200" alt="Código QR que abre un chat de WhatsApp con Mariano">
+        <div><b>Escaneá y escribime</b><span>Te abre WhatsApp con el mensaje listo.</span><span class="url">+54 9 3564 33-5655 · marianovatri@gmail.com</span><span class="url">marianovatri.netlify.app</span></div>
+      </div>
       <form class="quote" id="quote" onsubmit="return false">
         <fieldset>
           <legend><b>1</b> ¿Qué necesitás?</legend>
@@ -403,11 +485,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
   </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Mariano Vatri</span><span>Webs · Landings · Sistemas a medida</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Mariano Vatri</span><button type="button" class="present-btn" id="present-btn">Modo presentación <span aria-hidden="true">⤢</span></button><span>Webs · Landings · Sistemas a medida</span></div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
+  const html=document.documentElement;
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+
   // revelado suave de secciones
   const rv=[...document.querySelectorAll('.rv')];
   if('IntersectionObserver' in window){
@@ -434,7 +519,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       mant:['Mejoras sobre algo que ya tengo','Plan mensual','Primero reviso lo que tenés y te digo qué conviene arreglar.']
     };
     const plazo=document.getElementById('q-plazo'),nota=document.getElementById('q-nota'),wa=document.getElementById('q-wa');
-    const update=e=>{
+    const update=()=>{
       const d=new FormData(q),t=tipos[d.get('tipo')],det=(d.get('detalle')||'').trim();
       if(plazo.textContent!==t[1]){plazo.textContent=t[1];plazo.classList.remove('pop');void plazo.offsetWidth;plazo.classList.add('pop')}
       nota.textContent=t[2];
@@ -443,9 +528,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     };
     q.addEventListener('input',update);update();
   }
-
-  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 
   // palabra del título que se escribe y se borra
   const rot=document.querySelector('.rot');
@@ -489,108 +571,482 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     io.observe(ba);
   });
 
-  if(!window.THREE) return;
-  const canvas=document.getElementById('scene');
-  let renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'high-performance'})}catch(e){return}
+  // riel lateral: marca la sección que está en el centro de la pantalla
+  const secs=[...document.querySelectorAll('main>section')];
+  const railLinks=[...document.querySelectorAll('#rail a')];
+  const names={inicio:'Inicio',servicios:'Servicios',trabajos:'Trabajos',proceso:'Cómo trabajo',consultoras:'Consultoras',preguntas:'Preguntas',contacto:'Contacto'};
+  function currentSection(){const mid=innerHeight*.5;let cur=secs[0];for(const s of secs)if(s.getBoundingClientRect().top<=mid)cur=s;return cur}
+  function markRail(){const id=currentSection().id;railLinks.forEach(a=>a.classList.toggle('on',a.dataset.sec===id))}
+  addEventListener('scroll',markRail,{passive:true});markRail();
+
+  // ---------- Modo presentación ----------
+  // Recorre la web sola, como diapositivas: → / ← o el control remoto avanzan, Espacio pausa,
+  // F pantalla completa y P (o Esc) sale. Al terminar vuelve al inicio y repite la intro.
+  const PR={on:false,i:0,t:0,paused:false,slides:[],last:0,tween:null,lock:null,idle:0,helpT:0};
+  const bar=document.getElementById('p-bar'),count=document.getElementById('p-count'),help=document.getElementById('p-help'),curtain=document.getElementById('curtain');
+  function buildSlides(){
+    const s=[];
+    secs.forEach(sec=>{
+      const name=names[sec.id]||'',add=(el,mode,dur,focus)=>s.push({el,mode,dur,name,focus,sec:sec.id});
+      if(sec.id==='inicio')add(sec,'sec',10);
+      else if(sec.id==='servicios'){add(sec,'sec',3.5);sec.querySelectorAll('.services li').forEach(li=>add(li,'mid',2.6,li))}
+      else if(sec.id==='trabajos'){add(sec.querySelector('h2'),'mid',4);sec.querySelectorAll('.works li').forEach(li=>add(li,'mid',li.dataset.shot?6.5:4.5))}
+      else if(sec.id==='proceso'){add(sec,'sec',4);sec.querySelectorAll('.steps li').forEach(li=>add(li,'mid',3,li))}
+      else if(sec.id==='contacto')add(sec,'sec',16);
+      else add(sec,'sec',8);
+    });
+    return s;
+  }
+  function targetY(s){
+    const r=s.el.getBoundingClientRect();
+    if(s.mode==='sec')return r.top+scrollY;
+    if(r.top>=90&&r.bottom<=innerHeight-70)return null; // ya se ve entero: no muevo la página
+    return r.top+scrollY+r.height/2-innerHeight/2;
+  }
+  function scrollToY(y,ms){PR.tween={y0:scrollY,dy:y-scrollY,t0:performance.now(),ms:ms||1150}}
+  function label(){
+    const s=PR.slides[PR.i];if(!s)return;
+    count.innerHTML=`<b>${String(PR.i+1).padStart(2,'0')}</b> / ${String(PR.slides.length).padStart(2,'0')} · ${s.name}`+(PR.paused?'<i>Pausa · Espacio para seguir</i>':'');
+  }
+  function go(i,instant){
+    PR.i=(i+PR.slides.length)%PR.slides.length;PR.t=0;
+    const s=PR.slides[PR.i];
+    document.querySelectorAll('.services li.focus,.steps li.focus').forEach(e=>e.classList.remove('focus'));
+    if(s.focus)s.focus.classList.add('focus');
+    const y=targetY(s);
+    if(y!==null){if(instant){PR.tween=null;scrollTo(0,y)}else scrollToY(y)}
+    html.classList.toggle('at-end',s.sec==='contacto');
+    label();
+  }
+  function replay(){
+    curtain.classList.add('on');PR.paused=true;
+    setTimeout(()=>{scrollTo(0,0);dispatchEvent(new Event('mv:replay'));go(0,true);PR.paused=false;label();curtain.classList.remove('on')},800);
+  }
+  function next(){PR.i>=PR.slides.length-1?replay():go(PR.i+1)}
+  function nearest(){let best=0,d=1e9;PR.slides.forEach((s,k)=>{if(s.mode!=='sec')return;const dd=Math.abs(s.el.getBoundingClientRect().top);if(dd<d){d=dd;best=k}});return best}
+  function tick(now){
+    if(!PR.on)return;
+    const dt=PR.last?Math.min(.1,(now-PR.last)/1000):0;PR.last=now;
+    if(PR.tween){const tw=PR.tween,p=Math.min(1,(now-tw.t0)/tw.ms),k=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+      scrollTo(0,tw.y0+tw.dy*k);if(p>=1)PR.tween=null}
+    if(!PR.paused){const s=PR.slides[PR.i];PR.t+=dt;bar.style.transform=`scaleX(${Math.min(1,PR.t/s.dur)})`;if(PR.t>=s.dur)next()}
+    requestAnimationFrame(tick);
+  }
+  async function wake(){try{if(navigator.wakeLock)PR.lock=await navigator.wakeLock.request('screen')}catch(e){}}
+  function showHelp(){
+    const off=navigator.serviceWorker&&navigator.serviceWorker.controller?' · <b>Lista para usar sin internet ✓</b>':'';
+    help.innerHTML=`<b>Modo presentación</b> · <kbd>→</kbd> siguiente · <kbd>←</kbd> anterior · <kbd>Espacio</kbd> pausa · <kbd>F</kbd> pantalla completa · <kbd>P</kbd> salir${off}`;
+    help.classList.remove('gone');clearTimeout(PR.helpT);PR.helpT=setTimeout(()=>help.classList.add('gone'),6500);
+  }
+  function enter(){
+    if(PR.on)return;PR.on=true;html.classList.add('present');
+    document.querySelectorAll('.faq details').forEach(d=>{d.dataset.was=d.open?'1':'';d.open=true});
+    PR.slides=buildSlides();PR.paused=false;PR.last=0;
+    requestAnimationFrame(()=>{go(nearest());requestAnimationFrame(tick)});
+    showHelp();wake();idleSoon();
+  }
+  function exit(){
+    if(!PR.on)return;PR.on=false;PR.tween=null;
+    html.classList.remove('present','at-end','idle');
+    document.querySelectorAll('.faq details').forEach(d=>{d.open=d.dataset.was==='1'});
+    document.querySelectorAll('.focus').forEach(e=>e.classList.remove('focus'));
+    bar.style.transform='scaleX(0)';
+    if(PR.lock){PR.lock.release().catch(()=>{});PR.lock=null}
+    if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
+  }
+  function idleSoon(){html.classList.remove('idle');clearTimeout(PR.idle);if(PR.on)PR.idle=setTimeout(()=>html.classList.add('idle'),2200)}
+  addEventListener('pointermove',idleSoon,{passive:true});
+  // si alguien scrollea a mano durante la presentación, se pausa
+  addEventListener('wheel',()=>{if(PR.on&&!PR.paused){PR.paused=true;PR.tween=null;label()}},{passive:true});
+  addEventListener('touchmove',()=>{if(PR.on&&!PR.paused){PR.paused=true;PR.tween=null;label()}},{passive:true});
+  document.addEventListener('visibilitychange',()=>{if(PR.on&&document.visibilityState==='visible')wake()});
+  addEventListener('keydown',e=>{
+    const tag=e.target&&e.target.tagName;
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test(tag)||e.metaKey||e.ctrlKey||e.altKey)return;
+    const k=e.key;
+    if(k==='p'||k==='P'){PR.on?exit():enter();e.preventDefault();return}
+    if(!PR.on)return;
+    if(['ArrowRight','ArrowDown','PageDown','Enter'].includes(k)){PR.paused=false;next()}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){PR.paused=false;go(PR.i-1)}
+    else if(k===' '){PR.paused=!PR.paused;label()}
+    else if(k==='Home')go(0);
+    else if(k==='End')go(PR.slides.length-1);
+    else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen().catch(()=>{}):html.requestFullscreen&&html.requestFullscreen().catch(()=>{})}
+    else if(k==='Escape'){if(!document.fullscreenElement)exit();return}
+    else return;
+    e.preventDefault();
+  });
+  document.getElementById('present-btn').addEventListener('click',()=>{enter();if(html.requestFullscreen)html.requestFullscreen().catch(()=>{})});
+  if(/[?&]presentar\b/.test(location.search)||location.hash==='#presentar')addEventListener('load',()=>setTimeout(enter,400));
+
+  // funciona sin internet: guarda la web y las fuentes después de la primera visita
+  if('serviceWorker' in navigator&&(location.protocol==='https:'||/^(localhost|127\.0\.0\.1)$/.test(location.hostname))&&!/claude/.test(location.hostname))
+    addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+})();
+</script>
+<script type="module">
+// Escena de partículas: cuenta "del caos al orden" a medida que se scrollea.
+// Inicio: mensajes y papeles sueltos que se ordenan en un sistema. Servicios: capas web / datos /
+// automatización. Trabajos: la captura real de cada proyecto dibujada con partículas. Cómo trabajo:
+// el camino de 4 pasos. Consultoras: consultoría ∩ desarrollo. Preguntas: un "?". Contacto: mi cara.
+import * as THREE from './vendor/three.module.min.js';
+
+const canvas=document.getElementById('scene'),root=document.documentElement;
+let renderer=null;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'high-performance'})}catch(e){}
+if(renderer)start();
+
+function start(){
+  THREE.ColorManagement.enabled=false;
+  renderer.outputColorSpace=THREE.LinearSRGBColorSpace;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mobile=matchMedia('(max-width:900px)').matches;
-  const N=mobile?4200:9000;
-  const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(45,1,.1,100);camera.position.set(0,0,8);
+  const COLS=mobile?96:128,ROWS=mobile?60:80,N=COLS*ROWS; // la grilla de la captura define la cantidad de partículas
+  const R=Math.random,TAU=Math.PI*2,gauss=()=>(R()+R()+R()-1.5)/1.5;
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t;
+  const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(45,1,.1,100);camera.position.set(0,0,8);
 
-  const R=()=>Math.random();
-  const gauss=()=>(R()+R()+R()-1.5)/1.5;
-  const shapes=[];
-  // 0 esfera: la idea
-  shapes.push(i=>{const y=1-(i/(N-1))*2,r=Math.sqrt(1-y*y),t=i*2.39996;const k=2.3*(i%7===0?.55+R()*.4:1);return[Math.cos(t)*r*k,y*k,Math.sin(t)*r*k]});
-  // 1 ola: estructura que crece
-  const side=Math.ceil(Math.sqrt(N));
-  shapes.push(i=>{const gx=(i%side)/side-.5,gz=Math.floor(i/side)/side-.5;const x=gx*7,z=gz*7;const y=Math.sin(x*1.2)*.35+Math.cos(z*1.4+x*.5)*.35;return[x,y-.2,z]});
-  // 2 pantallas flotantes: trabajos
-  shapes.push(i=>{const k=i%3,c=[[-1.5,.75,-.8],[0,0,0],[1.5,-.75,.8]][k],w=1.7,h=1.1;let x,y;
-    if(R()<.45){const s=R()*2*(w+h);if(s<w){x=s;y=0}else if(s<w+h){x=w;y=s-w}else if(s<2*w+h){x=s-w-h;y=h}else{x=0;y=s-2*w-h}}else{x=R()*w;y=R()*h}
-    return[c[0]+x-w/2,c[1]+y-h/2,c[2]+gauss()*.03]});
-  // 3 nudo: proceso entrelazado
-  shapes.push(i=>{const t=(i/N)*Math.PI*2*1,p=2,q=3,s=1.05;const r=Math.cos(q*t)+2;const th=.18;return[s*r*Math.cos(p*t)+gauss()*th,s*r*Math.sin(p*t)+gauss()*th,-s*Math.sin(q*t)+gauss()*th]});
-  // 3 dos esferas conectadas: consultora + desarrollo
-  shapes.push(i=>{const m=i%10;if(m<2){const u=R(),a=R()*6.283,rr=.12*Math.sqrt(R());return[-1.7+u*3.4,Math.sin(u*Math.PI)*.35+Math.cos(a)*rr,Math.sin(a)*rr]}
-    const c=m<6?-1.9:1.9;const y=R()*2-1,r=Math.sqrt(1-y*y),t=R()*6.283,k=1.15;return[c+Math.cos(t)*r*k,y*k,Math.sin(t)*r*k]});
-  // 4 cubo: respuestas sólidas
-  shapes.push(i=>{const f=i%6,a=R()*2-1,b=R()*2-1,s=1.55;const e=[[1,a,b],[-1,a,b],[a,1,b],[a,-1,b],[a,b,1],[a,b,-1]][f];return[e[0]*s,e[1]*s,e[2]*s]});
-  // 5 galaxia: abierta al contacto
-  shapes.push(i=>{const arm=i%3,d=Math.pow(R(),.7)*3.4,a=arm*2.094+d*1.25+gauss()*.25;return[Math.cos(a)*d,gauss()*.12*(3.6-d)*.4,Math.sin(a)*d]});
+  // ---------- piezas para dibujar con partículas ----------
+  function rrect(w,h,r,u){ // punto sobre el contorno de un rectángulo redondeado centrado en 0,0
+    const sw=w-2*r,sh=h-2*r,arc=Math.PI*r/2;let d=u*(2*sw+2*sh+4*arc);
+    const segs=[[sw,d=>[-sw/2+d,h/2]],[arc,d=>{const a=Math.PI/2-d/r;return[sw/2+Math.cos(a)*r,sh/2+Math.sin(a)*r]}],
+      [sh,d=>[w/2,sh/2-d]],[arc,d=>{const a=-d/r;return[sw/2+Math.cos(a)*r,-sh/2+Math.sin(a)*r]}],
+      [sw,d=>[sw/2-d,-h/2]],[arc,d=>{const a=-Math.PI/2-d/r;return[-sw/2+Math.cos(a)*r,-sh/2+Math.sin(a)*r]}],
+      [sh,d=>[-w/2,-sh/2+d]],[arc,d=>{const a=Math.PI-d/r;return[-sw/2+Math.cos(a)*r,sh/2+Math.sin(a)*r]}]];
+    for(const[len,f]of segs){if(d<=len)return f(d);d-=len}
+    return[-sw/2,h/2];
+  }
+  const weighted=parts=>{const tot=parts.reduce((s,p)=>s+p[0],0);return()=>{let x=R()*tot;for(const p of parts)if((x-=p[0])<=0)return p[1]();return parts[parts.length-1][1]()}};
+  const line=(x0,y0,x1,y1,z=0,th=.012)=>()=>{const t=R();return[lerp(x0,x1,t)+gauss()*th,lerp(y0,y1,t)+gauss()*th,z+gauss()*th]};
+  const outline=(cx,cy,w,h,r,z=0)=>()=>{const p=rrect(w,h,r,R());return[cx+p[0],cy+p[1],z]};
+  const disk=(cx,cy,rad,z=0)=>()=>{const a=R()*TAU,s=Math.sqrt(R())*rad;return[cx+Math.cos(a)*s,cy+Math.sin(a)*s,z]};
+  const box=(x0,y0,x1,y1,z=0)=>()=>[lerp(x0,x1,R()),lerp(y0,y1,R()),z];
+  const sphere=(cx,cy,cz,rad)=>()=>{const u=R()*2-1,a=R()*TAU,s=Math.sqrt(1-u*u);return[cx+Math.cos(a)*s*rad,cy+u*rad,cz+Math.sin(a)*s*rad]};
 
-  const geo=new THREE.BufferGeometry();
-  const rand=new Float32Array(N);for(let i=0;i<N;i++)rand[i]=R();
-  shapes.forEach((fn,s)=>{const arr=new Float32Array(N*3);for(let i=0;i<N;i++){const v=fn(i);arr[i*3]=v[0];arr[i*3+1]=v[1];arr[i*3+2]=v[2]}
-    geo.setAttribute(s===0?'position':'aS'+s,new THREE.BufferAttribute(arr,3))});
-  geo.setAttribute('aRand',new THREE.BufferAttribute(rand,1));
+  // caos: mensajes y notas sueltas por toda la pantalla (así llega el trabajo de un negocio)
+  const NB=mobile?32:48,bubbles=[];
+  for(let b=0;b<NB;b++){const w=.6+R()*.75;bubbles.push({x:(R()-.5)*(mobile?6:11.5)-(mobile?0:2.4),y:(R()-.5)*(mobile?9:6.4),z:-3+R()*4.4,w,h:w*(.4+R()*.22),rot:(R()-.5)*.9,yaw:(R()-.5)*1.4})}
+  const chaos=()=>{const b=bubbles[R()*NB|0];let x,y;
+    const u=R();
+    if(u<.66)[x,y]=rrect(b.w,b.h,Math.min(b.h/2,.11),R());
+    else if(u<.72){const t=R();[x,y]=t<.5?[-b.w/2+.16-t*.2,-b.h/2-t*.24]:[-b.w/2+.06+(t-.5)*.3,-b.h/2-.12+(t-.5)*.24]} // la colita del globo
+    else{const L=R()<.55?0:1;x=(R()-.5)*b.w*(L?.4:.7)-(L?b.w*.13:0);y=L?-b.h*.13:b.h*.13}
+    const c=Math.cos(b.rot),s=Math.sin(b.rot),X=x*c-y*s,Y=x*s+y*c;
+    return[b.x+X*Math.cos(b.yaw),b.y+Y,b.z+X*Math.sin(b.yaw)]};
 
-  const mat=new THREE.ShaderMaterial({
-    transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
-    uniforms:{uProg:{value:0},uTime:{value:0},uPix:{value:Math.min(devicePixelRatio,2)},uMotion:{value:reduce?0:1},
-      uA:{value:new THREE.Color('#8FD1C4')},uB:{value:new THREE.Color('#F2A65A')},uSize:{value:mobile?42:36},
-      uMouse:{value:new THREE.Vector2(9,9)},uAspect:{value:1},uHover:{value:0}},
+  // 0 · un sistema funcionando: ventana con menú, indicadores y un gráfico que sube
+  const W=4.4,H=2.8,TOP=H/2,LEFT=-W/2,SIDE=LEFT+.95;
+  const chartY=x=>{const s=(x+1.05)/3.05;return-1.08+.82*s+.15*Math.sin(s*9.5)};
+  const dash=weighted([
+    [.13,outline(0,0,W,H,.16)],
+    [.03,line(LEFT,TOP-.32,-LEFT,TOP-.32)],
+    [.02,()=>disk(LEFT+.24+(R()*3|0)*.17,TOP-.16,.045)()],
+    [.025,line(SIDE,-TOP,SIDE,TOP-.32)],
+    [.05,()=>{const j=R()*5|0;return line(LEFT+.2,TOP-.62-j*.3,LEFT+.2+(j?.5:.62),TOP-.62-j*.3,0,.01)()}],
+    [.15,()=>outline(-.6+(R()*3|0)*1.02,.59,.9,.6,.08,.32)()],
+    [.06,()=>{const x=-.6+(R()*3|0)*1.02;return R()<.6?box(x-.32,.6,x+.12,.7,.32)():line(x-.32,.44,x+.02,.44,.32,.008)()}],
+    [.18,()=>{const x=-1.05+R()*3.05;return[x+gauss()*.008,chartY(x)+gauss()*.014,.16]}],
+    [.08,()=>{const x=-1.05+R()*3.05,y=lerp(-1.2,chartY(x),R());return[x,y,.12]}],
+    [.02,line(-1.05,-1.2,2,-1.2,.16,.006)],
+    [.06,()=>{const gx=R()*24|0,gy=R()*14|0;return[LEFT+.1+gx*(W-.2)/23,-TOP+.1+gy*(H-.5)/13,-.06]}],
+  ]);
+
+  // 1 · servicios en capas: web (lo que ve el cliente), datos (tabla) y automatización (nodos)
+  const PW=3,PD=2,LY=[.95,0,-.95];
+  const planeOutline=k=>()=>{const p=rrect(PW,PD,.12,R());return[p[0],LY[k],p[1],k]};
+  const onP=(k,f)=>()=>{const v=f();return[v[0],LY[k],v[1],k]};
+  const seg=(x0,z0,x1,z1,th=.01)=>()=>{const t=R();return[lerp(x0,x1,t)+gauss()*th,lerp(z0,z1,t)+gauss()*th]};
+  const rr2=(cx,cz,w,d,r)=>()=>{const p=rrect(w,d,r,R());return[cx+p[0],cz+p[1]]};
+  const NODES=[[-1.1,-.45],[-.35,.42],[.3,-.4],[1.02,.36],[1.12,-.55]],EDGES=[[0,1],[1,2],[2,3],[2,4]];
+  const layers=weighted([
+    [.1,planeOutline(0)],[.1,planeOutline(1)],[.1,planeOutline(2)],
+    [.03,onP(0,seg(-1.3,-.74,1.3,-.74))],
+    [.035,onP(0,()=>R()<.55?seg(-1.25,-.44,.35,-.44,.018)():seg(-1.25,-.28,-.1,-.28,.018)())],
+    [.025,onP(0,rr2(-.95,0,.62,.2,.1))],
+    [.11,onP(0,()=>rr2(-.96+(R()*3|0)*.96,.52,.78,.52,.06)())],
+    [.025,onP(1,seg(-1.3,-.78,1.3,-.78))],
+    [.175,onP(1,()=>{const c=R()*12|0,r=R()*6|0;return[-1.3+c*2.6/11+gauss()*.012,-.55+r*1.3/5+gauss()*.012]})],
+    [.09,onP(2,()=>{const n=NODES[R()*5|0],a=R()*TAU,rad=R()<.6?.17:.06*Math.sqrt(R());return[n[0]+Math.cos(a)*rad,n[1]+Math.sin(a)*rad]})],
+    [.06,onP(2,()=>{const e=EDGES[R()*4|0],a=NODES[e[0]],b=NODES[e[1]];return seg(a[0],a[1],b[0],b[1],.008)()})],
+    [.08,()=>[(R()<.5?-1.38:1.38)+gauss()*.006,-.95+R()*1.9,(R()<.5?-.86:.86)+gauss()*.006,3]],
+  ]);
+
+  // 3 · el camino de 4 pasos; cada partícula sabe en qué punto del recorrido está
+  const P=t=>[-2.1+4.2*t,.72*Math.sin(t*Math.PI*1.6-.9),.85*Math.cos(t*Math.PI*1.25)];
+  const path=weighted([
+    [.6,()=>{const t=R(),p=P(t);return[p[0]+gauss()*.05,p[1]+gauss()*.05,p[2]+gauss()*.05,t]}],
+    [.3,()=>{const tk=((R()*4|0)+.5)/4,c=P(tk),s=sphere(c[0],c[1],c[2],.17+R()*.09)();return[s[0],s[1],s[2],tk]}],
+    [.1,()=>{const tk=((R()*4|0)+.5)/4,c=P(tk),a=R()*TAU;return[c[0]+Math.cos(a)*.42,c[1]+Math.sin(a)*.42,c[2],tk]}],
+  ]);
+
+  // 4 · consultoría ∩ desarrollo: dos esferas que se cruzan
+  const VR=1.15,VC=.8;
+  const venn=weighted([
+    [.9,()=>sphere(R()<.5?-VC:VC,0,0,VR)()],
+    [.1,()=>{for(let k=0;k<40;k++){const x=(R()-.5)*.72,y=(R()-.5)*2*VR,z=(R()-.5)*2*VR;
+      if((x-VC)**2+y*y+z*z<VR*VR&&(x+VC)**2+y*y+z*z<VR*VR)return[x,y,z]}return[0,0,0]}],
+  ]);
+
+  // 5 · un signo de pregunta, tomado de la tipografía
+  function glyph(ch,font,hU){
+    const w=200,h=240,cv=document.createElement('canvas');cv.width=w;cv.height=h;const x=cv.getContext('2d');
+    x.fillStyle='#fff';x.textAlign='center';x.textBaseline='alphabetic';x.font=font;x.fillText(ch,w/2,h*.86);
+    const d=x.getImageData(0,0,w,h).data,pts=[];for(let y=0;y<h;y++)for(let X=0;X<w;X++)if(d[(y*w+X)*4+3]>140)pts.push(X,y);
+    if(!pts.length)return sphere(0,0,0,1.5);
+    let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;for(let k=0;k<pts.length;k+=2){x0=Math.min(x0,pts[k]);x1=Math.max(x1,pts[k]);y0=Math.min(y0,pts[k+1]);y1=Math.max(y1,pts[k+1])}
+    const cx=(x0+x1)/2,cy=(y0+y1)/2,s=hU/(y1-y0);
+    return()=>{const k=(R()*pts.length/2|0)*2;return[(pts[k]+R()-.5-cx)*s,(cy-pts[k+1]-R()+.5)*s,(R()-.5)*.5]};
+  }
+  const QFONT='800 230px "Bricolage Grotesque","Arial Black",Arial,sans-serif';
+
+  // 6 · contacto: un globo de chat mientras carga la foto; después, mi cara hecha de partículas
+  const bubble=weighted([[.55,outline(0,.25,3.1,2.1,.55)],[.08,()=>R()<.5?line(-.85,-.8,-1.25,-1.55)():line(-1.25,-1.55,-.35,-.8)()],
+    [.37,()=>{const j=R()*3|0;return line(-1.15,.78-j*.45,j===2?.25:1.15,.78-j*.45,0,.02)()}]]);
+
+  // ---------- geometría ----------
+  const geo=new THREE.BufferGeometry(),F=k=>new Float32Array(N*k);
+  const A={position:F(3),aChaos:F(3),aS1:F(3),aS2:F(3),aS3:F(3),aS4:F(3),aS5:F(3),aS6:F(3),aCol6:F(3),aRand:F(1),aUv:F(2),aPath:F(1),aLayer:F(1)};
+  const put=(arr,i,v)=>{arr[i*3]=v[0];arr[i*3+1]=v[1];arr[i*3+2]=v[2]};
+  const SW=4.6,SH=SW*ROWS/COLS,qmark=glyph('?',QFONT,3.2);
+  for(let i=0;i<N;i++){
+    A.aRand[i]=R();
+    put(A.aChaos,i,chaos());put(A.position,i,dash());
+    const l=layers();put(A.aS1,i,l);A.aLayer[i]=l[3];
+    const c=i%COLS,r=(i/COLS)|0;A.aUv[i*2]=(c+.5)/COLS;A.aUv[i*2+1]=(r+.5)/ROWS;
+    put(A.aS2,i,[(c/(COLS-1)-.5)*SW,(.5-r/(ROWS-1))*SH,0]);
+    const p=path();put(A.aS3,i,p);A.aPath[i]=p[3];
+    put(A.aS4,i,venn());put(A.aS5,i,qmark());put(A.aS6,i,bubble());put(A.aCol6,i,[.92,.9,.85]);
+  }
+  for(const[k,arr]of Object.entries(A))geo.setAttribute(k,new THREE.BufferAttribute(arr,arr.length/N));
+
+  // capturas de los trabajos, en "rayos X": cada partícula se ubica sobre un texto o un borde real de la página.
+  // Posición y color de cada partícula para cada trabajo viven en dos texturas (un bloque por trabajo).
+  const SHOTS=['img/fonevo.webp','img/gastro.webp','img/jardineria.webp','img/milo.webp','img/pizza-despues.webp','img/marte.webp'],NS=SHOTS.length;
+  const posData=new Float32Array(N*NS*4),colData=new Uint8Array(N*NS*4);
+  for(let k=0;k<NS;k++)for(let i=0;i<N;i++){const c=i%COLS,r=(i/COLS)|0,o=((k*ROWS+r)*COLS+c)*4;
+    posData[o]=(c/(COLS-1)-.5)*SW;posData[o+1]=(.5-r/(ROWS-1))*SH;posData[o+3]=1;colData[o]=150;colData[o+1]=148;colData[o+2]=142;colData[o+3]=255}
+  const posT=new THREE.DataTexture(posData,COLS,ROWS*NS,THREE.RGBAFormat,THREE.FloatType);
+  const colT=new THREE.DataTexture(colData,COLS,ROWS*NS,THREE.RGBAFormat,THREE.UnsignedByteType);
+  for(const t of[posT,colT]){t.minFilter=t.magFilter=THREE.NearestFilter;t.generateMipmaps=false;t.flipY=false;t.needsUpdate=true}
+  function sampleShot(im,k){
+    const aw=240,ah=150,cv=document.createElement('canvas');cv.width=aw;cv.height=ah;
+    const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,aw,ah);
+    const d=x.getImageData(0,0,aw,ah).data,L=new Float32Array(aw*ah);
+    for(let p=0;p<aw*ah;p++)L[p]=(d[p*4]*.299+d[p*4+1]*.587+d[p*4+2]*.114)/255;
+    let br=0,bg=0,bb=0,n=0;const add=p=>{br+=d[p*4];bg+=d[p*4+1];bb+=d[p*4+2];n++};
+    for(let X=0;X<aw;X+=2){add(X);add((ah-1)*aw+X)}for(let Y=0;Y<ah;Y+=2){add(Y*aw);add(Y*aw+aw-1)}
+    br/=n;bg/=n;bb/=n;
+    const cdf=new Float32Array(aw*ah);let acc=0;
+    for(let Y=0;Y<ah;Y++)for(let X=0;X<aw;X++){const p=Y*aw+X,o=p*4;
+      const dist=Math.hypot(d[o]-br,d[o+1]-bg,d[o+2]-bb)/255;
+      const ed=(X<aw-1?Math.abs(L[p]-L[p+1]):0)+(Y<ah-1?Math.abs(L[p]-L[p+aw]):0);
+      acc+=smooth(.04,.22,ed)*1.6+smooth(.06,.3,dist)*.3;cdf[p]=acc}
+    const nf=Math.round(N*.06); // un 6% dibuja el marco de la pantalla
+    for(let i=0;i<N;i++){const c=i%COLS,r=(i/COLS)|0,o=((k*ROWS+r)*COLS+c)*4;let cr,cg,cb;
+      if(i<nf||acc<=0){const q=rrect(SW,SH,.06,R());posData[o]=q[0];posData[o+1]=q[1];posData[o+2]=0;cr=.56;cg=.82;cb=.77}
+      else{const t=R()*acc;let lo=0,hi=aw*ah-1;while(lo<hi){const m=(lo+hi)>>1;if(cdf[m]<t)lo=m+1;else hi=m}
+        const X=lo%aw,Y=(lo/aw)|0,q=lo*4;
+        posData[o]=((X+R())/aw-.5)*SW;posData[o+1]=(.5-(Y+R())/ah)*SH;posData[o+2]=(R()-.5)*.05;
+        cr=d[q]/255;cg=d[q+1]/255;cb=d[q+2]/255;const hi2=Math.max(cr,cg,cb),lo2=Math.min(cr,cg,cb);
+        if(hi2-lo2<.18){cr=.93;cg=.9;cb=.85} // textos y grises: claros, para que se lean sobre el fondo oscuro
+        else{const f=.88/Math.max(hi2,.05);cr=Math.min(1,cr*f);cg=Math.min(1,cg*f);cb=Math.min(1,cb*f)}}
+      colData[o]=cr*255;colData[o+1]=cg*255;colData[o+2]=cb*255;
+    }
+  }
+  let shotsReadyT=0,pending=NS;
+  const shotDone=()=>{if(--pending===0){posT.needsUpdate=true;colT.needsUpdate=true;shotsReadyT=1}};
+  SHOTS.forEach((src,k)=>{const im=new Image();im.decoding='async';
+    im.onload=()=>{try{sampleShot(im,k)}catch(e){}shotDone()};im.onerror=shotDone;im.src=src});
+
+  const U={uProg:{value:0},uIntro:{value:reduce?1:0},uTime:{value:0},uPix:{value:1},uMotion:{value:reduce?0:1},uSize:{value:mobile?42:36},uScale:{value:1},
+    uAspect:{value:1},uHover:{value:0},uMouse:{value:new THREE.Vector2(9,9)},uBoost:{value:1},uBoostSize:{value:1},
+    uPosT:{value:posT},uColT:{value:colT},uShotA:{value:0},uShotB:{value:0},uShotMix:{value:0},uShotsN:{value:SHOTS.length},uShotsReady:{value:0},
+    uPath:{value:0},uLayer:{value:3},uLayerOn:{value:0},
+    uA:{value:new THREE.Color('#8FD1C4')},uB:{value:new THREE.Color('#F2A65A')},uC:{value:new THREE.Color('#ECE6DA')}};
+
+  const mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,uniforms:U,
     vertexShader:`
-      attribute vec3 aS1;attribute vec3 aS2;attribute vec3 aS3;attribute vec3 aS4;attribute vec3 aS5;attribute vec3 aS6;attribute float aRand;
-      uniform float uProg,uTime,uPix,uMotion,uSize,uAspect,uHover;uniform vec2 uMouse;varying float vR;varying float vA;
+      attribute vec3 aChaos,aS1,aS2,aS3,aS4,aS5,aS6,aCol6;attribute float aRand,aPath,aLayer;attribute vec2 aUv;
+      uniform float uProg,uIntro,uTime,uPix,uMotion,uSize,uScale,uAspect,uHover,uBoost,uBoostSize;
+      uniform float uShotA,uShotB,uShotMix,uShotsN,uShotsReady,uPath,uLayer,uLayerOn;
+      uniform vec2 uMouse;uniform sampler2D uPosT,uColT;uniform vec3 uA,uB,uC;
+      varying vec3 vCol;varying float vA;varying float vHard;
       float e(float x){x=clamp(x,0.,1.);return x*x*x*(x*(x*6.-15.)+10.);}
+      vec2 tc(float k){return vec2(aUv.x,(aUv.y+k)/uShotsN);}
       void main(){
-        float d=aRand*.4;vec3 p=position;
-        p=mix(p,aS1,e((uProg-0.)*1.4-d));p=mix(p,aS2,e((uProg-1.)*1.4-d));
-        p=mix(p,aS3,e((uProg-2.)*1.4-d));p=mix(p,aS4,e((uProg-3.)*1.4-d));p=mix(p,aS5,e((uProg-4.)*1.4-d));p=mix(p,aS6,e((uProg-5.)*1.4-d));
-        float tr=1.-abs(fract(uProg)-.5)*2.; // máximo en mitad de la transición
-        p+=vec3(sin(uTime*.7+aRand*40.),cos(uTime*.6+aRand*27.),sin(uTime*.5+aRand*13.))*(.025+tr*.12)*uMotion;
+        float d=aRand*.4;
+        float i0=e(uIntro*1.3-d*.75);
+        float m1=e(uProg*1.4-d),m2=e((uProg-1.)*1.4-d),m3=e((uProg-2.)*1.4-d),m4=e((uProg-3.)*1.4-d),m5=e((uProg-4.)*1.4-d),m6=e((uProg-5.)*1.4-d);
+        float w1=m1-m2,w2=(m2-m3)*uShotsReady,w3=m3-m4,w4=m4-m5,w6=m6;
+        // la captura: cada partícula vuela de su lugar en un trabajo a su lugar en el siguiente
+        vec3 cs=mix(texture2D(uColT,tc(uShotA)).rgb,texture2D(uColT,tc(uShotB)).rgb,uShotMix);
+        vec3 ps=mix(texture2D(uPosT,tc(uShotA)).xyz,texture2D(uPosT,tc(uShotB)).xyz,uShotMix);
+        float swap=sin(uShotMix*3.14159);
+        vec3 s2=mix(aS2,ps,uShotsReady)+vec3(0.,0.,swap*(aRand-.5)*1.4);
+        vec3 p=mix(aChaos+vec3(sin(uTime*.35+aChaos.y*.6),cos(uTime*.3+aChaos.x*.5),0.)*.16*uMotion,position,i0); // los globos flotan enteros
+        p=mix(p,aS1,m1);p=mix(p,s2,m2);p=mix(p,aS3,m3);p=mix(p,aS4,m4);p=mix(p,aS5,m5);p=mix(p,aS6,m6);
+        float tr=1.-abs(fract(uProg)-.5)*2.,calm=max(w2,w6);
+        p+=vec3(sin(uTime*.7+aRand*40.),cos(uTime*.6+aRand*27.),sin(uTime*.5+aRand*13.))*(.024*(1.-calm*.85)+tr*.12+(1.-i0)*.012)*uMotion;
         vec4 mv=modelViewMatrix*vec4(p,1.);
-        // las partículas se apartan del cursor (medido en pantalla) y se iluminan
         vec4 cp=projectionMatrix*mv;vec2 dd=(cp.xy/cp.w-uMouse)*vec2(uAspect,1.);
         float k=smoothstep(.22,0.,length(dd))*uHover;
         mv.xy+=normalize(dd+1e-5)*k*.42*(-mv.z/8.);
         gl_Position=projectionMatrix*mv;
-        gl_PointSize=uSize*uPix*(.35+aRand*.9)/-mv.z;vR=aRand;vA=.55+.45*sin(uTime*1.3+aRand*60.)*uMotion+k*.7;
+        vec3 c=mix(uA,uB,step(.82,aRand));
+        float hl=uLayer>2.5?1.:1.-step(.5,abs(aLayer-uLayer));
+        c=mix(c,mix(uA*.7,mix(uB,uC,.25),hl),w1*uLayerOn);
+        float done=step(aPath,uPath);
+        c=mix(c,mix(uA*.5,uB*1.15,done),w3);
+        vec3 vc=mix(uA,uB,smoothstep(-.55,.55,aS4.x));vc=mix(vc,uC,smoothstep(.42,0.,abs(aS4.x))*.9);
+        c=mix(c,vc,w4);
+        c=mix(c,cs*.95,w2);
+        c=mix(c,aCol6,w6);
+        vCol=c*uBoost;
+        float tw=.55+.45*sin(uTime*1.3+aRand*60.)*uMotion;
+        float a=mix(tw,.9,max(w2,w6*.85));
+        a*=mix(1.,.58+.42*hl,w1*uLayerOn)*mix(1.,.4+.6*done,w3);
+        vA=a+k*.6;vHard=w2*.15;
+        float sz=mix(.35+aRand*.9,.72+aRand*.3,w2);sz=mix(sz,.5+aRand*.55,w6);
+        gl_PointSize=uSize*uPix*uScale*sz*mix(uBoostSize,1.,w2*.6)/-mv.z;
       }`,
     fragmentShader:`
-      uniform vec3 uA,uB;varying float vR;varying float vA;
-      void main(){float r=length(gl_PointCoord-.5);if(r>.5)discard;float a=smoothstep(.5,.0,r);
-        vec3 c=mix(uA,uB,step(.82,vR));gl_FragColor=vec4(c,a*vA*.95);}`
+      varying vec3 vCol;varying float vA;varying float vHard;
+      void main(){float r=length(gl_PointCoord-.5);if(r>.5)discard;float a=smoothstep(.5,vHard,r);gl_FragColor=vec4(vCol,a*vA*.95);}`
   });
-  const pts=new THREE.Points(geo,mat);const g=new THREE.Group();g.add(pts);scene.add(g);
+  const pts=new THREE.Points(geo,mat);pts.frustumCulled=false;
+  const g=new THREE.Group();g.add(pts);scene.add(g);
 
-  // posición del objeto según sección (texto a un lado, forma al otro)
-  const offsets=mobile?[[0,.9,.75],[0,0,.7],[0,0,.7],[0,0,.75],[0,0,.7],[0,0,.75],[0,0,.8]]
-                      :[[2.3,0,1],[-2.1,0,.95],[2.3,0,.9],[-2.4,0,1],[0,.1,.9],[2.4,0,1],[0,-.2,1.05]];
-  const secs=[...document.querySelectorAll('[data-shape]')];
-  let target=0,prog=0,mx=0,my=0,smx=0,smy=0,hover=0;
-  const mouse=new THREE.Vector2(9,9);
-  function computeTarget(){
-    const mid=scrollY+innerHeight*.5;let t=0;
-    for(let i=0;i<secs.length;i++){const s=secs[i],top=s.offsetTop,h=s.offsetHeight;
-      if(mid>=top){t=i+Math.min(1,Math.max(0,(mid-top-h*.5)/(h*.5)));}}
-    target=Math.min(secs.length-1,Math.max(0,t-0));
+  // mi cara: muestreo la foto dándole más partículas a lo que no es pared (pelo, ojos, contornos)
+  let faceReady=false;
+  function buildFace(im){
+    const w=150,h=Math.round(150*im.height/im.width),cv=document.createElement('canvas');cv.width=w;cv.height=h;
+    const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,w,h);
+    const d=x.getImageData(0,0,w,h).data,L=new Float32Array(w*h);
+    for(let k=0;k<w*h;k++)L[k]=(d[k*4]*.299+d[k*4+1]*.587+d[k*4+2]*.114)/255;
+    // color de la pared en cada fila, tomado de los bordes (abajo el buzo llega a los bordes: repito la última fila de pared)
+    const rows=[];for(let Y=0;Y<h;Y++){if(Y<h*.5){let r=0,gg=0,b=0;for(const X of[0,1,2,3,w-4,w-3,w-2,w-1]){const o=(Y*w+X)*4;r+=d[o];gg+=d[o+1];b+=d[o+2]}rows.push([r/8,gg/8,b/8])}else rows.push(rows[rows.length-1])}
+    const cdf=new Float32Array(w*h);let acc=0;
+    for(let Y=0;Y<h;Y++)for(let X=0;X<w;X++){const k=Y*w+X,o=k*4,bgc=rows[Y];
+      const dist=Math.hypot(d[o]-bgc[0],d[o+1]-bgc[1],d[o+2]-bgc[2])/255;
+      const ed=X<w-1&&Y<h-1?Math.abs(L[k]-L[k+1])+Math.abs(L[k]-L[k+w]):0;
+      const ex=(X/w-.5)/.39,ey=(Y/h-.43)/.62,mask=smooth(1.08,.82,Math.hypot(ex,ey));
+      let wt=(smooth(.07,.26,dist)*(.14+(1-L[k])*.6)+ed*3.4*smooth(.03,.14,dist))*mask;
+      wt*=1-smooth(.6,.95,Y/h)*.75;
+      acc+=wt;cdf[k]=acc}
+    if(acc<=0)return;
+    const pos=geo.attributes.aS6.array,col=geo.attributes.aCol6.array,s=3.7/h;
+    for(let i=0;i<N;i++){
+      const r=R()*acc;let lo=0,hi=w*h-1;while(lo<hi){const m=(lo+hi)>>1;if(cdf[m]<r)lo=m+1;else hi=m}
+      const X=lo%w,Y=(lo/w)|0,o=lo*4;
+      pos[i*3]=(X+R()-.5-w/2)*s;pos[i*3+1]=(h/2-Y-R()+.5)*s;pos[i*3+2]=(.5-L[lo])*.35+(R()-.5)*.05;
+      col[i*3]=Math.min(1,d[o]/255*1.3);col[i*3+1]=Math.min(1,d[o+1]/255*1.3);col[i*3+2]=Math.min(1,d[o+2]/255*1.3);
+    }
+    geo.attributes.aS6.needsUpdate=true;geo.attributes.aCol6.needsUpdate=true;faceReady=true;
   }
+  const face=new Image();face.decoding='async';face.onload=()=>{try{buildFace(face)}catch(e){}};face.src='img/mariano.webp';
+  // el "?" con la tipografía real una vez que cargó
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{
+    const q=glyph('?',QFONT,3.2),a=geo.attributes.aS5.array;for(let i=0;i<N;i++){const v=q();a[i*3]=v[0];a[i*3+1]=v[1];a[i*3+2]=v[2]}
+    geo.attributes.aS5.needsUpdate=true});
+
+  // ---------- ubicación de cada forma: [x, y, escala] y [rotX, rotY, vaivén, velocidad] ----------
+  const OFF=mobile?[[0,.75,.6],[0,.6,.55],[0,.75,.62],[0,.6,.6],[0,.6,.6],[0,.6,.6],[0,.65,.58]]
+                  :[[2.4,.05,1],[-2.35,-.05,.92],[2.45,.12,1],[-2.35,0,.95],[2.5,.05,.92],[-2.5,0,.95],[2.55,.05,1]];
+  const ROT=[[.1,-.34,.06,.35],[.62,.62,.1,.3],[.04,-.26,.035,.3],[.3,.42,.16,.25],[.18,-.2,.5,.22],[.06,.25,.45,.4],[.02,-.22,.06,.3]];
+  const ANCH=[-1.75,-1.9,-1.75,-1.45,-1.5,-1.85,-2.05]; // borde inferior de cada forma, para ubicar el rótulo
+
+  const secs=[...document.querySelectorAll('[data-shape]')];
+  const works=[...document.querySelectorAll('.works li[data-shot]')],services=[...document.querySelectorAll('.services li')],steps=[...document.querySelectorAll('.steps li')];
+  let hoverShot=null,hoverLayer=null;
+  works.forEach(li=>{li.addEventListener('pointerenter',()=>hoverShot=li);li.addEventListener('pointerleave',()=>{if(hoverShot===li)hoverShot=null})});
+  services.forEach(li=>{li.addEventListener('pointerenter',()=>hoverLayer=li);li.addEventListener('pointerleave',()=>{if(hoverLayer===li)hoverLayer=null})});
+  const nearestEl=list=>{let best=null,dd=1e9;const c=innerHeight*.5;for(const el of list){const r=el.getBoundingClientRect(),v=Math.abs(r.top+r.height/2-c);if(v<dd){dd=v;best=el}}return best};
+
+  // la forma cambia recién cuando la sección termina, así acompaña todo el scroll de las secciones largas
+  let target=0,prog=0;
+  function computeTarget(){const vh=innerHeight,mid=vh*.5;let t=0;
+    for(let i=0;i<secs.length-1;i++){const b=secs[i].getBoundingClientRect().bottom,f=clamp((mid-(b-vh*.35))/(vh*.6),0,1);t=i+f;if(f<1)break}
+    target=t}
   addEventListener('scroll',computeTarget,{passive:true});
+
+  let mx=0,my=0,smx=0,smy=0,hover=0,introT0=performance.now();
+  const mouse=new THREE.Vector2(9,9);
   addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;
     if(e.pointerType==='mouse'&&!reduce){mouse.set(mx*2,-my*2);hover=1}},{passive:true});
   document.documentElement.addEventListener('pointerleave',()=>{hover=0});
-  function resize(){const w=innerWidth,h=innerHeight;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();mat.uniforms.uAspect.value=w/h;computeTarget()}
+  addEventListener('mv:replay',()=>{introT0=performance.now()}); // el modo presentación repite la intro al volver a empezar
+  function resize(){const w=innerWidth,h=innerHeight,px=Math.min(devicePixelRatio||1,2);renderer.setPixelRatio(px);renderer.setSize(w,h,false);
+    U.uPix.value=px;camera.aspect=w/h;camera.updateProjectionMatrix();U.uAspect.value=w/h;computeTarget()}
   addEventListener('resize',resize);resize();
 
-  const lerp=(a,b,t)=>a+(b-a)*t;const clock=new THREE.Clock();
-  function frame(){
-    const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
-    prog=lerp(prog,target,reduce?.2:1-Math.pow(.0009,dt)); // seguimiento suave e independiente de los fps
-    mat.uniforms.uProg.value=prog;mat.uniforms.uTime.value=t;
-    const i=Math.floor(prog),f=prog-i,a=offsets[Math.min(i,6)],b=offsets[Math.min(i+1,6)],k=f*f*(3-2*f);
-    g.position.x=lerp(a[0],b[0],k);g.position.y=lerp(a[1],b[1],k);g.scale.setScalar(lerp(a[2],b[2],k));
+  // rótulo debajo de la forma
+  const hud=document.getElementById('hud'),hudK=hud.querySelector('.hud-k'),hudT=hud.querySelector('.hud-t'),v3=new THREE.Vector3();
+  let hudKey='',activeWork=works[0]||null,layerEl=null,stepIdx=-1;
+  const LAYERS=['Capa 1 · Web','Capa 2 · Datos','Capa 3 · Automatización','Las tres capas'];
+  const h3=el=>{const x=el&&el.querySelector('h3');return x?x.textContent:''};
+  function caption(s,introP){
+    if(s===0)return introP<.62?['Así llega todo hoy','WhatsApps, planillas y papeles sueltos…']:['Del caos al orden','…todo en un solo sistema.'];
+    if(s===1)return layerEl?[LAYERS[+layerEl.dataset.layer||0],h3(layerEl)]:['Servicios','Web, datos y automatización'];
+    if(s===2)return['Captura real · hecha de partículas',h3(activeWork)||'Trabajos'];
+    if(s===3)return stepIdx<0?['Cómo trabajo','Cuatro pasos, sin sorpresas']:[`Paso 0${stepIdx+1} de 04`,h3(steps[stepIdx])];
+    if(s===4)return['Consultoría ∩ desarrollo','Un solo equipo frente a tu cliente'];
+    if(s===5)return['Preguntas','Si no está acá, preguntame'];
+    return['Contacto',faceReady?'Este soy yo. Te leo.':'Escribime, te leo.'];
+  }
+
+  let shotCur=0,shotNext=0,shotMix=0,last=performance.now();
+  function frame(now){
+    const dt=Math.min((now-last)/1000,.05),t=now/1000;last=now;
+    const pres=root.classList.contains('present')?1:0;
+    prog=lerp(prog,target,reduce?.25:1-Math.pow(.0009,dt));
+    const introP=reduce?1:clamp(((now-introT0)/1000-1)/2.9,0,1);
+    U.uProg.value=prog;U.uTime.value=t;U.uIntro.value=introP;
+    U.uShotsReady.value=lerp(U.uShotsReady.value,shotsReadyT,.06);
+    U.uBoost.value=lerp(U.uBoost.value,pres?1.22:1,.08);U.uBoostSize.value=lerp(U.uBoostSize.value,pres?1.3:1,.08);
+
+    // trabajos: la captura que se dibuja es la del ítem que está en el centro (o bajo el mouse)
+    if(Math.abs(prog-2)<1.2&&works.length){
+      const w=hoverShot||nearestEl(works);
+      if(w){activeWork=w;const k=+w.dataset.shot;if(shotMix===0&&k!==shotCur){shotNext=k;shotMix=1e-4}}
+    }
+    if(shotMix>0){shotMix=reduce?1:Math.min(1,shotMix+dt/.95);if(shotMix>=1){shotCur=shotNext;shotMix=0}}
+    const me=shotMix<.5?2*shotMix*shotMix:1-2*(1-shotMix)*(1-shotMix);
+    U.uShotA.value=shotCur;U.uShotB.value=shotMix>0?shotNext:shotCur;U.uShotMix.value=shotMix>0?me:0;
+
+    // servicios: se ilumina la capa del servicio activo
+    const sf=document.querySelector('.services li.focus')||hoverLayer||(Math.abs(prog-1)<.6?nearestEl(services):null);
+    layerEl=sf;U.uLayer.value=sf?(+sf.dataset.layer||0):3;U.uLayerOn.value=lerp(U.uLayerOn.value,sf?1:0,.1);
+
+    // cómo trabajo: el camino se va encendiendo paso a paso
+    const fs=document.querySelector('.steps li.focus');
+    if(fs)stepIdx=steps.indexOf(fs);
+    else if(Math.abs(prog-3)<1.2){stepIdx=-1;steps.forEach((li,k)=>{if(li.getBoundingClientRect().top<innerHeight*.62)stepIdx=k})}
+    U.uPath.value=lerp(U.uPath.value,stepIdx<0?.02:(stepIdx+.5)/4+.07,.08);
+
+    // posición, escala y giro de la forma, interpolando entre la sección actual y la siguiente
+    const i=Math.min(Math.floor(prog),6),j=Math.min(i+1,6),f=prog-i,kk=f*f*(3-2*f),a=OFF[i],b=OFF[j],ra=ROT[i],rb=ROT[j];
+    // pantallas más cuadradas (proyectores 4:3): la forma se achica pero se mantiene del lado libre
+    const asp=innerWidth/innerHeight,sc=mobile?1:clamp(.72+(asp-1.33)*.62,.7,1),fx=mobile?1:clamp(.94+(asp-1.33)*.13,.9,1);
+    g.position.set(lerp(a[0],b[0],kk)*fx,lerp(a[1],b[1],kk),0);g.scale.setScalar(lerp(a[2],b[2],kk)*sc);U.uScale.value=g.scale.x;
     smx=lerp(smx,mx,.05);smy=lerp(smy,my,.05);
-    mat.uniforms.uMouse.value.lerp(mouse,.18);mat.uniforms.uHover.value=lerp(mat.uniforms.uHover.value,hover,.06);
-    pts.rotation.y=(reduce?0:t*.06)+prog*1.1+smx*.6;
-    pts.rotation.x=.25+Math.sin(prog*1.3)*.25+smy*.4;
+    const sway=lerp(ra[2],rb[2],kk),sp=lerp(ra[3],rb[3],kk);
+    pts.rotation.x=lerp(ra[0],rb[0],kk)+smy*.18*(1-pres);
+    pts.rotation.y=lerp(ra[1],rb[1],kk)*(mobile?.3:1)+(reduce?0:Math.sin(t*sp)*sway)+smx*.35*(1-pres);
+    U.uMouse.value.lerp(mouse,.18);U.uHover.value=lerp(U.uHover.value,pres?0:hover,.06);
+
+    if(!mobile){
+      const s=Math.round(prog),settle=clamp(1-Math.abs(prog-s)*3.4,0,1),cap=caption(s,introP),key=cap[0]+'|'+cap[1];
+      if(key!==hudKey){hudKey=key;hudK.textContent=cap[0];hudT.textContent=cap[1];hud.classList.remove('swap');void hud.offsetWidth;hud.classList.add('swap')}
+      v3.set(g.position.x,g.position.y+lerp(ANCH[i],ANCH[j],kk)*g.scale.x-.32,0).project(camera);
+      const x=(v3.x+1)/2*innerWidth,y=Math.min((1-v3.y)/2*innerHeight,innerHeight-(pres?200:70)); // en presentación deja lugar al QR
+      hud.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) translate(-50%,0)`;
+      hud.style.opacity=settle.toFixed(3);
+    }
     renderer.render(scene,camera);requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-})();
+}
 </script>
 
 </body>

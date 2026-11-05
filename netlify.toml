@@ -3,9 +3,20 @@
 # build solo copia los archivos ahí.
 [build]
   publish = "dist"
-  command = "rm -rf dist && mkdir dist && cp -r index.html img dist/"
+  command = "rm -rf dist && mkdir dist && cp -r index.html sw.js img vendor dist/"
 
 [[headers]]
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# el service worker siempre fresco, para que las actualizaciones lleguen
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
