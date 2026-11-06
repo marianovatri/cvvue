@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mariano Vatri · Webs y sistemas para pymes en San Francisco, Córdoba</title>
 <meta name="description" content="Landings, sitios, sistemas a medida, automatizaciones y mantenimiento para consultoras, profesionales y pymes. Me escribís por WhatsApp y te respondo en 24 h hábiles.">
-<link rel="canonical" href="https://marianovatri.netlify.app/">
+<link rel="canonical" href="https://www.marianovatri.com.ar/">
 <meta name="theme-color" content="#0A1517">
 <!-- vista previa al compartir el link (WhatsApp, LinkedIn, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="Mariano Vatri">
-<meta property="og:url" content="https://marianovatri.netlify.app/">
+<meta property="og:url" content="https://www.marianovatri.com.ar/">
 <meta property="og:title" content="Mariano Vatri · Webs y sistemas para pymes">
 <meta property="og:description" content="Landings, sitios y sistemas a medida en San Francisco, Córdoba. Me escribís por WhatsApp y lo hago yo, sin intermediarios.">
-<meta property="og:image" content="https://marianovatri.netlify.app/img/og.jpg">
+<meta property="og:image" content="https://www.marianovatri.com.ar/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mariano Vatri, webs y sistemas a medida">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Mariano Vatri · Webs y sistemas a medida","url":"https://marianovatri.netlify.app/","image":"https://marianovatri.netlify.app/img/og.jpg","telephone":"+5493564335655","email":"marianovatri@gmail.com","areaServed":"AR","address":{"@type":"PostalAddress","addressLocality":"San Francisco","addressRegion":"Córdoba","addressCountry":"AR"},"sameAs":["https://www.linkedin.com/in/marianovatri/","https://github.com/marianovatri","https://www.instagram.com/vatrimariano/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Mariano Vatri · Webs y sistemas a medida","url":"https://www.marianovatri.com.ar/","image":"https://www.marianovatri.com.ar/img/og.jpg","telephone":"+5493564335655","email":"marianovatri@gmail.com","areaServed":"AR","address":{"@type":"PostalAddress","addressLocality":"San Francisco","addressRegion":"Córdoba","addressCountry":"AR"},"sameAs":["https://www.linkedin.com/in/marianovatri/","https://github.com/marianovatri","https://www.instagram.com/vatrimariano/"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -199,8 +199,19 @@ p{margin:0;max-width:62ch}
 .ba input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;z-index:2}
 .ba:has(input:focus-visible){outline:2px solid var(--glacier);outline-offset:3px}
 /* palabra que se escribe en el título */
-.rot{display:block;white-space:nowrap;min-height:1.02em}
-.rot::after{content:"";display:inline-block;width:.06em;height:.82em;margin-left:.04em;background:var(--apricot);vertical-align:-.04em;animation:caret 1s steps(1) infinite}
+/* Hero: título en dos líneas, todo lo importante entra sin scroll */
+.hero .col{width:min(640px,100%)}
+.hero h1{font-size:clamp(2.5rem,1.4rem + 3.3vw,4.4rem)}
+.hero h1 .l2{display:block;white-space:nowrap}
+@media (max-width:520px){.hero h1 .l2{white-space:normal}}
+.hero .lead{max-width:40ch;margin-top:22px}
+.hero .actions{margin-top:30px}
+.btn .ico{width:20px;height:20px;flex:none}
+.trust{display:flex;align-items:center;gap:10px;margin-top:22px;font-size:var(--s-1);color:var(--bone);opacity:.9}
+.trust img{width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid var(--line);flex:none}
+.hero .creds{margin-top:16px}
+.hero .scrollhint{margin-top:30px}
+@media (max-height:820px) and (min-width:901px){.hero .scrollhint{display:none}}
 @keyframes caret{50%{opacity:0}}
 .btn.solid,nav .cta{transition:background .25s,color .25s,transform .3s cubic-bezier(.2,.7,.1,1)}
 .works .kind{font-family:var(--f-mono);font-size:var(--s-1);color:var(--glacier);letter-spacing:.08em;text-transform:uppercase}
@@ -224,6 +235,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 html.present .hud-k{font-size:.85rem}
 html.present .hud-t{font-size:1.5rem}
 @media (max-width:900px){.hud{display:none}}
+/* rótulos de las tarjetas del dashboard del inicio (los ubica el script sobre cada tarjeta) */
+.dash-tags span{position:fixed;left:0;top:0;z-index:3;pointer-events:none;opacity:0;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--glacier);padding:3px 9px;border-radius:999px;background:rgba(10,21,23,.7);border:1px solid rgba(143,209,196,.25);white-space:nowrap;will-change:transform,opacity;
+  transition:color .35s,background-color .35s,border-color .35s,box-shadow .35s}
+.dash-tags span.hit{color:var(--ink);background:var(--apricot);border-color:var(--apricot);box-shadow:0 0 16px rgba(242,166,90,.55)}
+@media (max-width:900px){.dash-tags{display:none}}
 
 /* Riel de secciones */
 .rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -368,7 +385,7 @@ html.present .fab{display:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .ri{opacity:1;translate:none;transition:none}
-  .scrollhint span,.fab.on::before,.rot::after,.hud.swap .hud-t,.hud.swap .hud-k,.estimate strong.pop,.hola:hover .hola-msg span{animation:none}
+  .scrollhint span,.fab.on::before,.hud.swap .hud-t,.hud.swap .hud-k,.estimate strong.pop,.hola:hover .hola-msg span{animation:none}
   .steps{--tallo:1!important}
 }
 </style>
@@ -378,6 +395,7 @@ html.present .fab{display:none}
 <canvas id="scene" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 <div class="hud" id="hud" aria-hidden="true"><span class="hud-k"></span><span class="hud-t"></span></div>
+<div class="dash-tags" id="dash-tags" aria-hidden="true"><span>Consultas</span><span>Turnos</span><span>Ventas</span></div>
 
 <nav class="rail" id="rail" aria-label="Secciones de la página">
   <a href="#inicio" data-sec="inicio"><span>Inicio</span></a>
@@ -421,14 +439,17 @@ html.present .fab{display:none}
   <section class="sec hero" id="inicio" data-shape="0">
     <div class="wrap"><div class="col">
       <p class="eyebrow">Webs y sistemas a medida</p>
-      <h1 aria-label="Tu negocio, funcionando en internet.">Tu negocio, <em class="rot" aria-hidden="true">funcionando</em> en internet.</h1>
-      <p class="lead">Diseño y desarrollo landings, sitios y sistemas internos para consultoras, profesionales y pymes. Vos me contás qué necesitás; yo me ocupo de que exista.</p>
+      <h1>Tu negocio, <span class="l2"><em>ordenado</em> y vendiendo.</span></h1>
+      <p class="lead">Que las consultas te lleguen ordenadas y no se te escape ningún cliente. Webs y sistemas a medida para pymes y consultoras.</p>
       <div class="actions">
-        <a class="btn solid" href="#contacto">Contame tu proyecto</a>
-        <a class="btn ghost" href="#servicios">Ver qué hago</a>
+        <a class="btn solid wa" href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20vi%20tu%20web%20y%20quiero%20contarte%20mi%20proyecto." target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.4-.12-.56.13-.17.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+          Escribime por WhatsApp</a>
+        <a class="btn ghost" href="#trabajos">Ver trabajos</a>
       </div>
+      <p class="trust"><img src="img/avatar.webp" width="64" height="64" alt="">San Francisco, Córdoba · Te respondo yo, en 24&nbsp;h hábiles</p>
       <ul class="creds">
-        <li>+4 años en equipos de desarrollo</li>
+        <li>Trabajo directo conmigo, sin intermediarios</li>
         <li>Sistemas para organismos provinciales</li>
         <li>NASA Space Apps 2022</li>
       </ul>
@@ -549,7 +570,7 @@ html.present .fab{display:none}
       <p class="lead">Armá tu consulta en tres toques y te respondo en menos de 24 horas hábiles.</p>
       <div class="big-qr">
         <img src="img/qr-whatsapp.svg" width="200" height="200" alt="Código QR que abre un chat de WhatsApp con Mariano">
-        <div><b>Escaneá y escribime</b><span>Te abre WhatsApp con el mensaje listo.</span><span class="url">+54 9 3564 33-5655 · marianovatri@gmail.com</span><span class="url">marianovatri.netlify.app</span></div>
+        <div><b>Escaneá y escribime</b><span>Te abre WhatsApp con el mensaje listo.</span><span class="url">+54 9 3564 33-5655 · marianovatri@gmail.com</span><span class="url">marianovatri.com.ar</span></div>
       </div>
       <form class="quote" id="quote" onsubmit="return false">
         <fieldset>
@@ -664,21 +685,6 @@ html.present .fab{display:none}
       wa.href='https://wa.me/5493564335655?text='+encodeURIComponent(msg);
     };
     q.addEventListener('input',update);update();
-  }
-
-  // palabra del título que se escribe y se borra
-  const rot=document.querySelector('.rot');
-  if(rot&&!still){
-    const words=['funcionando','vendiendo','creciendo','atendiendo'];let w=0;
-    const wait=ms=>new Promise(r=>setTimeout(r,ms));
-    (async function loop(){
-      for(;;){
-        await wait(2600);
-        for(let t=words[w];t.length;t=t.slice(0,-1)){rot.textContent=t.slice(0,-1);await wait(45)}
-        w=(w+1)%words.length;
-        for(let i=1;i<=words[w].length;i++){rot.textContent=words[w].slice(0,i);await wait(70)}
-      }
-    })();
   }
 
   // capturas de trabajos que se inclinan siguiendo el mouse
@@ -884,7 +890,7 @@ function start(){
   // caos: mensajes y notas sueltas por toda la pantalla (así llega el trabajo de un negocio)
   const NB=mobile?32:48,bubbles=[];
   for(let b=0;b<NB;b++){const w=.6+R()*.75;bubbles.push({x:(R()-.5)*(mobile?6:11.5)-(mobile?0:2.4),y:(R()-.5)*(mobile?9:6.4),z:-3+R()*4.4,w,h:w*(.4+R()*.22),rot:(R()-.5)*.9,yaw:(R()-.5)*1.4})}
-  const chaos=()=>{const b=bubbles[R()*NB|0];let x,y;
+  const chaos=(bi=R()*NB|0)=>{const b=bubbles[bi];let x,y;
     const u=R();
     if(u<.66)[x,y]=rrect(b.w,b.h,Math.min(b.h/2,.11),R());
     else if(u<.72){const t=R();[x,y]=t<.5?[-b.w/2+.16-t*.2,-b.h/2-t*.24]:[-b.w/2+.06+(t-.5)*.3,-b.h/2-.12+(t-.5)*.24]} // la colita del globo
@@ -968,15 +974,21 @@ function start(){
 
   // ---------- geometría ----------
   const geo=new THREE.BufferGeometry(),F=k=>new Float32Array(N*k);
-  const A={position:F(3),aChaos:F(3),aS1:F(3),aS2:F(3),aS3:F(3),aS4:F(3),aS5:F(3),aS6:F(3),aCol6:F(3),aRand:F(1),aUv:F(2),aPath:F(1),aLayer:F(1)};
+  const A={position:F(3),aChaos:F(3),aS1:F(3),aS3:F(3),aS4:F(3),aS5:F(3),aS6:F(3),aCol6:F(3),aRand:F(1),aUv:F(2),aPath:F(1),aLayer:F(1),aFlow:F(1)}; // aFlow: 0, o 1+fase del globo
+  // flujo continuo: unos pocos globos (del lado de la escena) vuelven a entrar cada tanto y caen en una tarjeta.
+  // Cada globo tiene su fase y su tarjeta; el script usa las mismas fases para marcar el rótulo cuando llega.
+  const FLOW_N=9,flowSlot=new Map();
+  bubbles.map((b,k)=>[b,k]).filter(([b])=>b.x>-.6&&Math.abs(b.y)<2.6).slice(0,FLOW_N).forEach(([,k],s)=>flowSlot.set(k,s));
+  const cardPt=k=>{const cx=-.6+k*1.02;return R()<.6?outline(cx,.59,.9,.6,.08,.32)():box(cx-.38,.36,cx+.38,.82,.32)()};
   const put=(arr,i,v)=>{arr[i*3]=v[0];arr[i*3+1]=v[1];arr[i*3+2]=v[2]};
   const SW=4.6,SH=SW*ROWS/COLS,qmark=glyph('?',QFONT,3.2);
   for(let i=0;i<N;i++){
     A.aRand[i]=R();
-    put(A.aChaos,i,chaos());put(A.position,i,dash());
+    const bi=R()*NB|0,slot=flowSlot.get(bi);put(A.aChaos,i,chaos(bi));
+    if(slot!==undefined&&R()<.5){A.aFlow[i]=1+slot/flowSlot.size;put(A.position,i,cardPt(slot%3))}
+    else put(A.position,i,dash());
     const l=layers();put(A.aS1,i,l);A.aLayer[i]=l[3];
     const c=i%COLS,r=(i/COLS)|0;A.aUv[i*2]=(c+.5)/COLS;A.aUv[i*2+1]=(r+.5)/ROWS;
-    put(A.aS2,i,[(c/(COLS-1)-.5)*SW,(.5-r/(ROWS-1))*SH,0]);
     const p=path();put(A.aS3,i,p);A.aPath[i]=p[3];
     put(A.aS4,i,venn());put(A.aS5,i,qmark());const hp=halo();put(A.aS6,i,hp);put(A.aCol6,i,hp.slice(3));
   }
@@ -1055,13 +1067,13 @@ function start(){
   const U={uProg:{value:0},uIntro:{value:reduce?1:0},uTime:{value:0},uPix:{value:1},uMotion:{value:reduce?0:1},uSize:{value:mobile?42:36},uScale:{value:1},
     uAspect:{value:1},uHover:{value:0},uMouse:{value:new THREE.Vector2(9,9)},uBoost:{value:1},uBoostSize:{value:1},
     uPosT:{value:posT},uColT:{value:colT},uShotA:{value:0},uShotB:{value:0},uShotMix:{value:0},uShotsN:{value:NS},uShotsReady:{value:0},
-    uPath:{value:0},uLayer:{value:3},uLayerOn:{value:0},
+    uPath:{value:0},uLayer:{value:3},uLayerOn:{value:0},uFlow:{value:0},uHeroA:{value:mobile?.4:1},uHit:{value:new THREE.Vector3()},
     uA:{value:new THREE.Color('#8FD1C4')},uB:{value:new THREE.Color('#F2A65A')},uC:{value:new THREE.Color('#ECE6DA')}};
 
   const mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,uniforms:U,
     vertexShader:`
-      attribute vec3 aChaos,aS1,aS2,aS3,aS4,aS5,aS6,aCol6;attribute float aRand,aPath,aLayer;attribute vec2 aUv;
-      uniform float uProg,uIntro,uTime,uPix,uMotion,uSize,uScale,uAspect,uHover,uBoost,uBoostSize;
+      attribute vec3 aChaos,aS1,aS3,aS4,aS5,aS6,aCol6;attribute float aRand,aPath,aLayer,aFlow;attribute vec2 aUv;
+      uniform float uProg,uIntro,uTime,uPix,uMotion,uSize,uScale,uAspect,uHover,uBoost,uBoostSize,uFlow,uHeroA;uniform vec3 uHit;
       uniform float uShotA,uShotB,uShotMix,uShotsN,uShotsReady,uPath,uLayer,uLayerOn;
       uniform vec2 uMouse;uniform sampler2D uPosT,uColT;uniform vec3 uA,uB,uC;
       varying vec3 vCol;varying float vA;varying float vHard;
@@ -1076,8 +1088,12 @@ function start(){
         vec3 cs=mix(texture2D(uColT,tc(uShotA)).rgb,texture2D(uColT,tc(uShotB)).rgb,uShotMix);
         vec3 ps=mix(texture2D(uPosT,tc(uShotA)).xyz,texture2D(uPosT,tc(uShotB)).xyz,uShotMix);
         float swap=sin(uShotMix*3.14159);
-        vec3 s2=mix(aS2,ps,uShotsReady)+vec3(0.,0.,swap*(aRand-.5)*1.4);
-        vec3 p=mix(aChaos+vec3(sin(uTime*.35+aChaos.y*.6),cos(uTime*.3+aChaos.x*.5),0.)*.16*uMotion,position,i0); // los globos flotan enteros
+        vec3 s2=ps+vec3(0.,0.,swap*(aRand-.5)*1.4);
+        // inicio ya ordenado: algunos globos vuelven a aparecer y viajan hasta su tarjeta (fase compartida por globo)
+        float w0=i0*(1.-m1),fl=step(.5,aFlow)*uFlow*(1.-m1);
+        float ph=fract(uTime*.05+fract(aFlow)),fT=e(ph/.14);
+        float fa=mix(1.,smoothstep(0.,.025,ph)*(1.-smoothstep(.975,1.,ph)),fl);
+        vec3 p=mix(aChaos+vec3(sin(uTime*.35+aChaos.y*.6),cos(uTime*.3+aChaos.x*.5),0.)*.16*uMotion,position,i0*mix(1.,fT,fl)); // los globos flotan enteros
         float ra=uTime*.06*uMotion;vec3 s6=vec3(aS6.x*cos(ra)-aS6.y*sin(ra),aS6.x*sin(ra)+aS6.y*cos(ra),aS6.z); // el anillo gira despacio
         p=mix(p,aS1,m1);p=mix(p,s2,m2);p=mix(p,aS3,m3);p=mix(p,aS4,m4);p=mix(p,aS5,m5);p=mix(p,s6,m6);
         float tr=1.-abs(fract(uProg)-.5)*2.,calm=max(w2,w6);
@@ -1085,7 +1101,9 @@ function start(){
         vec4 mv=modelViewMatrix*vec4(p,1.);
         vec4 cp=projectionMatrix*mv;vec2 dd=(cp.xy/cp.w-uMouse)*vec2(uAspect,1.);
         float k=smoothstep(.22,0.,length(dd))*uHover;
-        mv.xy+=normalize(dd+1e-5)*k*.42*(-mv.z/8.);
+        mv.xy+=normalize(dd+1e-5)*k*.42*(-mv.z/8.)*(1.-w0*.6);
+        // en el dashboard el mouse lo desordena: cada partícula sale para su lado y vuelve cuando el cursor se va
+        mv.xyz+=vec3(sin(aRand*91.7),cos(aRand*57.3),sin(aRand*33.1))*k*.55*w0*(-mv.z/8.);
         gl_Position=projectionMatrix*mv;
         vec3 c=mix(uA,uB,step(.82,aRand));
         float hl=uLayer>2.5?1.:1.-step(.5,abs(aLayer-uLayer));
@@ -1096,12 +1114,19 @@ function start(){
         c=mix(c,vc,w4);
         c=mix(c,cs*.95,w2);
         c=mix(c,aCol6,w6);
-        vCol=c*uBoost;
+        // tarjeta que acaba de recibir un globo: brilla un instante
+        float card=(position.z>.25&&position.y>.25)?floor((position.x+1.11)/1.02):-1.;
+        float hit=card==0.?uHit.x:card==1.?uHit.y:card==2.?uHit.z:0.;
+        c=mix(c,uB*1.25,hit*w0*.7);
+        vCol=c*uBoost*(1.+.25*w0);
         float tw=.55+.45*sin(uTime*1.3+aRand*60.)*uMotion;
         float a=mix(tw,.9,max(w2,w6*.85));
         a*=mix(1.,.58+.42*hl,w1*uLayerOn)*mix(1.,.4+.6*done,w3);
+        a=mix(a,max(a,.78),w0*.6)*fa+hit*w0*.35;
+        a*=mix(1.,uHeroA,w0); // en celular el dashboard queda detrás del texto: más tenue
         vA=a+k*.6;vHard=w2*.15;
         float sz=mix(.35+aRand*.9,.34+aRand*.26,w2);sz=mix(sz,.5+aRand*.55,w6); // en trabajos, puntos finos para que se lea la forma
+        sz*=1.+.18*w0;
         gl_PointSize=uSize*uPix*uScale*sz*mix(uBoostSize,1.,w2*.6)/-mv.z;
       }`,
     fragmentShader:`
@@ -1118,7 +1143,7 @@ function start(){
 
   // ---------- ubicación de cada forma: [x, y, escala] y [rotX, rotY, vaivén, velocidad] ----------
   const OFF=mobile?[[0,.75,.6],[0,.6,.55],[0,.75,.72],[0,.6,.6],[0,.6,.6],[0,.6,.6],[0,.65,.58]]
-                  :[[2.4,.05,1],[-2.35,-.05,.92],[2.45,.12,1.18],[-2.35,0,.95],[2.5,.05,.92],[-2.5,0,.95],[2.55,.05,1]];
+                  :[[2.75,.05,.94],[-2.35,-.05,.92],[2.45,.12,1.18],[-2.35,0,.95],[2.5,.05,.92],[-2.5,0,.95],[2.55,.05,1]];
   const ROT=[[.1,-.34,.06,.35],[.62,.62,.1,.3],[.12,-.3,.55,.32],[.3,.42,.16,.25],[.18,-.2,.5,.22],[.06,.25,.45,.4],[0,0,0,.3]];
   const ANCH=[-1.75,-1.9,-1.75,-1.45,-1.5,-1.85,-2.05]; // borde inferior de cada forma, para ubicar el rótulo
 
@@ -1153,7 +1178,7 @@ function start(){
   const LAYERS=['Capa 1 · Web','Capa 2 · Datos','Capa 3 · Automatización','Las tres capas'];
   const h3=el=>{const x=el&&el.querySelector('h3');return x?x.textContent:''};
   function caption(s,introP){
-    if(s===0)return introP<.62?['Así llega todo hoy','WhatsApps, planillas y papeles sueltos…']:['Del caos al orden','…todo en un solo sistema.'];
+    if(s===0)return introP<.62?['Así llega todo hoy','WhatsApps, planillas y papeles sueltos…']:['Del caos al orden','Cada consulta, en su lugar.'];
     if(s===1)return layerEl?[LAYERS[+layerEl.dataset.layer||0],h3(layerEl)]:['Servicios','Web, datos y automatización'];
     if(s===2){const k=activeWork&&activeWork.querySelector('.kind');return[k?k.textContent:'Trabajos',h3(activeWork)||'Trabajos']}
     if(s===3)return stepIdx<0?['Cómo trabajo','Cuatro pasos, sin sorpresas']:[`Paso 0${stepIdx+1} de 04`,h3(steps[stepIdx])];
@@ -1163,6 +1188,9 @@ function start(){
   }
 
   const holaFoto=document.querySelector('.hola-foto');
+  // rótulos de las tarjetas del dashboard; se marcan cuando les llega un globo (mismas fases que el shader)
+  const tags=[...document.querySelectorAll('#dash-tags span')],hits=[0,0,0],NF=flowSlot.size;let lastPh=null;
+  U.uFlow.value=reduce||mobile?0:1;
   let shotCur=0,shotNext=0,shotMix=0,last=performance.now();
   function frame(now){
     const dt=Math.min((now-last)/1000,.05),t=now/1000;last=now;
@@ -1171,6 +1199,13 @@ function start(){
     const introP=reduce?1:clamp(((now-introT0)/1000-1)/2.9,0,1);
     U.uProg.value=prog;U.uTime.value=t;U.uIntro.value=introP;
     U.uShotsReady.value=lerp(U.uShotsReady.value,shotsReadyT,.06);
+    if(U.uFlow.value&&NF){
+      const phs=[];for(let s=0;s<NF;s++)phs.push((t*.05+s/NF)%1);
+      if(lastPh)phs.forEach((p,s)=>{if(lastPh[s]<.14&&p>=.14&&prog<.5)hits[s%3]=1});
+      lastPh=phs;
+    }
+    for(let k=0;k<3;k++)hits[k]*=Math.exp(-dt*2.2);
+    U.uHit.value.set(hits[0],hits[1],hits[2]);
     U.uBoost.value=lerp(U.uBoost.value,pres?1.22:1,.08);U.uBoostSize.value=lerp(U.uBoostSize.value,pres?1.3:1,.08);
 
     // trabajos: la captura que se dibuja es la del ítem que está en el centro (o bajo el mouse)
@@ -1213,6 +1248,11 @@ function start(){
       const x=(v3.x+1)/2*innerWidth,y=Math.min((1-v3.y)/2*innerHeight,innerHeight-(pres?200:70)); // en presentación deja lugar al QR
       hud.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) translate(-50%,0)`;
       hud.style.opacity=(s===6?0:settle).toFixed(3); // en contacto la foto ya tiene su propio texto
+      const tv=clamp(1-prog*2.5,0,1)*smooth(.8,1,introP)*(pres?0:1);
+      if(tags.length){g.updateMatrixWorld(true);tags.forEach((el,k)=>{
+        v3.set(-.6+k*1.02,1.02,.32);pts.localToWorld(v3);v3.project(camera);
+        el.style.transform=`translate(${((v3.x+1)/2*innerWidth).toFixed(1)}px,${((1-v3.y)/2*innerHeight).toFixed(1)}px) translate(-50%,-100%)`;
+        el.style.opacity=tv.toFixed(3);el.classList.toggle('hit',hits[k]>.35)})}
     }
     // con la escena quieta (sin scroll, sin mouse, sin transición) dibuja a la mitad de cuadros por segundo
     const busy=Math.abs(prog-target)>.002||shotMix>0||introP<1||pres||now-lastMove<1500;

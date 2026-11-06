@@ -1,6 +1,6 @@
 # Mariano Vatri · Webs y sistemas a medida
 
-Mi sitio de servicios: **[marianovatri.netlify.app](https://marianovatri.netlify.app)**
+Mi sitio de servicios: **[marianovatri.com.ar](https://www.marianovatri.com.ar)**
 
 ## Qué tiene
 
@@ -22,6 +22,8 @@ npx serve .
 
 ## Publicación
 
-Netlify, configurado en `netlify.toml`: copia los archivos a `dist/`, que es lo que publica el panel.
+Vercel, proyecto `web-mariano`. El dominio `marianovatri.com.ar` está registrado en NIC Argentina y delegado a los DNS de Vercel (`ns1.vercel-dns.com` y `ns2.vercel-dns.com`); la versión principal es `www.marianovatri.com.ar` y la que va sin `www` redirige ahí. Se renueva cada año en NIC (vence el 6/11 de cada año).
+
+`netlify.toml` quedó de cuando el sitio estaba en Netlify.
 
 El CV anterior, hecho en Vue, quedó en la rama `cv-vue-2024`.
