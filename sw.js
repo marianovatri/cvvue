@@ -1,12 +1,12 @@
 // Guarda la web, la librería 3D, las imágenes y las fuentes después de la primera visita,
 // para que el modo presentación funcione aunque falle el wifi del lugar.
 // Al cambiar imágenes o la librería, subir el número de CACHE.
-const CACHE = 'mv-v1';
+const CACHE = 'mv-v2';
 const CORE = [
   './', 'index.html', 'vendor/three.module.min.js', 'vendor/three.core.min.js',
   'img/fonevo.webp', 'img/gastro.webp', 'img/jardineria.webp', 'img/milo.webp',
   'img/pizza-antes.webp', 'img/pizza-despues.webp', 'img/marte.webp',
-  'img/mariano.webp', 'img/qr-whatsapp.svg'
+  'img/mariano.webp', 'img/mariano-hola.webp', 'img/qr-whatsapp.svg'
 ];
 
 self.addEventListener('install', e => {

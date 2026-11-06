@@ -3,10 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Mariano Vatri Estudio</title>
-<meta name="description" content="Landings, sitios, sistemas a medida, automatizaciones y mantenimiento para consultoras, profesionales y pymes.">
-<link rel="modulepreload" href="vendor/three.module.min.js">
-<link rel="modulepreload" href="vendor/three.core.min.js">
+<title>Mariano Vatri · Webs y sistemas para pymes en San Francisco, Córdoba</title>
+<meta name="description" content="Landings, sitios, sistemas a medida, automatizaciones y mantenimiento para consultoras, profesionales y pymes. Me escribís por WhatsApp y te respondo en 24 h hábiles.">
+<link rel="canonical" href="https://marianovatri.netlify.app/">
+<meta name="theme-color" content="#0A1517">
+<!-- vista previa al compartir el link (WhatsApp, LinkedIn, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Mariano Vatri">
+<meta property="og:url" content="https://marianovatri.netlify.app/">
+<meta property="og:title" content="Mariano Vatri · Webs y sistemas para pymes">
+<meta property="og:description" content="Landings, sitios y sistemas a medida en San Francisco, Córdoba. Me escribís por WhatsApp y lo hago yo, sin intermediarios.">
+<meta property="og:image" content="https://marianovatri.netlify.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mariano Vatri, webs y sistemas a medida">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Mariano Vatri · Webs y sistemas a medida","url":"https://marianovatri.netlify.app/","image":"https://marianovatri.netlify.app/img/og.jpg","telephone":"+5493564335655","email":"marianovatri@gmail.com","areaServed":"AR","address":{"@type":"PostalAddress","addressLocality":"San Francisco","addressRegion":"Córdoba","addressCountry":"AR"},"sameAs":["https://www.linkedin.com/in/marianovatri/","https://github.com/marianovatri","https://www.instagram.com/vatrimariano/"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -35,8 +48,9 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:var(--s0);line-height:1.6;overflow-x:hidden}
 img{max-width:100%}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
-#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;
+#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;opacity:0;transition:opacity 1.2s;
   background:radial-gradient(60% 50% at 70% 40%,rgba(143,209,196,.10),transparent 70%),var(--ink)}
+#scene.on{opacity:1}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
   background:radial-gradient(120% 90% at 50% 120%,rgba(10,21,23,.0),rgba(10,21,23,.75))}
 
@@ -254,21 +268,108 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
 #curtain{position:fixed;inset:0;z-index:20;background:var(--ink);opacity:0;pointer-events:none;transition:opacity .7s}
 #curtain.on{opacity:1}
 
-/* reveal suave: siempre visible en reposo, solo un leve desplazamiento */
-.rv{transform:translateY(18px);opacity:.35;transition:transform 1s cubic-bezier(.2,.7,.1,1),opacity 1s}
-.rv.in{transform:none;opacity:1}
-.no-js .rv{transform:none;opacity:1}
+/* Apariciones: cada elemento de una sección entra por separado, escalonado con sus hermanos (--d).
+   Usa la propiedad translate para no pisar los transform del tilt y de los botones magnéticos. */
+.ri{opacity:0;translate:0 22px;transition:opacity .8s cubic-bezier(.2,.7,.1,1) var(--d,0ms),translate .9s cubic-bezier(.2,.7,.1,1) var(--d,0ms)}
+.ri.visto{opacity:1;translate:none}
+/* filas y tarjetas que ya tienen su propia transition: se suma la de aparición en vez de pisarla */
+.services li.ri{transition:background-color .3s,opacity .8s cubic-bezier(.2,.7,.1,1) var(--d,0ms),translate .9s cubic-bezier(.2,.7,.1,1) var(--d,0ms)}
+.steps li.ri{transition:opacity .8s cubic-bezier(.2,.7,.1,1) var(--d,0ms),translate .9s cubic-bezier(.2,.7,.1,1) var(--d,0ms)}
+.duo div.ri{transition:opacity .8s cubic-bezier(.2,.7,.1,1) var(--d,0ms),translate .9s cubic-bezier(.2,.7,.1,1) var(--d,0ms),border-color .3s,box-shadow .35s}
+.duo div.ri.visto{transition:opacity .8s cubic-bezier(.2,.7,.1,1) var(--d,0ms),translate .35s cubic-bezier(.2,.7,.1,1),border-color .3s,box-shadow .35s}
+html.present .ri{opacity:1;translate:none;transition:none}
+
+/* Header: se vuelve sólido y más bajo apenas scrolleás */
+header{transition:padding .35s cubic-bezier(.2,.7,.1,1),background-color .35s,box-shadow .35s}
+header.scrolled{padding-block:11px;background:rgba(10,21,23,.84);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line),0 14px 30px -18px rgba(0,0,0,.7)}
+
+/* Servicios: la fila se marca con una línea y el título se corre */
+.services li{position:relative;transition:background-color .3s}
+.services li::before{content:"";position:absolute;left:-14px;top:22px;bottom:22px;width:2px;border-radius:2px;background:var(--apricot);transform:scaleY(0);transition:transform .35s cubic-bezier(.2,.7,.1,1)}
+.services h3,.services .tag{transition:color .25s,translate .35s cubic-bezier(.2,.7,.1,1)}
+@media (hover:hover){
+  .services li:hover::before{transform:scaleY(1)}
+  .services li:hover h3{translate:8px 0}
+  .services li:hover .tag{color:var(--apricot)}
+  .duo div{transition:translate .35s cubic-bezier(.2,.7,.1,1),border-color .3s,box-shadow .35s}
+  .duo div:hover{translate:0 -4px;border-color:rgba(143,209,196,.35);box-shadow:0 22px 40px -20px rgba(0,0,0,.7)}
+}
+
+/* Proceso: una línea que se dibuja con el scroll (--tallo de 0 a 1) y enciende cada paso */
+.steps{position:relative;padding-left:22px;--tallo:0}
+.steps::before,.steps::after{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px}
+.steps::before{background:var(--line)}
+.steps::after{background:var(--apricot);transform-origin:top;transform:scaleY(var(--tallo))}
+.steps li{position:relative}
+.steps li::after{content:"";position:absolute;left:-21px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--ink);border:1px solid var(--fog);z-index:1;transition:background-color .4s,border-color .4s,box-shadow .4s}
+.steps li::before{color:var(--fog);border-top-color:var(--line);transition:color .4s,border-color .4s}
+.steps li.lit::after{background:var(--apricot);border-color:var(--apricot);box-shadow:0 0 12px rgba(242,166,90,.6)}
+.steps li.lit::before{color:var(--apricot);border-top-color:var(--apricot)}
+
+/* Cierre de cada sección: un siguiente paso concreto */
+.next{margin-top:30px}
+.next a{display:inline-flex;align-items:center;gap:10px;color:var(--bone);text-decoration:none;font-weight:600;padding-bottom:3px;border-bottom:1px solid rgba(242,166,90,.5);transition:color .25s,border-color .25s}
+.next a span{color:var(--apricot);transition:translate .3s cubic-bezier(.2,.7,.1,1)}
+.next a:hover{color:var(--apricot);border-color:var(--apricot)}
+.next a:hover span{translate:5px 0}
+html.present .next{display:none}
+
+/* Brillo que cruza los botones de WhatsApp */
+.btn.wa{position:relative;overflow:hidden;isolation:isolate}
+.btn.wa::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);translate:-120% 0;transition:translate .7s cubic-bezier(.2,.7,.1,1)}
+.btn.wa:hover::before{translate:120% 0}
+
+/* Contacto: mi foto real; se abre en círculo al aparecer, se inclina con el mouse y saluda */
+.contact .wrap{display:grid;grid-template-columns:minmax(0,560px) 1fr;gap:40px}
+.hola{margin:0;justify-self:center;align-self:start;position:sticky;top:max(130px,calc(50vh - 200px));display:grid;justify-items:center;gap:26px}
+.hola-foto{position:relative;width:min(300px,26vw);aspect-ratio:1;border-radius:50%;overflow:hidden;border:1px solid var(--line);background:var(--ink-2);
+  box-shadow:0 30px 60px -25px rgba(0,0,0,.85);clip-path:circle(50%);transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .5s cubic-bezier(.2,.7,.1,1),clip-path 1.3s cubic-bezier(.2,.7,.1,1)}
+.hola-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block;transition:scale 1.4s cubic-bezier(.2,.7,.1,1)}
+.hola .glare{position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.2),transparent 55%);opacity:0;transition:opacity .4s;pointer-events:none}
+.hola-msg{position:absolute;top:4%;left:calc(50% + min(96px,8.3vw));background:var(--bone);color:var(--ink);font-weight:600;font-size:var(--s-1);padding:9px 14px;border-radius:16px 16px 16px 4px;white-space:nowrap;
+  box-shadow:0 12px 26px -10px rgba(0,0,0,.6);transform-origin:0 100%;transition:scale .55s cubic-bezier(.3,1.6,.5,1) .5s,opacity .3s .5s}
+.hola-msg span{display:inline-block;transform-origin:70% 80%}
+.hola figcaption{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.06em;color:var(--bone);display:flex;align-items:center;gap:10px;text-align:center;padding:7px 14px;border-radius:999px;background:rgba(10,21,23,.82);border:1px solid var(--line)}
+.hola figcaption i{width:8px;height:8px;border-radius:50%;background:#25D366;box-shadow:0 0 8px rgba(37,211,102,.55);flex:none}
+@keyframes saludo{0%,100%{rotate:0deg}20%,60%{rotate:18deg}40%,80%{rotate:-10deg}}
+.hola.wait .hola-foto{clip-path:circle(6% at 50% 42%)}
+.hola.wait img{scale:1.3}
+.hola.wait .hola-msg{scale:0;opacity:0}
+@media (hover:hover){.hola:hover img{scale:1.05}.hola:hover .glare{opacity:1}.hola:hover .hola-msg span{animation:saludo .9s ease-in-out}}
+@media (max-width:900px){
+  .contact .wrap{grid-template-columns:1fr;gap:28px}
+  .hola{position:relative;top:auto;order:-1;justify-self:center}
+  .hola-foto{width:150px}
+  .hola-msg{top:0;left:calc(50% + 44px)}
+}
+
+/* Botón flotante de WhatsApp: aparece después del inicio y se esconde en Contacto */
+.fab{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:6;display:flex;align-items:center;gap:0;height:58px;padding:0 14px;border-radius:999px;background:#25D366;color:#0A1517;text-decoration:none;font-weight:600;box-shadow:0 14px 30px -10px rgba(0,0,0,.6);
+  opacity:0;scale:.6;pointer-events:none;transition:opacity .35s,scale .45s cubic-bezier(.3,1.5,.5,1),gap .35s,padding .35s}
+.fab.on{opacity:1;scale:1;pointer-events:auto}
+.fab svg{width:30px;height:30px;flex:none}
+.fab b{font-weight:600;max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .4s cubic-bezier(.2,.7,.1,1)}
+.fab::before{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid #25D366;opacity:0;pointer-events:none}
+.fab.on::before{animation:latido 2.8s ease-out .4s 2} /* late dos veces cada vez que aparece y se queda quieto */
+@keyframes latido{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(1.45);opacity:0}}
+@media (hover:hover){.fab:hover{gap:10px;padding:0 20px 0 14px}.fab:hover b{max-width:120px}}
+html.present .fab{display:none}
 
 @media (max-width:900px){
   .right .col{margin-left:0}
   .col{position:relative}
-  .sec:not(.hero) .col{background:rgba(10,21,23,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:24px 20px;border-radius:18px;border:1px solid var(--line)}
+  .sec:not(.hero) .col{background:rgba(10,21,23,.9);padding:24px 20px;border-radius:18px;border:1px solid var(--line)}
   .sec{padding-block:96px}
+  /* en celulares el desenfoque sobre la escena 3D es caro: fondos casi opacos en su lugar */
+  .quote,.duo div,.chip,header.scrolled{backdrop-filter:none;-webkit-backdrop-filter:none}
+  header.scrolled{background:rgba(10,21,23,.96)}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .rv{transform:none;opacity:1;transition:none}
-  .scrollhint span{animation:none}
+  .ri{opacity:1;translate:none;transition:none}
+  .scrollhint span,.fab.on::before,.rot::after,.hud.swap .hud-t,.hud.swap .hud-k,.estimate strong.pop,.hola:hover .hola-msg span{animation:none}
+  .steps{--tallo:1!important}
 }
 </style>
 </head>
@@ -297,6 +398,10 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
   <span>Escaneá<br>y escribime</span>
 </aside>
 <div id="curtain" aria-hidden="true"></div>
+<a class="fab" id="fab" href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20vi%20tu%20web%20y%20quiero%20hacerte%20una%20consulta." target="_blank" rel="noopener" aria-label="Escribime por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.4-.12-.56.13-.17.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+  <b>Escribime</b>
+</a>
 
 <header>
   <div class="bar">
@@ -388,6 +493,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
           <p>En un fin de semana de competencia, una propuesta para equipar un hábitat en Marte con piezas impresas en 3D. Hoy tiene visor 3D de cada pieza y la hora marciana en vivo. Con este trabajo recibí el certificado Galactic Problem-Solver de la NASA.</p></div>
           <a href="https://marsproyect.netlify.app/" target="_blank" rel="noopener">Ver proyecto <span aria-hidden="true">↗</span></a></li>
       </ul>
+      <p class="next"><a href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20vi%20tus%20trabajos%20y%20quiero%20algo%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">¿Querés algo así para tu negocio? <span aria-hidden="true">→</span></a></p>
     </div></div>
   </section>
 
@@ -396,7 +502,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
       <p class="eyebrow">Cómo trabajo</p>
       <h2>Simple, claro y <em>sin sorpresas</em>.</h2>
       <div class="me">
-        <img src="img/mariano.webp" width="480" height="600" loading="lazy" alt="Mariano Vatri">
+        <img src="img/mariano.webp" width="720" height="900" loading="lazy" alt="Mariano Vatri">
         <p><b>Soy Mariano Vatri</b>, desarrollador en San Francisco, Córdoba. Hace más de 4 años que construyo sistemas en equipos de desarrollo; hoy trabajo directo con negocios y consultoras. Me escribís a mí y lo hago yo, sin intermediarios.</p>
       </div>
       <ol class="steps">
@@ -405,6 +511,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         <li><div><h3>Diseño y desarrollo</h3><p>Avances cada semana con un link para que lo veas funcionando y opines.</p></div></li>
         <li><div><h3>Lanzamiento y soporte</h3><p>Lo publico en tu dominio y te acompaño 30 días con ajustes incluidos. Después, si querés, seguimos con mantenimiento mensual.</p></div></li>
       </ol>
+      <p class="next"><a href="https://calendly.com/marianovatri/30min" target="_blank" rel="noopener">Arrancamos con una charla de 30 minutos <span aria-hidden="true">→</span></a></p>
     </div></div>
   </section>
 
@@ -417,6 +524,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         <div><b>Consultoría</b><ul><li>Relevamiento y procesos</li><li>Estrategia y objetivos</li><li>Relación con el cliente</li></ul></div>
         <div><b>Desarrollo</b><ul><li>Web, landing o sistema</li><li>Automatización del proceso</li><li>Puesta en marcha y soporte</li></ul></div>
       </div>
+      <p class="next"><a href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20tengo%20una%20consultora%20y%20me%20interesa%20trabajar%20juntos." target="_blank" rel="noopener">Sumame a tu próximo proyecto <span aria-hidden="true">→</span></a></p>
     </div></div>
   </section>
 
@@ -430,6 +538,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         <details><summary>¿Lo puedo actualizar yo después?</summary><p>Sí. Te dejo un panel simple para cambiar textos, fotos o precios, y una guía corta de uso.</p></details>
         <details><summary>¿Qué pasa si algo falla?</summary><p>Los primeros 30 días cualquier ajuste está incluido. Después podés sumar un plan de mantenimiento mensual.</p></details>
       </div>
+      <p class="next"><a href="https://wa.me/5493564335655?text=Hola%20Mariano%2C%20vi%20tu%20web%20y%20me%20qued%C3%B3%20una%20duda." target="_blank" rel="noopener">¿Te quedó alguna duda? Preguntame por WhatsApp <span aria-hidden="true">→</span></a></p>
     </div></div>
   </section>
 
@@ -446,7 +555,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         <fieldset>
           <legend><b>1</b> ¿Qué necesitás?</legend>
           <div class="opts">
-            <label><input type="radio" name="tipo" value="landing" checked><span>Landing page</span></label>
+            <label><input type="radio" name="tipo" value="landing"><span>Landing page</span></label>
             <label><input type="radio" name="tipo" value="sitio"><span>Sitio profesional</span></label>
             <label><input type="radio" name="tipo" value="sistema"><span>Sistema a medida</span></label>
             <label><input type="radio" name="tipo" value="auto"><span>Automatización</span></label>
@@ -456,7 +565,7 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         <fieldset>
           <legend><b>2</b> ¿Para cuándo?</legend>
           <div class="opts">
-            <label><input type="radio" name="cuando" value="Lo antes posible" checked><span>Lo antes posible</span></label>
+            <label><input type="radio" name="cuando" value="Lo antes posible"><span>Lo antes posible</span></label>
             <label><input type="radio" name="cuando" value="Este mes"><span>Este mes</span></label>
             <label><input type="radio" name="cuando" value="Sin apuro"><span>Sin apuro</span></label>
           </div>
@@ -467,11 +576,11 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         </fieldset>
         <div class="estimate" aria-live="polite">
           <span>Plazo estimado</span>
-          <strong id="q-plazo">3 a 6 días</strong>
-          <p id="q-nota">Una página enfocada en que te escriban.</p>
+          <strong id="q-plazo">Elegí qué necesitás</strong>
+          <p id="q-nota">Te muestro el plazo al instante.</p>
         </div>
         <div class="actions">
-          <a class="btn solid" id="q-wa" href="https://wa.me/5493564335655" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <a class="btn solid wa" id="q-wa" href="https://wa.me/5493564335655" target="_blank" rel="noopener">Enviar por WhatsApp</a>
           <a class="btn ghost" href="https://calendly.com/marianovatri/30min" target="_blank" rel="noopener">Agendar una charla</a>
         </div>
         <p class="fine">El plazo exacto y el precio te los paso por escrito después de la charla.</p>
@@ -481,7 +590,12 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
         <div class="chip"><span>Email</span><a href="mailto:marianovatri@gmail.com"><code id="mail">marianovatri@gmail.com</code></a><button type="button" data-copy="mail">Copiar</button></div>
       </div>
       <p class="socials"><a href="https://www.linkedin.com/in/marianovatri/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/marianovatri" target="_blank" rel="noopener">GitHub</a><a href="https://www.instagram.com/vatrimariano/" target="_blank" rel="noopener">Instagram</a></p>
-    </div></div>
+    </div>
+    <figure class="hola" id="hola">
+      <div class="hola-foto"><img src="img/mariano-hola.webp" width="720" height="900" loading="lazy" alt="Mariano Vatri sonriendo"><i class="glare" aria-hidden="true"></i></div>
+      <span class="hola-msg" aria-hidden="true">¡Hola! Te leo <span>👋</span></span>
+      <figcaption><i aria-hidden="true"></i>Disponible · respondo en 24 h hábiles</figcaption>
+    </figure></div>
   </section>
 </main>
 
@@ -493,12 +607,33 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
   const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  // revelado suave de secciones
-  const rv=[...document.querySelectorAll('.rv')];
-  if('IntersectionObserver' in window){
-    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
-    rv.forEach(el=>io.observe(el));
-  } else rv.forEach(el=>el.classList.add('in'));
+  // apariciones: cada pieza de la sección entra por separado, escalonada con sus hermanos (máx. 5 × 80 ms)
+  if('IntersectionObserver' in window&&!still){
+    const items=document.querySelectorAll('.rv>.eyebrow,.rv>h2,.rv>.lead,.rv>.me,.services>li,.works>li,.steps>li,.duo>div,.faq>details,.rv>.next,.contact .quote,.contact .channels,.contact .socials');
+    const n=new Map();
+    items.forEach(el=>{const k=n.get(el.parentElement)||0;n.set(el.parentElement,k+1);el.style.setProperty('--d',Math.min(k,5)*80+'ms');el.classList.add('ri')});
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visto');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+    items.forEach(el=>io.observe(el));
+  }
+
+  // al scrollear: header sólido, línea de "Cómo trabajo" y botón flotante de WhatsApp
+  const header=document.querySelector('header'),steps=document.querySelector('.steps'),stepLis=[...document.querySelectorAll('.steps>li')];
+  const fab=document.getElementById('fab'),contact=document.getElementById('contacto');
+  let ticking=false;
+  function onScroll(){
+    ticking=false;
+    const y=scrollY,h=innerHeight;
+    header.classList.toggle('scrolled',y>12);
+    if(steps&&!still){
+      const r=steps.getBoundingClientRect(),line=h*.7;
+      steps.style.setProperty('--tallo',Math.min(1,Math.max(0,(line-r.top)/r.height)).toFixed(3));
+      stepLis.forEach(li=>li.classList.toggle('lit',li.getBoundingClientRect().top+6<line));
+    }
+    fab.classList.toggle('on',y>h*.6&&contact.getBoundingClientRect().top>h*.75);
+  }
+  if(still)stepLis.forEach(li=>li.classList.add('lit'));
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  addEventListener('resize',onScroll);onScroll();
 
   // copiar contacto
   document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
@@ -520,10 +655,12 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
     };
     const plazo=document.getElementById('q-plazo'),nota=document.getElementById('q-nota'),wa=document.getElementById('q-wa');
     const update=()=>{
-      const d=new FormData(q),t=tipos[d.get('tipo')],det=(d.get('detalle')||'').trim();
-      if(plazo.textContent!==t[1]){plazo.textContent=t[1];plazo.classList.remove('pop');void plazo.offsetWidth;plazo.classList.add('pop')}
-      nota.textContent=t[2];
-      const msg=`Hola Mariano, vi tu web. Necesito: ${t[0]}. Para: ${d.get('cuando').toLowerCase()}.`+(det?`\n${det}`:'');
+      // arranca sin nada marcado para no sesgar la respuesta; el mensaje usa solo lo que se eligió
+      const d=new FormData(q),t=tipos[d.get('tipo')],cu=d.get('cuando'),det=(d.get('detalle')||'').trim();
+      const p=t?t[1]:'Elegí qué necesitás';
+      if(plazo.textContent!==p){plazo.textContent=p;if(t){plazo.classList.remove('pop');void plazo.offsetWidth;plazo.classList.add('pop')}}
+      nota.textContent=t?t[2]:'Te muestro el plazo al instante.';
+      const msg='Hola Mariano, vi tu web.'+(t?` Necesito: ${t[0]}.`:' Quiero hacerte una consulta.')+(cu?` Para: ${cu.toLowerCase()}.`:'')+(det?`\n${det}`:'');
       wa.href='https://wa.me/5493564335655?text='+encodeURIComponent(msg);
     };
     q.addEventListener('input',update);update();
@@ -551,6 +688,21 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
       img.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*6}deg) scale(1.02)`});
     li.addEventListener('pointerleave',()=>{img.style.transform=''});
   });
+
+  // mi foto en contacto: se abre al aparecer y, con mouse, se inclina con un reflejo que lo sigue
+  const hola=document.getElementById('hola');
+  if(hola&&!still&&'IntersectionObserver' in window){
+    hola.classList.add('wait');
+    const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){hola.classList.remove('wait');io.disconnect()}},{threshold:.35});
+    io.observe(hola);
+  }
+  if(hola&&fine&&!still){
+    const ph=hola.querySelector('.hola-foto');
+    hola.addEventListener('pointermove',e=>{const r=ph.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      ph.style.setProperty('--ry',((x-.5)*14).toFixed(2)+'deg');ph.style.setProperty('--rx',((.5-y)*12).toFixed(2)+'deg');
+      ph.style.setProperty('--gx',(x*100).toFixed(1)+'%');ph.style.setProperty('--gy',(y*100).toFixed(1)+'%')});
+    hola.addEventListener('pointerleave',()=>{ph.style.setProperty('--rx','0deg');ph.style.setProperty('--ry','0deg')});
+  }
 
   // botones principales "magnéticos"
   if(fine&&!still) document.querySelectorAll('.btn.solid,nav .cta').forEach(b=>{
@@ -687,14 +839,19 @@ html.present .big-qr{display:flex;align-items:center;gap:22px;margin-top:30px;pa
 <script type="module">
 // Escena de partículas: cuenta "del caos al orden" a medida que se scrollea.
 // Inicio: mensajes y papeles sueltos que se ordenan en un sistema. Servicios: capas web / datos /
-// automatización. Trabajos: la captura real de cada proyecto dibujada con partículas. Cómo trabajo:
-// el camino de 4 pasos. Consultoras: consultoría ∩ desarrollo. Preguntas: un "?". Contacto: mi cara.
-import * as THREE from './vendor/three.module.min.js';
-
+// automatización. Trabajos: un objeto 3D por proyecto (celular, copa, hoja, engranaje, pizza, Marte). Cómo
+// trabajo: el camino de 4 pasos. Consultoras: consultoría ∩ desarrollo. Preguntas: un "?". Contacto: un anillo
+// alrededor de mi foto real.
+// Three.js se carga recién cuando la página ya se mostró, para que el texto aparezca primero.
 const canvas=document.getElementById('scene'),root=document.documentElement;
-let renderer=null;
-try{renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'high-performance'})}catch(e){}
-if(renderer)start();
+let THREE=null,renderer=null;
+async function boot(){
+  try{THREE=await import('./vendor/three.module.min.js');
+    renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'high-performance'})}catch(e){return}
+  start();requestAnimationFrame(()=>canvas.classList.add('on'));
+}
+const later=()=>'requestIdleCallback' in window?requestIdleCallback(boot,{timeout:900}):setTimeout(boot,150);
+if(document.readyState==='complete')later();else addEventListener('load',later,{once:true});
 
 function start(){
   THREE.ColorManagement.enabled=false;
@@ -800,9 +957,14 @@ function start(){
   }
   const QFONT='800 230px "Bricolage Grotesque","Arial Black",Arial,sans-serif';
 
-  // 6 · contacto: un globo de chat mientras carga la foto; después, mi cara hecha de partículas
-  const bubble=weighted([[.55,outline(0,.25,3.1,2.1,.55)],[.08,()=>R()<.5?line(-.85,-.8,-1.25,-1.55)():line(-1.25,-1.55,-.35,-.8)()],
-    [.37,()=>{const j=R()*3|0;return line(-1.15,.78-j*.45,j===2?.25:1.15,.78-j*.45,0,.02)()}]]);
+  // 6 · contacto: un anillo que rodea mi foto real (la foto es HTML; el anillo la sigue en pantalla)
+  const GLA=[.56,.82,.77],APR=[.95,.65,.35],BONE=[.93,.9,.85];
+  const halo=weighted([
+    [.45,()=>{const a=R()*TAU,r=1+gauss()*.012;return[Math.cos(a)*r,Math.sin(a)*r,gauss()*.02,...GLA]}],
+    [.2,()=>{let a;do a=R()*TAU;while((a*24/TAU)%1>.45);const r=1.12+gauss()*.008;return[Math.cos(a)*r,Math.sin(a)*r,0,...APR]}],
+    [.25,()=>{const a=R()*TAU,r=1.2+R()*R()*.7;return[Math.cos(a)*r,Math.sin(a)*r,gauss()*.25,.4,.55,.53]}],
+    [.1,()=>{const a=R()*TAU,r=.985-R()*.03;return[Math.cos(a)*r,Math.sin(a)*r,0,...BONE]}],
+  ]);
 
   // ---------- geometría ----------
   const geo=new THREE.BufferGeometry(),F=k=>new Float32Array(N*k);
@@ -816,52 +978,83 @@ function start(){
     const c=i%COLS,r=(i/COLS)|0;A.aUv[i*2]=(c+.5)/COLS;A.aUv[i*2+1]=(r+.5)/ROWS;
     put(A.aS2,i,[(c/(COLS-1)-.5)*SW,(.5-r/(ROWS-1))*SH,0]);
     const p=path();put(A.aS3,i,p);A.aPath[i]=p[3];
-    put(A.aS4,i,venn());put(A.aS5,i,qmark());put(A.aS6,i,bubble());put(A.aCol6,i,[.92,.9,.85]);
+    put(A.aS4,i,venn());put(A.aS5,i,qmark());const hp=halo();put(A.aS6,i,hp);put(A.aCol6,i,hp.slice(3));
   }
   for(const[k,arr]of Object.entries(A))geo.setAttribute(k,new THREE.BufferAttribute(arr,arr.length/N));
 
-  // capturas de los trabajos, en "rayos X": cada partícula se ubica sobre un texto o un borde real de la página.
-  // Posición y color de cada partícula para cada trabajo viven en dos texturas (un bloque por trabajo).
-  const SHOTS=['img/fonevo.webp','img/gastro.webp','img/jardineria.webp','img/milo.webp','img/pizza-despues.webp','img/marte.webp'],NS=SHOTS.length;
+  // trabajos: un objeto 3D por proyecto, en el orden de data-shot. Cada generador devuelve [x,y,z,r,g,b].
+  // Posición y color de cada partícula para cada objeto viven en dos texturas (un bloque por trabajo).
+  const RED=[.9,.4,.27],GREEN=[.62,.86,.56],DIMB=[.58,.56,.52];
+  const rot=(v,ax,ay)=>{let[x,y,z]=v;const c=Math.cos(ax),s=Math.sin(ax);[y,z]=[y*c-z*s,y*s+z*c];const c2=Math.cos(ay),s2=Math.sin(ay);[x,z]=[x*c2+z*s2,-x*s2+z*c2];return[x,y,z,...v.slice(3)]};
+  const col=(f,c)=>()=>[...f().slice(0,3),...c];
+  // 0 · Fonevo: un celular con su app de ventas y stock
+  const PH=(()=>{const W=1.5,H=3,T=.09,Z=T+.01,BARS=[.35,.6,.45,.8,.7,1];return weighted([
+    [.15,col(outline(0,0,W,H,.22,T),BONE)],[.09,col(outline(0,0,W,H,.22,-T),DIMB)],
+    [.1,()=>{const p=rrect(W,H,.22,R());return[p[0],p[1],(R()*2-1)*T,...DIMB]}],
+    [.07,col(outline(0,0,W-.16,H-.3,.14,Z),GLA)],[.02,col(line(-.16,1.43,.16,1.43,Z,.008),BONE)],
+    [.08,col(outline(0,1.02,1.1,.42,.07,Z),APR)],
+    [.1,()=>{const j=R()*6|0,x=-.42+j*.17,h=.3*BARS[j];return[x+(R()-.5)*.08,.86+R()*h,Z,...APR]}],
+    [.2,()=>{const j=R()*5|0,y=.5-j*.33;return R()<.35?[...disk(-.45,y,.07,Z)(),...GLA]:[...line(-.3,y+(R()<.5?.04:-.05),R()<.5?.42:.15,y+(R()<.5?.04:-.05),Z,.008)(),...BONE]}],
+    [.09,col(box(-.5,-1.2,.5,-1,Z),APR)],
+  ])})();
+  // 1 · Gestión para bares: una copa con bebida
+  const GLASS=(()=>{const top=1.3,rb=s=>(.05+.7*Math.pow(Math.sin(Math.min(1,s*1.15)*Math.PI/2),.6))*(1-.1*smooth(.75,1,s));
+    const rev=(y,r,c)=>{const a=R()*TAU;return[Math.cos(a)*r,y,Math.sin(a)*r,...c]},LV=.75,glass=[.72,.84,.86];
+    return weighted([
+      [.38,()=>{const y=R()*top;return rev(y,rb(y/top),glass)}],[.08,()=>rev(top,rb(1),BONE)],
+      [.07,()=>rev(-1.25+R()*1.25,.05,glass)],[.08,()=>rev(-1.3,.6,BONE)],[.06,()=>rev(-1.3+R()*.05,Math.sqrt(R())*.6,DIMB)],
+      [.14,()=>rev(LV,Math.sqrt(R())*(rb(LV/top)-.02),APR)],
+      [.19,()=>{const y=R()*LV;return rev(y,Math.sqrt(R())*rb(y/top)*.96,R()<.5?APR:RED)}],
+    ])})();
+  // 2 · Jardinería 2.0: una hoja con nervaduras
+  const LEAF=(()=>{const wd=t=>.85*Math.pow(Math.max(0,Math.sin(Math.PI*t)),.85)*(1-.25*t),ang=.55,ca=Math.cos(ang),sa=Math.sin(ang);
+    const P=(t,y,c)=>{const x=-1.7+3.4*t,z=.35*(y/.85)**2-.2*Math.sin(Math.PI*t);return[x*ca-y*sa,x*sa+y*ca,z,...c]};
+    return weighted([
+      [.32,()=>{const t=R();return P(t,(R()<.5?-1:1)*wd(t),GREEN)}],[.12,()=>P(R(),gauss()*.01,BONE)],
+      [.26,()=>{const k=R()*8|0,t0=(k+.8)/9,u=R(),t=t0+.12*u,sd=R()<.5?-1:1;return P(t,sd*wd(t)*.95*u,[.75,.92,.7])}],
+      [.22,()=>{const t=R();return P(t,(R()*2-1)*wd(t),[.33,.6,.4])}],[.08,()=>P(-.18*R(),gauss()*.012,BONE)],
+    ])})();
+  // 3 · Milo Impresiones: un engranaje impreso en 3D, con sus capas
+  const GEAR=(()=>{const n=10,ri=.95,ro=1.25,hole=.38,th=.28,pr=a=>{const f=(a*n/TAU)%1;return f<.1?lerp(ri,ro,f/.1):f<.45?ro:f<.55?lerp(ro,ri,(f-.45)/.1):ri};
+    const at=(a,r,z,c)=>rot([Math.cos(a)*r,Math.sin(a)*r,z,...c],.5,.4);
+    return weighted([
+      [.18,()=>{const a=R()*TAU;return at(a,pr(a),th,APR)}],[.1,()=>{const a=R()*TAU;return at(a,pr(a),-th,[.6,.4,.22])}],
+      [.24,()=>{const a=R()*TAU;return at(a,pr(a),-th+(R()*9|0)*th/4,[.8,.52,.3])}],
+      [.2,()=>{const a=R()*TAU;return at(a,Math.sqrt(lerp(hole*hole,(pr(a)*.97)**2,R())),th,[.55,.38,.22])}],
+      [.1,()=>at(R()*TAU,hole,R()<.5?th:-th,BONE)],[.06,()=>at(R()*TAU,hole,(R()*2-1)*th,DIMB)],[.06,()=>at(R()*TAU,.62,th+.01,BONE)],
+    ])})();
+  // 4 · Pizzería Don César: una porción de pizza
+  const PIZZA=(()=>{const tip=-1.4,Rr=2.7,ha=.36,PEP=[[-.05,-.55],[.35,.15],[-.38,.35],[.1,.85],[-.5,.95],[.55,.95]];
+    const arc=f=>[Rr*Math.sin(f),tip+Rr*Math.cos(f)],tilt=v=>rot(v,-.55,0);
+    return weighted([
+      [.26,()=>{const f=(R()*2-1)*ha,[x,y]=arc(f),ps=R()*TAU,rr=.16;return tilt([x+Math.sin(f)*Math.cos(ps)*rr,y+Math.cos(f)*Math.cos(ps)*rr,.1+Math.sin(ps)*rr,.85,.55,.3])}],
+      [.36,()=>{const f=(R()*2-1)*ha,r=Math.sqrt(R())*(Rr-.18);return tilt([r*Math.sin(f),tip+r*Math.cos(f),.04+gauss()*.02,.97,.85,.55])}],
+      [.2,()=>{const p=PEP[R()*PEP.length|0],d=disk(p[0],p[1],.2,.08)();return tilt([...d,...RED])}],
+      [.1,()=>{const sd=R()<.5?-1:1,r=R()*Rr;return tilt([sd*r*Math.sin(ha),tip+r*Math.cos(ha),.04,.95,.75,.45])}],
+      [.04,()=>tilt([gauss()*.04,tip-R()*.25,.02,.97,.85,.55])],
+    ])})();
+  // 5 · Proyecto Marte: el planeta, su órbita y una luna
+  const MARS=(()=>{const orb=(a,r)=>rot([Math.cos(a)*r,0,Math.sin(a)*r],.35,0);
+    return weighted([
+      [.62,()=>{const p=sphere(0,0,0,1.15)(),[x,y,z]=p,nz=Math.sin(3*x+1.3)*Math.sin(2.5*y+.4)*Math.sin(3*z)+.5*Math.sin(7*x+2*y);
+        const c=y>.98?BONE:nz>.15?RED:nz<-.25?[.55,.25,.16]:APR;return[x,y,z,...c]}],
+      [.2,()=>{let a;do a=R()*TAU;while((a*14/TAU)%1>.6);return[...orb(a,1.85+gauss()*.01),...GLA]}],
+      [.06,()=>{const c=orb(2.4,1.85),s=sphere(c[0],c[1],c[2],.14)();return[...s,...BONE]}],
+      [.08,()=>[...sphere(0,0,0,1.25+R()*.08)(),.5,.3,.2]],[.04,()=>[(R()-.5)*4.4,(R()-.5)*3,(R()-.5)*2,...DIMB]],
+    ])})();
+  const OBJS=[PH,GLASS,LEAF,GEAR,PIZZA,MARS],NS=OBJS.length;
   const posData=new Float32Array(N*NS*4),colData=new Uint8Array(N*NS*4);
-  for(let k=0;k<NS;k++)for(let i=0;i<N;i++){const c=i%COLS,r=(i/COLS)|0,o=((k*ROWS+r)*COLS+c)*4;
-    posData[o]=(c/(COLS-1)-.5)*SW;posData[o+1]=(.5-r/(ROWS-1))*SH;posData[o+3]=1;colData[o]=150;colData[o+1]=148;colData[o+2]=142;colData[o+3]=255}
+  OBJS.forEach((gen,k)=>{for(let i=0;i<N;i++){const v=gen(),o=(k*N+i)*4;
+    posData[o]=v[0];posData[o+1]=v[1];posData[o+2]=v[2];posData[o+3]=1;
+    colData[o]=v[3]*255;colData[o+1]=v[4]*255;colData[o+2]=v[5]*255;colData[o+3]=255}});
   const posT=new THREE.DataTexture(posData,COLS,ROWS*NS,THREE.RGBAFormat,THREE.FloatType);
   const colT=new THREE.DataTexture(colData,COLS,ROWS*NS,THREE.RGBAFormat,THREE.UnsignedByteType);
   for(const t of[posT,colT]){t.minFilter=t.magFilter=THREE.NearestFilter;t.generateMipmaps=false;t.flipY=false;t.needsUpdate=true}
-  function sampleShot(im,k){
-    const aw=240,ah=150,cv=document.createElement('canvas');cv.width=aw;cv.height=ah;
-    const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,aw,ah);
-    const d=x.getImageData(0,0,aw,ah).data,L=new Float32Array(aw*ah);
-    for(let p=0;p<aw*ah;p++)L[p]=(d[p*4]*.299+d[p*4+1]*.587+d[p*4+2]*.114)/255;
-    let br=0,bg=0,bb=0,n=0;const add=p=>{br+=d[p*4];bg+=d[p*4+1];bb+=d[p*4+2];n++};
-    for(let X=0;X<aw;X+=2){add(X);add((ah-1)*aw+X)}for(let Y=0;Y<ah;Y+=2){add(Y*aw);add(Y*aw+aw-1)}
-    br/=n;bg/=n;bb/=n;
-    const cdf=new Float32Array(aw*ah);let acc=0;
-    for(let Y=0;Y<ah;Y++)for(let X=0;X<aw;X++){const p=Y*aw+X,o=p*4;
-      const dist=Math.hypot(d[o]-br,d[o+1]-bg,d[o+2]-bb)/255;
-      const ed=(X<aw-1?Math.abs(L[p]-L[p+1]):0)+(Y<ah-1?Math.abs(L[p]-L[p+aw]):0);
-      acc+=smooth(.04,.22,ed)*1.6+smooth(.06,.3,dist)*.3;cdf[p]=acc}
-    const nf=Math.round(N*.06); // un 6% dibuja el marco de la pantalla
-    for(let i=0;i<N;i++){const c=i%COLS,r=(i/COLS)|0,o=((k*ROWS+r)*COLS+c)*4;let cr,cg,cb;
-      if(i<nf||acc<=0){const q=rrect(SW,SH,.06,R());posData[o]=q[0];posData[o+1]=q[1];posData[o+2]=0;cr=.56;cg=.82;cb=.77}
-      else{const t=R()*acc;let lo=0,hi=aw*ah-1;while(lo<hi){const m=(lo+hi)>>1;if(cdf[m]<t)lo=m+1;else hi=m}
-        const X=lo%aw,Y=(lo/aw)|0,q=lo*4;
-        posData[o]=((X+R())/aw-.5)*SW;posData[o+1]=(.5-(Y+R())/ah)*SH;posData[o+2]=(R()-.5)*.05;
-        cr=d[q]/255;cg=d[q+1]/255;cb=d[q+2]/255;const hi2=Math.max(cr,cg,cb),lo2=Math.min(cr,cg,cb);
-        if(hi2-lo2<.18){cr=.93;cg=.9;cb=.85} // textos y grises: claros, para que se lean sobre el fondo oscuro
-        else{const f=.88/Math.max(hi2,.05);cr=Math.min(1,cr*f);cg=Math.min(1,cg*f);cb=Math.min(1,cb*f)}}
-      colData[o]=cr*255;colData[o+1]=cg*255;colData[o+2]=cb*255;
-    }
-  }
-  let shotsReadyT=0,pending=NS;
-  const shotDone=()=>{if(--pending===0){posT.needsUpdate=true;colT.needsUpdate=true;shotsReadyT=1}};
-  SHOTS.forEach((src,k)=>{const im=new Image();im.decoding='async';
-    im.onload=()=>{try{sampleShot(im,k)}catch(e){}shotDone()};im.onerror=shotDone;im.src=src});
+  const shotsReadyT=1;
 
   const U={uProg:{value:0},uIntro:{value:reduce?1:0},uTime:{value:0},uPix:{value:1},uMotion:{value:reduce?0:1},uSize:{value:mobile?42:36},uScale:{value:1},
     uAspect:{value:1},uHover:{value:0},uMouse:{value:new THREE.Vector2(9,9)},uBoost:{value:1},uBoostSize:{value:1},
-    uPosT:{value:posT},uColT:{value:colT},uShotA:{value:0},uShotB:{value:0},uShotMix:{value:0},uShotsN:{value:SHOTS.length},uShotsReady:{value:0},
+    uPosT:{value:posT},uColT:{value:colT},uShotA:{value:0},uShotB:{value:0},uShotMix:{value:0},uShotsN:{value:NS},uShotsReady:{value:0},
     uPath:{value:0},uLayer:{value:3},uLayerOn:{value:0},
     uA:{value:new THREE.Color('#8FD1C4')},uB:{value:new THREE.Color('#F2A65A')},uC:{value:new THREE.Color('#ECE6DA')}};
 
@@ -885,7 +1078,8 @@ function start(){
         float swap=sin(uShotMix*3.14159);
         vec3 s2=mix(aS2,ps,uShotsReady)+vec3(0.,0.,swap*(aRand-.5)*1.4);
         vec3 p=mix(aChaos+vec3(sin(uTime*.35+aChaos.y*.6),cos(uTime*.3+aChaos.x*.5),0.)*.16*uMotion,position,i0); // los globos flotan enteros
-        p=mix(p,aS1,m1);p=mix(p,s2,m2);p=mix(p,aS3,m3);p=mix(p,aS4,m4);p=mix(p,aS5,m5);p=mix(p,aS6,m6);
+        float ra=uTime*.06*uMotion;vec3 s6=vec3(aS6.x*cos(ra)-aS6.y*sin(ra),aS6.x*sin(ra)+aS6.y*cos(ra),aS6.z); // el anillo gira despacio
+        p=mix(p,aS1,m1);p=mix(p,s2,m2);p=mix(p,aS3,m3);p=mix(p,aS4,m4);p=mix(p,aS5,m5);p=mix(p,s6,m6);
         float tr=1.-abs(fract(uProg)-.5)*2.,calm=max(w2,w6);
         p+=vec3(sin(uTime*.7+aRand*40.),cos(uTime*.6+aRand*27.),sin(uTime*.5+aRand*13.))*(.024*(1.-calm*.85)+tr*.12+(1.-i0)*.012)*uMotion;
         vec4 mv=modelViewMatrix*vec4(p,1.);
@@ -907,7 +1101,7 @@ function start(){
         float a=mix(tw,.9,max(w2,w6*.85));
         a*=mix(1.,.58+.42*hl,w1*uLayerOn)*mix(1.,.4+.6*done,w3);
         vA=a+k*.6;vHard=w2*.15;
-        float sz=mix(.35+aRand*.9,.72+aRand*.3,w2);sz=mix(sz,.5+aRand*.55,w6);
+        float sz=mix(.35+aRand*.9,.34+aRand*.26,w2);sz=mix(sz,.5+aRand*.55,w6); // en trabajos, puntos finos para que se lea la forma
         gl_PointSize=uSize*uPix*uScale*sz*mix(uBoostSize,1.,w2*.6)/-mv.z;
       }`,
     fragmentShader:`
@@ -917,43 +1111,15 @@ function start(){
   const pts=new THREE.Points(geo,mat);pts.frustumCulled=false;
   const g=new THREE.Group();g.add(pts);scene.add(g);
 
-  // mi cara: muestreo la foto dándole más partículas a lo que no es pared (pelo, ojos, contornos)
-  let faceReady=false;
-  function buildFace(im){
-    const w=150,h=Math.round(150*im.height/im.width),cv=document.createElement('canvas');cv.width=w;cv.height=h;
-    const x=cv.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,w,h);
-    const d=x.getImageData(0,0,w,h).data,L=new Float32Array(w*h);
-    for(let k=0;k<w*h;k++)L[k]=(d[k*4]*.299+d[k*4+1]*.587+d[k*4+2]*.114)/255;
-    // color de la pared en cada fila, tomado de los bordes (abajo el buzo llega a los bordes: repito la última fila de pared)
-    const rows=[];for(let Y=0;Y<h;Y++){if(Y<h*.5){let r=0,gg=0,b=0;for(const X of[0,1,2,3,w-4,w-3,w-2,w-1]){const o=(Y*w+X)*4;r+=d[o];gg+=d[o+1];b+=d[o+2]}rows.push([r/8,gg/8,b/8])}else rows.push(rows[rows.length-1])}
-    const cdf=new Float32Array(w*h);let acc=0;
-    for(let Y=0;Y<h;Y++)for(let X=0;X<w;X++){const k=Y*w+X,o=k*4,bgc=rows[Y];
-      const dist=Math.hypot(d[o]-bgc[0],d[o+1]-bgc[1],d[o+2]-bgc[2])/255;
-      const ed=X<w-1&&Y<h-1?Math.abs(L[k]-L[k+1])+Math.abs(L[k]-L[k+w]):0;
-      const ex=(X/w-.5)/.39,ey=(Y/h-.43)/.62,mask=smooth(1.08,.82,Math.hypot(ex,ey));
-      let wt=(smooth(.07,.26,dist)*(.14+(1-L[k])*.6)+ed*3.4*smooth(.03,.14,dist))*mask;
-      wt*=1-smooth(.6,.95,Y/h)*.75;
-      acc+=wt;cdf[k]=acc}
-    if(acc<=0)return;
-    const pos=geo.attributes.aS6.array,col=geo.attributes.aCol6.array,s=3.7/h;
-    for(let i=0;i<N;i++){
-      const r=R()*acc;let lo=0,hi=w*h-1;while(lo<hi){const m=(lo+hi)>>1;if(cdf[m]<r)lo=m+1;else hi=m}
-      const X=lo%w,Y=(lo/w)|0,o=lo*4;
-      pos[i*3]=(X+R()-.5-w/2)*s;pos[i*3+1]=(h/2-Y-R()+.5)*s;pos[i*3+2]=(.5-L[lo])*.35+(R()-.5)*.05;
-      col[i*3]=Math.min(1,d[o]/255*1.3);col[i*3+1]=Math.min(1,d[o+1]/255*1.3);col[i*3+2]=Math.min(1,d[o+2]/255*1.3);
-    }
-    geo.attributes.aS6.needsUpdate=true;geo.attributes.aCol6.needsUpdate=true;faceReady=true;
-  }
-  const face=new Image();face.decoding='async';face.onload=()=>{try{buildFace(face)}catch(e){}};face.src='img/mariano.webp';
   // el "?" con la tipografía real una vez que cargó
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{
     const q=glyph('?',QFONT,3.2),a=geo.attributes.aS5.array;for(let i=0;i<N;i++){const v=q();a[i*3]=v[0];a[i*3+1]=v[1];a[i*3+2]=v[2]}
     geo.attributes.aS5.needsUpdate=true});
 
   // ---------- ubicación de cada forma: [x, y, escala] y [rotX, rotY, vaivén, velocidad] ----------
-  const OFF=mobile?[[0,.75,.6],[0,.6,.55],[0,.75,.62],[0,.6,.6],[0,.6,.6],[0,.6,.6],[0,.65,.58]]
-                  :[[2.4,.05,1],[-2.35,-.05,.92],[2.45,.12,1],[-2.35,0,.95],[2.5,.05,.92],[-2.5,0,.95],[2.55,.05,1]];
-  const ROT=[[.1,-.34,.06,.35],[.62,.62,.1,.3],[.04,-.26,.035,.3],[.3,.42,.16,.25],[.18,-.2,.5,.22],[.06,.25,.45,.4],[.02,-.22,.06,.3]];
+  const OFF=mobile?[[0,.75,.6],[0,.6,.55],[0,.75,.72],[0,.6,.6],[0,.6,.6],[0,.6,.6],[0,.65,.58]]
+                  :[[2.4,.05,1],[-2.35,-.05,.92],[2.45,.12,1.18],[-2.35,0,.95],[2.5,.05,.92],[-2.5,0,.95],[2.55,.05,1]];
+  const ROT=[[.1,-.34,.06,.35],[.62,.62,.1,.3],[.12,-.3,.55,.32],[.3,.42,.16,.25],[.18,-.2,.5,.22],[.06,.25,.45,.4],[0,0,0,.3]];
   const ANCH=[-1.75,-1.9,-1.75,-1.45,-1.5,-1.85,-2.05]; // borde inferior de cada forma, para ubicar el rótulo
 
   const secs=[...document.querySelectorAll('[data-shape]')];
@@ -972,7 +1138,8 @@ function start(){
 
   let mx=0,my=0,smx=0,smy=0,hover=0,introT0=performance.now();
   const mouse=new THREE.Vector2(9,9);
-  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;
+  let lastMove=0,odd=false;
+  addEventListener('pointermove',e=>{lastMove=performance.now();mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;
     if(e.pointerType==='mouse'&&!reduce){mouse.set(mx*2,-my*2);hover=1}},{passive:true});
   document.documentElement.addEventListener('pointerleave',()=>{hover=0});
   addEventListener('mv:replay',()=>{introT0=performance.now()}); // el modo presentación repite la intro al volver a empezar
@@ -988,18 +1155,19 @@ function start(){
   function caption(s,introP){
     if(s===0)return introP<.62?['Así llega todo hoy','WhatsApps, planillas y papeles sueltos…']:['Del caos al orden','…todo en un solo sistema.'];
     if(s===1)return layerEl?[LAYERS[+layerEl.dataset.layer||0],h3(layerEl)]:['Servicios','Web, datos y automatización'];
-    if(s===2)return['Captura real · hecha de partículas',h3(activeWork)||'Trabajos'];
+    if(s===2){const k=activeWork&&activeWork.querySelector('.kind');return[k?k.textContent:'Trabajos',h3(activeWork)||'Trabajos']}
     if(s===3)return stepIdx<0?['Cómo trabajo','Cuatro pasos, sin sorpresas']:[`Paso 0${stepIdx+1} de 04`,h3(steps[stepIdx])];
     if(s===4)return['Consultoría ∩ desarrollo','Un solo equipo frente a tu cliente'];
     if(s===5)return['Preguntas','Si no está acá, preguntame'];
-    return['Contacto',faceReady?'Este soy yo. Te leo.':'Escribime, te leo.'];
+    return['Contacto','Escribime, te leo.'];
   }
 
+  const holaFoto=document.querySelector('.hola-foto');
   let shotCur=0,shotNext=0,shotMix=0,last=performance.now();
   function frame(now){
     const dt=Math.min((now-last)/1000,.05),t=now/1000;last=now;
     const pres=root.classList.contains('present')?1:0;
-    prog=lerp(prog,target,reduce?.25:1-Math.pow(.0009,dt));
+    prog=reduce?Math.round(target):lerp(prog,target,1-Math.pow(.0009,dt)); // con movimiento reducido la forma cambia sin el viaje de partículas
     const introP=reduce?1:clamp(((now-introT0)/1000-1)/2.9,0,1);
     U.uProg.value=prog;U.uTime.value=t;U.uIntro.value=introP;
     U.uShotsReady.value=lerp(U.uShotsReady.value,shotsReadyT,.06);
@@ -1028,6 +1196,9 @@ function start(){
     const i=Math.min(Math.floor(prog),6),j=Math.min(i+1,6),f=prog-i,kk=f*f*(3-2*f),a=OFF[i],b=OFF[j],ra=ROT[i],rb=ROT[j];
     // pantallas más cuadradas (proyectores 4:3): la forma se achica pero se mantiene del lado libre
     const asp=innerWidth/innerHeight,sc=mobile?1:clamp(.72+(asp-1.33)*.62,.7,1),fx=mobile?1:clamp(.94+(asp-1.33)*.13,.9,1);
+    // contacto: el anillo se ubica alrededor de la foto, esté donde esté en la pantalla
+    if(holaFoto&&prog>4.5){const r=holaFoto.getBoundingClientRect();if(r.width){const vh=2*camera.position.z*Math.tan(camera.fov*Math.PI/360);
+      OFF[6][0]=((r.left+r.width/2)/innerWidth-.5)*vh*asp/fx;OFF[6][1]=(.5-(r.top+r.height/2)/innerHeight)*vh;OFF[6][2]=r.width/2*1.14/innerHeight*vh/sc}}
     g.position.set(lerp(a[0],b[0],kk)*fx,lerp(a[1],b[1],kk),0);g.scale.setScalar(lerp(a[2],b[2],kk)*sc);U.uScale.value=g.scale.x;
     smx=lerp(smx,mx,.05);smy=lerp(smy,my,.05);
     const sway=lerp(ra[2],rb[2],kk),sp=lerp(ra[3],rb[3],kk);
@@ -1041,9 +1212,12 @@ function start(){
       v3.set(g.position.x,g.position.y+lerp(ANCH[i],ANCH[j],kk)*g.scale.x-.32,0).project(camera);
       const x=(v3.x+1)/2*innerWidth,y=Math.min((1-v3.y)/2*innerHeight,innerHeight-(pres?200:70)); // en presentación deja lugar al QR
       hud.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) translate(-50%,0)`;
-      hud.style.opacity=settle.toFixed(3);
+      hud.style.opacity=(s===6?0:settle).toFixed(3); // en contacto la foto ya tiene su propio texto
     }
-    renderer.render(scene,camera);requestAnimationFrame(frame);
+    // con la escena quieta (sin scroll, sin mouse, sin transición) dibuja a la mitad de cuadros por segundo
+    const busy=Math.abs(prog-target)>.002||shotMix>0||introP<1||pres||now-lastMove<1500;
+    odd=!odd;if(busy||odd)renderer.render(scene,camera);
+    requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 }
